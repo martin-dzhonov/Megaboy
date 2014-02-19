@@ -19,11 +19,9 @@ namespace Main
         private Rectangle rectangle;       
         Texture2D strip;
         Rectangle sourceRectangle;
-        
-       
+             
         private bool hasJumped = false;
         private bool lookingRight;
-
 
         const int FRAMES_PER_ROW = 8;
         const int NUM_ROWS = 1;
@@ -74,14 +72,13 @@ namespace Main
             frameWidth = strip.Width / FRAMES_PER_ROW;
             frameHeight = strip.Height / NUM_ROWS;
 
-            // set initial draw and source rectangles
+            // set initial source rectangle
             sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
 
         }
         public void Update(GameTime gameTime)
         {
-            position += velocity;
-            sourceRectangle = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);        
+            position += velocity;          
             rectangle = new Rectangle((int)position.X, (int)position.Y, PLAYER_SIZE, PLAYER_SIZE);
 
             ReadInput(gameTime);
@@ -98,19 +95,13 @@ namespace Main
             {
                 this.LookingRight = true;
                 AnimateRight(gameTime);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                this.LookingRight = false;
-                AnimateLeft(gameTime);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
                 velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                this.LookingRight = false;
+                AnimateLeft(gameTime);
             }
             else
             {
@@ -127,6 +118,7 @@ namespace Main
 
         public void AnimateRight(GameTime gameTime)
         {
+            sourceRectangle = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);       
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
             if (timer > interval)
             {
@@ -140,6 +132,7 @@ namespace Main
         }
         public void AnimateLeft(GameTime gameTime)
         {
+            sourceRectangle = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);       
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
             if (timer > interval)
             {
