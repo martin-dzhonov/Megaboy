@@ -13,13 +13,11 @@ namespace Main
 {
     class Player
     {
-        private Texture2D texture;
         private Vector2 position = new Vector2(63, 63);
         private Vector2 velocity;
         private Rectangle rectangle;
         private bool hasJumped = false;
 
-        private string spriteName = "knight1";
         private const int PLAYER_SIZE = 60;
 
         public Vector2 Position
@@ -39,10 +37,7 @@ namespace Main
         {
             get { return (int)this.position.Y; }
         }
-        public void Load(ContentManager Content)
-        {
-            texture = Content.Load<Texture2D>(spriteName);
-        }
+
 
         public void Update(GameTime gameTime)
         {
@@ -117,10 +112,6 @@ namespace Main
             {
                 position.Y = yOffset - rectangle.Height;
             }
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, rectangle, Color.White);
         }
 
     }

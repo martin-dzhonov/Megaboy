@@ -11,18 +11,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
+
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Player player;
+        Animation playerAnimation;
+        Map map;
+        Camera camera;
+        ContinuingBackground background;
+        List<Projectile> projectiles = new List<Projectile>();
+        bool spacePressed;
+        static readonly int tileSize = 50;
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            //set screen resolution
+            graphics.PreferredBackBufferWidth = (int)WindowSize.Width;
+            graphics.PreferredBackBufferHeight = (int)WindowSize.Height;
         }
 
         /// <summary>
@@ -33,8 +44,11 @@ namespace Main
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            map = new Map();
+            player = new Player();
+            playerAnimation = new Animation();
+            background = new ContinuingBackground();
+            camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
 
@@ -44,46 +58,115 @@ namespace Main
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            Tiles.Content = Content;
+            map.Generate(new int[,]{
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0},
+                {2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {2,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0},
+                {2,2,1,1,0,0,0,0,2,2,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,2,2,1,1,0,0,0,0,0,0,0,0},
+                {2,0,0,0,0,0,1,1,2,2,2,1,0,0,0,0,0,0,0,1,1,1,2,2,1,0,1,2,2,2,2,2,1,0,0,0,0,0,0,0},
+                {2,0,0,0,0,1,2,2,2,2,2,2,0,0,0,0,0,0,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,0,0,0,0,0,0,0},
+                {2,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1},
+            }, tileSize);
+            background.Load(Content, 2);
+            playerAnimation.Load(Content);
+
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 this.Exit();
+            }
 
-            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyUp(Keys.Space) && spacePressed == true)
+            {
+                ShootProjectile();
+            }
+            spacePressed = Keyboard.GetState().IsKeyDown(Keys.Space);
+            UpdateProjectiles();
 
+            player.Update(gameTime);
+            playerAnimation.Update(gameTime, player.X, player.Y);
+
+            foreach (var tile in map.CollisionTiles)
+            {
+                player.Collision(tile.Rectangle, map.Width, map.Height);
+                for (int i = 0; i < projectiles.Count; i++)
+                {
+                    if (projectiles[i].Collided(tile.Rectangle))
+                    {
+                        projectiles.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
+
+            camera.Update(player.Position, map.Width, map.Height);
             base.Update(gameTime);
+        }
+
+        public void UpdateProjectiles()
+        {
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                projectiles[i].Position += projectiles[i].Velocity;
+                if (Vector2.Distance(projectiles[i].Position, player.Position) > 500)
+                {
+                    projectiles.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        public void ShootProjectile()
+        {
+            Projectile newProjectile = new Projectile(Content);
+            if (playerAnimation.LookingRight)
+            {
+                newProjectile.ShootRight();
+            }
+            else
+            {
+                newProjectile.ShootLeft();
+            }
+            newProjectile.Position = new Vector2(player.X, player.Y + 20) + newProjectile.Velocity * 2;
+            projectiles.Add(newProjectile);
         }
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
+
+            background.Draw(spriteBatch);
+            map.Draw(spriteBatch);
+            playerAnimation.Draw(spriteBatch);
+            foreach (var projectile in projectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
