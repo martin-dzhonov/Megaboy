@@ -17,7 +17,6 @@ namespace Main
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
-        Animation playerAnimation;
         Map map;
         Camera camera;
         ContinuingBackground background;
@@ -46,7 +45,6 @@ namespace Main
         {
             map = new Map();
             player = new Player();
-            playerAnimation = new Animation();
             background = new ContinuingBackground();
             camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
@@ -75,8 +73,7 @@ namespace Main
                 {2,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1},
             }, tileSize);
             background.Load(Content, 2);
-            playerAnimation.Load(Content);
-
+            player.Load(Content);
         }
 
         protected override void UnloadContent()
@@ -102,7 +99,6 @@ namespace Main
             UpdateProjectiles();
 
             player.Update(gameTime);
-            playerAnimation.Update(gameTime, player.X, player.Y);
 
             foreach (var tile in map.CollisionTiles)
             {
@@ -137,7 +133,7 @@ namespace Main
         public void ShootProjectile()
         {
             Projectile newProjectile = new Projectile(Content);
-            if (playerAnimation.LookingRight)
+            if (player.LookingRight)
             {
                 newProjectile.ShootRight();
             }
@@ -160,7 +156,8 @@ namespace Main
 
             background.Draw(spriteBatch);
             map.Draw(spriteBatch);
-            playerAnimation.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+
             foreach (var projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);

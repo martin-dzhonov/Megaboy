@@ -14,7 +14,7 @@ namespace Main
     class Animation
     {
         Texture2D strip;
-        Vector2 position;
+        Vector2 animationPosition;
         Rectangle sourceRectangle;
         Rectangle drawRectangle;
         public bool LookingRight { get; private set; }
@@ -46,15 +46,15 @@ namespace Main
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            drawRectangle = new Rectangle((int)position.X, (int)position.Y, PLAYER_SIZE, PLAYER_SIZE);
+            drawRectangle = new Rectangle((int)animationPosition.X, (int)animationPosition.Y, PLAYER_SIZE, PLAYER_SIZE);
             spriteBatch.Draw(strip, drawRectangle, sourceRectangle, Color.White);
         }
 
         public void Update(GameTime gameTime, int playerX, int playerY)
         {
             sourceRectangle = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);
-            position.X = playerX;
-            position.Y = playerY;
+            animationPosition.X = playerX;
+            animationPosition.Y = playerY;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
