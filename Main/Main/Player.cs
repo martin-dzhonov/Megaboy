@@ -84,7 +84,7 @@ namespace Main
 
             ReadInput(gameTime);
 
-            if (velocity.Y < 15)
+            if (velocity.Y < 12)
             {
                 velocity.Y += 0.4f;
             }
