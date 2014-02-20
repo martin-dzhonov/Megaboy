@@ -10,6 +10,8 @@
 
     public interface IUnit
     {
+        Texture2D Strip { get; set; }
+        Rectangle SourceRectangle { get; set; }
         void Update(GameTime gameTime);
         void Load(ContentManager contentManager);
         void Draw(SpriteBatch spriteBatch);

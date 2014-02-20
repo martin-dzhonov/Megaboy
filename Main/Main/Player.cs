@@ -12,14 +12,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Player : Unit
+    class Player : Unit, IUnit, IMovable
     {
 
         private Vector2 position = new Vector2(63, 63);
         private Vector2 velocity;
-        private Rectangle rectangle;       
-        Texture2D strip;
-        Rectangle sourceRectangle;
+        private Rectangle rectangle;               
              
         private bool hasJumped = false;
         private bool lookingRight;
@@ -30,11 +28,13 @@ namespace Main
         private const string STRIP_NAME = "16jpo1w";
         private const int PLAYER_SIZE = 60;
 
-        int currentFrame;
+        
         int frameHeight;
         int frameWidth;
-        float timer;
+        //int CurrentFrame;
+        //float Timer;
         float interval = 60;
+        
         public bool LookingRight
         {
             get
@@ -65,16 +65,35 @@ namespace Main
             get { return (int)this.position.Y; }
         }
 
+        public float Interval 
+        { 
+            get
+            {
+                return this.interval;
+            }
+            set
+            {
+                this.interval = value;
+            }
+        }
+
+        public float Timer { get; set; }
+
+        
+
+        public int CurrentFrame { get; set; }
+
+        
         public override void Load(ContentManager contentManager)
         {
-            strip = contentManager.Load<Texture2D>(STRIP_NAME);
+            this.Strip = contentManager.Load<Texture2D>(STRIP_NAME);
 
             // calculate frame size
-            frameWidth = strip.Width / FRAMES_PER_ROW;
-            frameHeight = strip.Height / NUM_ROWS;
+            frameWidth = this.Strip.Width / FRAMES_PER_ROW;
+            frameHeight = this.Strip.Height / NUM_ROWS;
 
             // set initial source rectangle
-            sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
+            this.SourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
 
         }
         public override void Update(GameTime gameTime)
@@ -119,30 +138,30 @@ namespace Main
 
         public void AnimateRight(GameTime gameTime)
         {
-            sourceRectangle = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);       
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (timer > interval)
+            this.SourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
+            this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
+            if (this.Timer > Interval)
             {
-                currentFrame++;
-                timer = 0;
+                this.CurrentFrame++;
+                this.Timer = 0;
             }
-            if (currentFrame >= 4)
+            if (this.CurrentFrame >= 4)
             {
-                currentFrame = 0;
+                this.CurrentFrame = 0;
             }
         }
         public void AnimateLeft(GameTime gameTime)
         {
-            sourceRectangle = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);       
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (timer > interval)
+            this.SourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
+            this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
+            if (this.Timer > Interval)
             {
-                currentFrame++;
-                timer = 0;
+                this.CurrentFrame++;
+                this.Timer = 0;
             }
-            if (currentFrame > 7 || currentFrame < 4)
+            if (this.CurrentFrame > 7 || this.CurrentFrame < 4)
             {
-                currentFrame = 4;
+                this.CurrentFrame = 4;
             }
         }
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
@@ -185,7 +204,7 @@ namespace Main
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(strip, rectangle, sourceRectangle, Color.White);
-        }
+            spriteBatch.Draw(this.Strip, rectangle, this.SourceRectangle, Color.White);
+        }              
     }
 }

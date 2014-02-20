@@ -1,18 +1,13 @@
-﻿namespace Main
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Main
 {
-    using System;
-
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Audio;
-    using Microsoft.Xna.Framework.Content;
-    using Microsoft.Xna.Framework.GamerServices;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
-    using Microsoft.Xna.Framework.Media;
-
-    public abstract class NPC : Unit, IUnit
+    public class Ranged : Enemy, IMovable, IUnit
     {
-               
+
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             throw new NotImplementedException();
