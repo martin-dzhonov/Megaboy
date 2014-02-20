@@ -16,24 +16,26 @@ namespace Main
     {
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
-        private bool lookingRight;
 
         const int FRAMES_PER_ROW = 8;
         const int NUM_ROWS = 1;
         const int NUM_FRAMES = 8;
         private const string STRIP_NAME = "16jpo1w";
         private const int PLAYER_SIZE = 60;
-
-        
+    
         int frameHeight;
         int frameWidth;
-        //int CurrentFrame;
-        //float Timer;
         float interval = 60;
 
         public bool LookingRight { get; set; }
 
-        public Vector2 Position { get; }
+        public Vector2 Position
+        {
+            get
+            {
+                return this.position;
+            }
+        }
 
         public int X
         {
@@ -82,7 +84,7 @@ namespace Main
 
             ReadInput(gameTime);
 
-            if (velocity.Y < 10)
+            if (velocity.Y < 1)
             {
                 velocity.Y += 0.4f;
             }
