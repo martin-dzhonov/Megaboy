@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -11,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Player
+    class Player : Unit
     {
 
         private Vector2 position = new Vector2(63, 63);
@@ -64,7 +65,7 @@ namespace Main
             get { return (int)this.position.Y; }
         }
 
-        public void Load(ContentManager contentManager)
+        public override void Load(ContentManager contentManager)
         {
             strip = contentManager.Load<Texture2D>(STRIP_NAME);
 
@@ -76,7 +77,7 @@ namespace Main
             sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
 
         }
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             position += velocity;          
             rectangle = new Rectangle((int)position.X, (int)position.Y, PLAYER_SIZE, PLAYER_SIZE);
@@ -182,7 +183,7 @@ namespace Main
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(strip, rectangle, sourceRectangle, Color.White);
         }
