@@ -74,7 +74,9 @@
   <ItemGroup>
     <Compile Include="Background.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="IUnit.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="NPC.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="RectangleHelper.cs" />
     <Compile Include="Tiles.cs" />
+    <Compile Include="Unit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
