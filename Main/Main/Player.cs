@@ -14,11 +14,7 @@ namespace Main
 {
     class Player : Unit, IUnit, IMovable
     {
-
-        private Vector2 position = new Vector2(63, 63);
-        private Vector2 velocity;
-        private Rectangle rectangle;               
-             
+        private Rectangle sourceRectangle;
         private bool hasJumped = false;
         private bool lookingRight;
 
@@ -34,26 +30,10 @@ namespace Main
         //int CurrentFrame;
         //float Timer;
         float interval = 60;
-        
-        public bool LookingRight
-        {
-            get
-            {
-                return this.lookingRight;
-            }
-            private set
-            {
-                this.lookingRight = value;
-            }
-        }
 
-        public Vector2 Position
-        {
-            get
-            {
-                return this.position;
-            }
-        }
+        public bool LookingRight { get; set; }
+
+        public Vector2 Position { get; }
 
         public int X
         {
@@ -79,21 +59,20 @@ namespace Main
 
         public float Timer { get; set; }
 
-        
-
         public int CurrentFrame { get; set; }
 
         
         public override void Load(ContentManager contentManager)
         {
-            this.Strip = contentManager.Load<Texture2D>(STRIP_NAME);
+            position = new Vector2(0, 0);
+            this.texture = contentManager.Load<Texture2D>(STRIP_NAME);
 
             // calculate frame size
-            frameWidth = this.Strip.Width / FRAMES_PER_ROW;
-            frameHeight = this.Strip.Height / NUM_ROWS;
+            frameWidth = this.texture.Width / FRAMES_PER_ROW;
+            frameHeight = this.texture.Height / NUM_ROWS;
 
             // set initial source rectangle
-            this.SourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
+            this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
 
         }
         public override void Update(GameTime gameTime)
@@ -138,7 +117,7 @@ namespace Main
 
         public void AnimateRight(GameTime gameTime)
         {
-            this.SourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
+            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
             if (this.Timer > Interval)
             {
@@ -152,7 +131,7 @@ namespace Main
         }
         public void AnimateLeft(GameTime gameTime)
         {
-            this.SourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
+            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
             if (this.Timer > Interval)
             {
@@ -204,7 +183,7 @@ namespace Main
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Strip, rectangle, this.SourceRectangle, Color.White);
+            spriteBatch.Draw(this.texture, rectangle, this.sourceRectangle, Color.White);
         }              
     }
 }

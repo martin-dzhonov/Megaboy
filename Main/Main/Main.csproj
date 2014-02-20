@@ -87,7 +87,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Enemies\Ranged.cs" />
     <Compile Include="RectangleHelper.cs" />
-    <Compile Include="Tiles.cs" />
+    <Compile Include="Map and background\Tiles.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>
   <ItemGroup>
