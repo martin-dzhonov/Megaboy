@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -61,7 +62,33 @@ namespace Main
             spriteBatch = new SpriteBatch(GraphicsDevice);
             enemy.Load(Content);
             Tiles.Content = Content;
-            map.Generate(new int[,]{
+
+            //read map from file
+            //StreamReader mapFile = new StreamReader(@"..\..\..\..\MainContent\MapMatrix.txt");
+            //
+            //int[,] mapRead = new int[11, 40];
+            //    string line = string.Empty;
+            //
+            //    while ((line = mapFile.ReadLine()) != null)
+            //    {
+            //        int row = 0;
+            //        string[] lineArr = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            //
+            //        for (int col = 0; col < lineArr.Length; col++)
+            //        {
+            //            mapRead[row, col] = int.Parse(lineArr[col]);
+            //        }
+            //        row++;
+            //
+            //    }
+            //
+            //mapFile.Close();
+            
+            
+            //map.Generate(mapRead, tileSize);
+
+            map.Generate(
+                new int[,]{
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
