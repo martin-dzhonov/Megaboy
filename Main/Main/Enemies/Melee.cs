@@ -14,10 +14,11 @@ namespace Main
 {
     class Melee : Enemy
     {
-        float playerDistanceX;
-        float playerDistanceY;
-        Vector2 patrolPositon;
-        int patrolDistance;
+        private float playerDistanceX;
+        private float playerDistanceY;
+        private Vector2 patrolPositon;
+        private int patrolDistance;
+        private bool hasJumped = false;
 
         public Melee(int positonX, int positionY)
         {
@@ -70,6 +71,12 @@ namespace Main
                     patrolPositon.X += 1;
                 }
             }
+            if (hasJumped == true)
+            {
+                position.Y -= 4f;
+                velocity.Y = -8f;
+                hasJumped = false;
+            }
 
             if (velocity.Y < 12)
             {
@@ -89,16 +96,23 @@ namespace Main
             if (rectangle.TouchTopOf(newRectangle))
             {
                 velocity.Y = 0f;
+                
             }
             if (rectangle.TouchLeftOff(newRectangle))
             {
+                hasJumped = true;
                 velocity.X = -1f;
                 patrolPositon.X -= 10;
             }
             if (rectangle.TouchRightOff(newRectangle))
             {
+                hasJumped = true;
                 velocity.X = 1f;
                 patrolPositon.X += 10;
+            }
+            if(rectangle.TouchBottomOf(newRectangle))
+            {
+                velocity.Y = 1f;
             }
 
             if (position.X < 0)
@@ -120,8 +134,16 @@ namespace Main
         }
 
         public override void Draw(SpriteBatch spriteBatch)
-        {           
+        {       
             spriteBatch.Draw(texture, rectangle, Color.White);
+            /*if (velocity.X > 0)
+            {
+                spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(50,50), SpriteEffects.None, 0f);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(50, 50), SpriteEffects.FlipHorizontally, 0f);
+            }*/
         }
     }
 }
