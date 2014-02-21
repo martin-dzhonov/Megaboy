@@ -14,11 +14,7 @@ using Main.Interfaces;
 
 
 namespace Main
-{
-    public enum WindowSize
-    {
-        Width = 1100, Height = 550
-    }
+{    
     class Map : IMap
     {
         private List<CollisionTile> collisionTiles = new List<CollisionTile>();

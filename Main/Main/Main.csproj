@@ -72,6 +72,8 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\WindowSizes.cs" />
+    <Compile Include="Interfaces\IMap.cs" />
     <Compile Include="Map and background\Background.cs" />
     <Compile Include="Map and background\Camera.cs" />
     <Compile Include="Enemies\Enemy.cs" />
