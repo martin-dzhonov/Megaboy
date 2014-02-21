@@ -21,6 +21,7 @@ namespace Main
         Camera camera;
         ContinuingBackground background;
         List<Projectile> projectiles = new List<Projectile>();
+        Enemy enemy;
         bool spacePressed;
         static readonly int tileSize = 50;
 
@@ -47,7 +48,8 @@ namespace Main
             player = new Player();
             background = new ContinuingBackground();
             camera = new Camera(GraphicsDevice.Viewport);
-            base.Initialize();
+            enemy = new Melee(500,100);
+;            base.Initialize();
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace Main
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            enemy.Load(Content);
             Tiles.Content = Content;
             map.Generate(new int[,]{
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -97,12 +99,13 @@ namespace Main
             }
             spacePressed = Keyboard.GetState().IsKeyDown(Keys.Space);
             UpdateProjectiles();
-
+            enemy.Update(gameTime, player.X, player.Y);
             player.Update(gameTime);
-
+           
             foreach (var tile in map.CollisionTiles)
             {
                 player.Collision(tile.Rectangle, map.Width, map.Height);
+                enemy.Collision(tile.Rectangle, map.Width, map.Height);
                 for (int i = 0; i < projectiles.Count; i++)
                 {
                     if (projectiles[i].Collided(tile.Rectangle))
@@ -157,7 +160,7 @@ namespace Main
             background.Draw(spriteBatch);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
-
+            enemy.Draw(spriteBatch);
             foreach (var projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);

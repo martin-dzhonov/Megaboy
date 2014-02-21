@@ -29,5 +29,10 @@ namespace Main
         {
             throw new NotImplementedException();
         }
+
+        public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

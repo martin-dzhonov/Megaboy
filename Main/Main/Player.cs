@@ -186,6 +186,11 @@ namespace Main
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.texture, rectangle, this.sourceRectangle, Color.White);
-        }              
+        }
+
+        public override void Update(GameTime gameTime, int playerX, int playerY)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

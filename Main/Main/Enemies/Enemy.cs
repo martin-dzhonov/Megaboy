@@ -12,8 +12,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Enemy : Unit
+    abstract class Enemy : Unit
     {
+        public abstract void Collision(Rectangle newRectangle, int xOffset, int yOffset);
         public override void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
@@ -25,6 +26,11 @@ namespace Main
         }
 
         public override void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(GameTime gameTime, int playerX, int playerY)
         {
             throw new NotImplementedException();
         }

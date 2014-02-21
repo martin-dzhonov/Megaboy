@@ -21,7 +21,7 @@ namespace Main
         protected Vector2 velocity;
         
         public abstract void Update(GameTime gameTime);
-
+        public abstract void Update(GameTime gameTime, int playerX, int playerY);
         public abstract void Load(ContentManager contentManager);
 
         public abstract void Draw(SpriteBatch spriteBatch);
