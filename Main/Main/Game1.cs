@@ -26,6 +26,7 @@ namespace Main
         ContinuingBackground background;
         List<Projectile> projectiles = new List<Projectile>();
         Enemy enemy;
+        List<Enemy> enemies = new List<Enemy>();
         bool spacePressed;
         static readonly int tileSize = 50;
 
@@ -52,8 +53,8 @@ namespace Main
             player = new Player();
             background = new ContinuingBackground();
             camera = new Camera(GraphicsDevice.Viewport);
-            enemy = new Melee(500,100);
-;            base.Initialize();
+            enemy = new Melee(500,100);       
+;           base.Initialize();
         }
 
         /// <summary>
@@ -64,10 +65,12 @@ namespace Main
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             enemy.Load(Content);
+            enemies.Add(enemy);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
             background.Load(Content, 2);
             player.Load(Content);
+            
         }
 
         static int[,] ReadMapFromFIle()
@@ -114,21 +117,36 @@ namespace Main
             }
             spacePressed = Keyboard.GetState().IsKeyDown(Keys.Space);
             UpdateProjectiles();
-            enemy.Update(gameTime, player.X, player.Y);
+
             player.Update(gameTime);
-           
+
+            foreach (var enm in enemies)
+            {
+                enm.Update(gameTime, player.X, player.Y);
+            }
+
             foreach (var tile in map.CollisionTiles)
             {
                 player.Collision(tile.Rectangle, map.Width, map.Height);
                 enemy.Collision(tile.Rectangle, map.Width, map.Height);
                 for (int i = 0; i < projectiles.Count; i++)
                 {
+                    for (int j = 0; j < enemies.Count; j++)
+                    {
+                        if (projectiles[i].Collided(enemy.Rectangle))
+                        {
+                            enemies.RemoveAt(j);
+                            j--;
+                        }
+                    }
+
                     if (projectiles[i].Collided(tile.Rectangle))
                     {
                         projectiles.RemoveAt(i);
                         i--;
                     }
                 }
+                
             }
 
             camera.Update(player.Position, map.Width, map.Height);
@@ -175,7 +193,11 @@ namespace Main
             background.Draw(spriteBatch);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
+
+            foreach (var enm in enemies)
+            {
+                enm.Draw(spriteBatch);
+            }
             foreach (var projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
