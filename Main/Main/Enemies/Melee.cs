@@ -88,7 +88,7 @@ namespace Main
 
         public override void Load(ContentManager contentManager)
         {
-            this.texture = contentManager.Load<Texture2D>("knight1");
+            this.texture = contentManager.Load<Texture2D>("darkKnight");
         }
 
         public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
