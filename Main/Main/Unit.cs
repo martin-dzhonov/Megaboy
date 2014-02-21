@@ -26,6 +26,7 @@ namespace Main
                 return this.rectangle;
             }
         }
+        public abstract void Collision(Rectangle newRectangle, int xOffset, int yOffset);
         public abstract void Update(GameTime gameTime);
         public abstract void Update(GameTime gameTime, int playerX, int playerY);
         public abstract void Load(ContentManager contentManager);

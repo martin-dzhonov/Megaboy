@@ -14,7 +14,7 @@ namespace Main
 {
     abstract class Enemy : Unit
     {
-        public abstract void Collision(Rectangle newRectangle, int xOffset, int yOffset);
+        
         public override void Update(GameTime gameTime)
         {
             throw new NotImplementedException();

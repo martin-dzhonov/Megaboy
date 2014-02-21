@@ -145,7 +145,7 @@ namespace Main
                 this.CurrentFrame = 4;
             }
         }
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
