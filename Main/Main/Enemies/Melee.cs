@@ -20,6 +20,7 @@ namespace Main
         private int patrolDistance;
         private bool hasJumped = false;
 
+
         public Melee(int positonX, int positionY)
         {
             this.position.X = positonX;

@@ -61,48 +61,33 @@ namespace Main
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             enemy.Load(Content);
-            Tiles.Content = Content;
-
-            //read map from file
-            //StreamReader mapFile = new StreamReader(@"..\..\..\..\MainContent\MapMatrix.txt");
-            //
-            //int[,] mapRead = new int[11, 40];
-            //    string line = string.Empty;
-            //
-            //    while ((line = mapFile.ReadLine()) != null)
-            //    {
-            //        int row = 0;
-            //        string[] lineArr = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            //
-            //        for (int col = 0; col < lineArr.Length; col++)
-            //        {
-            //            mapRead[row, col] = int.Parse(lineArr[col]);
-            //        }
-            //        row++;
-            //
-            //    }
-            //
-            //mapFile.Close();
-            
-            
-            //map.Generate(mapRead, tileSize);
-
-            map.Generate(
-                new int[,]{
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0},
-                {2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {2,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0},
-                {2,2,1,1,0,0,0,2,2,2,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,2,2,1,1,0,0,0,0,0,0,0,0},
-                {2,0,0,0,0,0,1,2,2,2,2,1,0,0,0,0,0,0,0,1,1,1,2,2,1,0,1,2,2,2,2,2,1,0,0,0,0,0,0,0},
-                {2,0,0,0,0,1,2,2,2,2,2,2,0,0,0,0,0,0,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,0,0,0,0,0,0,0},
-                {2,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1},
-            }, tileSize);
+            Tiles.Content = Content; 
+            map.Generate(ReadMapFromFIle(), tileSize);
             background.Load(Content, 2);
             player.Load(Content);
+        }
+
+        static int[,] ReadMapFromFIle()
+        {
+            StreamReader mapFile = new StreamReader(@"..\..\..\..\MainContent\MapMatrix.txt");
+            int[,] mapRead;
+            using (mapFile)
+            {
+                mapRead = new int[11, 40];
+                string line = string.Empty;
+                int row = 0;
+                while ((line = mapFile.ReadLine()) != null)
+                {
+                    int[] lineArr = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+                    for (int col = 0; col < mapRead.GetLength(1); col++)
+                    {
+                        mapRead[row, col] = lineArr[col];
+                    }
+                    row++;
+                }
+            }
+            return mapRead;
         }
 
         protected override void UnloadContent()

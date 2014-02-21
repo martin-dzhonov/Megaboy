@@ -19,7 +19,13 @@ namespace Main
         protected Vector2 position;
         protected Rectangle rectangle;
         protected Vector2 velocity;
-        
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return this.rectangle;
+            }
+        }
         public abstract void Update(GameTime gameTime);
         public abstract void Update(GameTime gameTime, int playerX, int playerY);
         public abstract void Load(ContentManager contentManager);
