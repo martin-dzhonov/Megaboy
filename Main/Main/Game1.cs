@@ -15,7 +15,17 @@ using Main.Enum;
 
 namespace Main
 {
-
+    //TODO: Start and end screen
+    //TODO: Music and sound effects
+    //TODO: Ranged enemy
+    //TODO: Different types of melee and range enemies
+    //TODO: Health
+    //TODO: Enemies health
+    //TODO: NPCs
+    //TODO: Storyline ?
+    //TODO: Different player heroes ?
+    //TODO: Longer map
+    //TODO: Boss fight
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;

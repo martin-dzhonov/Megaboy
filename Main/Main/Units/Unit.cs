@@ -19,6 +19,18 @@ namespace Main
         protected Vector2 position;
         protected Rectangle rectangle;
         protected Vector2 velocity;
+        public Vector2 Velocity
+        {
+            get
+            {
+                return this.velocity;
+            }
+            set
+            {
+                this.velocity = value;
+            }
+        }
+
         public Rectangle Rectangle
         {
             get
@@ -26,6 +38,7 @@ namespace Main
                 return this.rectangle;
             }
         }
+
         public abstract void Collision(Rectangle newRectangle, int xOffset, int yOffset);
         public abstract void Update(GameTime gameTime);
         public abstract void Update(GameTime gameTime, int playerX, int playerY);
