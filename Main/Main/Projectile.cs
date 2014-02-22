@@ -17,14 +17,25 @@ namespace Main
         private Rectangle rectangle;
         private Vector2 position;
         private Vector2 velocity;
-        private bool isVisible;
 
 
         public Projectile(ContentManager contentManager)
         {
             this.texture = contentManager.Load<Texture2D>("Projectile");
-            this.isVisible = false;
+            this.Rectangle = new Rectangle(0,0,0,0);
         }
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return this.rectangle;
+            }
+            set
+            {
+                this.rectangle = value;
+            }
+        }
+
         public Vector2 Position
         {
             get
@@ -49,35 +60,27 @@ namespace Main
             }
         }
 
-        public bool IsVisible
+        public void UpdatePosition()
         {
-            get
-            {
-                return this.isVisible;
-            }
-
-            set
-            {
-                this.isVisible = value;
-            }
+            this.position += this.velocity;
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, 30, 30);
         }
-
         public bool Collided(Rectangle newRectangle)
         {
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
-            if (rectangle.TouchTopOf(newRectangle))
+            
+            if (rectangle.ProjectileTouchTopOf(newRectangle))
             {
                 return true;
             }
-            if (rectangle.TouchLeftOff(newRectangle))
+            if (rectangle.ProjectileTouchLeftOf(newRectangle))
             {
                 return true;
             }
-            if (rectangle.TouchRightOff(newRectangle))
+            if (rectangle.ProjectileTouchRightOf(newRectangle))
             {
                 return true;
             }
-            if (rectangle.TouchBottomOf(newRectangle))
+            if (rectangle.ProjectileTouchBottomOf(newRectangle))
             {
                 return true;
             }
@@ -94,7 +97,14 @@ namespace Main
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White);//, 0f, origin, 1f, SpriteEffects.None, 0);
+            if (velocity.X > 0)
+            {
+            spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0,0), SpriteEffects.None, 0f);
+            }
+            else
+            {
+            spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
+            }
         }
     }
 }
