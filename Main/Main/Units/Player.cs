@@ -18,14 +18,14 @@ namespace Main
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
 
-        const int FRAMES_PER_ROW = 8;
+        const int FRAMES_PER_ROW = 32;
         const int NUM_ROWS = 1;
-        const int NUM_FRAMES = 8;
-        private const string STRIP_NAME = "16jpo1w";
+        const int NUM_FRAMES = 32;
+        private const string STRIP_NAME = "heroWalking1";
     
         int frameHeight;
         int frameWidth;
-        float interval = 60;
+        float interval = 30;
 
         public bool LookingRight { get; set; }
         public Vector2 Position
@@ -103,9 +103,9 @@ namespace Main
                 this.CurrentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame >= 4)
+            if (this.CurrentFrame < 16 || CurrentFrame >= 32)
             {
-                this.CurrentFrame = 0;
+                this.CurrentFrame = 16;
             }
         }
         public void AnimateLeft(GameTime gameTime)
@@ -117,9 +117,9 @@ namespace Main
                 this.CurrentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame > 7 || this.CurrentFrame < 4)
+            if (this.CurrentFrame > 15)
             {
-                this.CurrentFrame = 4;
+                this.CurrentFrame = 0;
             }
         }
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)

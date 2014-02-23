@@ -186,7 +186,7 @@ namespace Main
             {
                 newProjectile.ShootLeft();
             }
-            newProjectile.Position = new Vector2((int)player.Position.X, (int)player.Position.Y +20) + newProjectile.Velocity * 2;
+            newProjectile.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + newProjectile.Velocity * 3;
             projectiles.Add(newProjectile);
         }
 
