@@ -17,7 +17,6 @@ namespace Main
 {
     //TODO: Start and end screen
     //TODO: Music and sound effects
-    //TODO: Ranged enemy
     //TODO: Different types of melee and range enemies
     //TODO: Health
     //TODO: Enemies health
@@ -37,7 +36,7 @@ namespace Main
         List<Projectile> projectiles = new List<Projectile>();
         
         List<Enemy> enemies = new List<Enemy>();
-        bool spacePressed;
+        bool xPressed;
         static readonly int tileSize = 50;
 
 
@@ -63,18 +62,17 @@ namespace Main
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Tiles.Content = Content; 
+            map.Generate(ReadMapFromFIle(), tileSize);
+            background.Load(Content, 2);
+            player.Load(Content);
             //Enemies
-            Enemy meleeEnemy1 = new Melee(500, 100); 
+            Enemy meleeEnemy1 = new Melee(500, 100);
             meleeEnemy1.Load(Content);
             Enemy rangedEnemy1 = new Ranged(1000, 100);
             rangedEnemy1.Load(Content);
             enemies.Add(meleeEnemy1);
             enemies.Add(rangedEnemy1);
-            Tiles.Content = Content; 
-            map.Generate(ReadMapFromFIle(), tileSize);
-            background.Load(Content, 2);
-            player.Load(Content);
-            
         }
 
         protected override void UnloadContent()
@@ -88,27 +86,34 @@ namespace Main
                 this.Exit();
             }
 
-            if (Keyboard.GetState().IsKeyUp(Keys.Space) && spacePressed == true)
+            if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
             {
                 ShootProjectile();
             }
-            spacePressed = Keyboard.GetState().IsKeyDown(Keys.Space);
+            xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
             UpdateProjectiles();
 
             player.Update(gameTime);
 
-            foreach (var enm in enemies)
+            foreach (var enemy in enemies)
             {
-                enm.Update(gameTime, player.X, player.Y);
+                enemy.Update(gameTime, (int)player.Position.X,(int)player.Position.Y);
             }
 
             foreach (var tile in map.CollisionTiles)
             {
                 player.Collision(tile.Rectangle, map.Width, map.Height);
-                foreach (var enemy in enemies)
+                for (int i = 0; i < enemies.Count; i++)
                 {
-                    enemy.Collision(tile.Rectangle, map.Width, map.Height);
-                }          
+                    enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
+                    if(player.Rectangle.Intersects(enemies[i].Rectangle))
+                    {
+                        enemies.RemoveAt(i);
+                        i--;
+                    }
+
+                }
+         
                 for (int i = 0; i < projectiles.Count; i++)
                 {
                     for (int j = 0; j < enemies.Count; j++)
@@ -143,9 +148,9 @@ namespace Main
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
 
-            foreach (var enm in enemies)
+            foreach (var enemy in enemies)
             {
-                enm.Draw(spriteBatch);
+                enemy.Draw(spriteBatch);
             }
             foreach (var projectile in projectiles)
             {
@@ -181,7 +186,7 @@ namespace Main
             {
                 newProjectile.ShootLeft();
             }
-            newProjectile.Position = new Vector2(player.X, player.Y + 20) + newProjectile.Velocity * 2;
+            newProjectile.Position = new Vector2((int)player.Position.X, (int)player.Position.Y +20) + newProjectile.Velocity * 2;
             projectiles.Add(newProjectile);
         }
 

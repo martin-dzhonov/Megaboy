@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Main.Enum;
 using Microsoft.Xna.Framework.Media;
 
 namespace Main
@@ -21,13 +22,25 @@ namespace Main
         const int NUM_ROWS = 1;
         const int NUM_FRAMES = 8;
         private const string STRIP_NAME = "16jpo1w";
-        private const int PLAYER_SIZE = 60;
     
         int frameHeight;
         int frameWidth;
         float interval = 60;
+        bool atacking = false;
 
         public bool LookingRight { get; set; }
+
+        public bool Atacking
+        {
+            get
+            {
+                return this.atacking;
+            }
+            set
+            {
+                this.atacking = value;
+            }
+        }
 
         public Vector2 Position
         {
@@ -35,16 +48,6 @@ namespace Main
             {
                 return this.position;
             }
-        }
-
-        public int X
-        {
-            get { return (int)this.position.X; }
-        }
-
-        public int Y
-        {
-            get { return (int)this.position.Y; }
         }
 
         public float Interval 
@@ -80,7 +83,7 @@ namespace Main
         public override void Update(GameTime gameTime)
         {
             position += velocity;          
-            rectangle = new Rectangle((int)position.X, (int)position.Y, PLAYER_SIZE, PLAYER_SIZE);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, (int)PlayerSize.Width, (int)PlayerSize.Height);
 
             ReadInput(gameTime);
 
@@ -145,7 +148,7 @@ namespace Main
                 this.CurrentFrame = 4;
             }
         }
-        public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
@@ -186,11 +189,6 @@ namespace Main
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.texture, rectangle, this.sourceRectangle, Color.White);
-        }
-
-        public override void Update(GameTime gameTime, int playerX, int playerY)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -10,7 +10,6 @@
 
     public interface IUnit
     {
-        void Collision(Rectangle newRectangle, int xOffset, int yOffset);
         void Update(GameTime gameTime);
         void Load(ContentManager contentManager);
         void Draw(SpriteBatch spriteBatch);

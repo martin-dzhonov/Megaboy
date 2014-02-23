@@ -8,14 +8,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Background" Collapsed="true">
-    <Position X="3.5" Y="4.5" Width="1.5" />
+    <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Map and background\Background.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.ContinuingBackground" Collapsed="true">
-    <Position X="3.5" Y="5.75" Width="1.5" />
+    <Position X="3" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Map and background\Background.cs</FileName>
@@ -60,14 +60,14 @@
   <Class Name="Main.Projectile" Collapsed="true">
     <Position X="11.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAEgQgABAAICAAAAAAAgAAAAQAAAAGAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAiQgAAAAICAAAAAgAgAAAAQAAAAGAAA=</HashCode>
       <FileName>Projectile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.RectangleHelper" Collapsed="true">
     <Position X="13.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAABAAAAAAAAAAAAAAAIAAAAAAAIAA=</HashCode>
+      <HashCode>EAAAACAAAAACAAAABAAAAAAAAAAAAAAAIAAAAIAAMAA=</HashCode>
       <FileName>RectangleHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -96,7 +96,7 @@
   <Class Name="Main.Player" Collapsed="true">
     <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IASAiACAAIAAAgAgAoAAAACAGAEAQAAgAAQAUAAEYAA=</HashCode>
+      <HashCode>IASAiACAAIAAAgAgAoAAAACAGAEAQAAgAAQAUAAEAAA=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -142,6 +142,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enum\WindowSizes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Main.Enum.PlayerSize" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enum\PlayerSize.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
