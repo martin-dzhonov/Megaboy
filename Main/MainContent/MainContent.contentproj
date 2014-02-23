@@ -87,8 +87,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="heroWalking1.png">
-      <Name>heroWalking1</Name>
+    <Compile Include="running.png">
+      <Name>running</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="heroWalking2.png">
+      <Name>heroWalking2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="standing1.png">
+      <Name>standing1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
