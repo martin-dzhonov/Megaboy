@@ -15,13 +15,15 @@ namespace Main
 {
     class Player : Unit, IMovable
     {
+        private Texture2D standingTexture;
+        private Texture2D runningTexture;
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
 
         const int FRAMES_PER_ROW = 32;
         const int NUM_ROWS = 1;
         const int NUM_FRAMES = 32;
-        private const string STRIP_NAME = "heroWalking1";
+        
     
         int frameHeight;
         int frameWidth;
@@ -44,8 +46,9 @@ namespace Main
         public override void Load(ContentManager contentManager)
         {
             position = new Vector2(0, 0);
-            this.texture = contentManager.Load<Texture2D>(STRIP_NAME);
-
+            this.runningTexture = contentManager.Load <Texture2D>("running");
+            this.standingTexture = contentManager.Load<Texture2D>("standing1");
+            this.texture = runningTexture;
             // calculate frame size
             frameWidth = this.texture.Width / FRAMES_PER_ROW;
             frameHeight = this.texture.Height / NUM_ROWS;
@@ -72,6 +75,7 @@ namespace Main
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 this.LookingRight = true;
+                this.texture = runningTexture;
                 AnimateRight(gameTime);
                 velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
             }
@@ -79,11 +83,15 @@ namespace Main
             {
                 velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
                 this.LookingRight = false;
+                this.texture = runningTexture;
                 AnimateLeft(gameTime);
             }
             else
             {
+                this.texture = standingTexture;
+                AnimateStanding(gameTime);
                 velocity.X = 0f;
+               
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
@@ -94,6 +102,17 @@ namespace Main
             }
         }
 
+        public void AnimateStanding(GameTime gameTime)
+        {
+            if (LookingRight)
+            {
+                 this.sourceRectangle = new Rectangle(0, 0, 60, this.standingTexture.Height);
+            }         
+            else
+            {
+                this.sourceRectangle = new Rectangle(60, 0, 60, this.standingTexture.Height);
+            }
+        }
         public void AnimateRight(GameTime gameTime)
         {
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
@@ -159,6 +178,7 @@ namespace Main
                 position.Y = yOffset - rectangle.Height;
             }
         }
+            
 
         public override void Draw(SpriteBatch spriteBatch)
         {
