@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 namespace Main
 {
     
-    public abstract class Unit : IUnit
+    public abstract class Unit
     {
         protected Texture2D texture;
         protected Vector2 position;

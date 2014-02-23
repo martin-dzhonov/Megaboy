@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Player : Unit, IUnit, IMovable
+    class Player : Unit, IMovable
     {
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
@@ -26,39 +26,13 @@ namespace Main
         int frameHeight;
         int frameWidth;
         float interval = 60;
-        bool atacking = false;
 
         public bool LookingRight { get; set; }
-
-        public bool Atacking
-        {
-            get
-            {
-                return this.atacking;
-            }
-            set
-            {
-                this.atacking = value;
-            }
-        }
-
         public Vector2 Position
         {
             get
             {
                 return this.position;
-            }
-        }
-
-        public float Interval 
-        { 
-            get
-            {
-                return this.interval;
-            }
-            set
-            {
-                this.interval = value;
             }
         }
 
@@ -124,7 +98,7 @@ namespace Main
         {
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (this.Timer > Interval)
+            if (this.Timer > interval)
             {
                 this.CurrentFrame++;
                 this.Timer = 0;
@@ -138,7 +112,7 @@ namespace Main
         {
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (this.Timer > Interval)
+            if (this.Timer > interval)
             {
                 this.CurrentFrame++;
                 this.Timer = 0;

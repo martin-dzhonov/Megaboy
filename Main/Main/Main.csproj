@@ -79,7 +79,6 @@
     <Compile Include="Map and background\Camera.cs" />
     <Compile Include="Units\Enemy.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
-    <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="Map and background\Map.cs" />
     <Compile Include="Units\Melee.cs" />
     <Compile Include="Units\NPC.cs" />
