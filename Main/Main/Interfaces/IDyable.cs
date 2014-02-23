@@ -2,7 +2,7 @@
 {
     interface IDyable
     {
-        int Health{get; set;}
+        int Health{get;}
 
 
     }

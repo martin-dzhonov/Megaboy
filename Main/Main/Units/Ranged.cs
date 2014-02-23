@@ -14,9 +14,10 @@ namespace Main
 {
     class Ranged : Enemy
     {
-        public Ranged(int positonX, int positionY) : base(positonX, positionY)
+        public Ranged(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50)
+            : base(positonX, positionY, rectangleWidth, rectangleHeight)
         {
-            this.spriteName = "knight1";
+            this.spriteName = "Archer";
         }
     }
 }

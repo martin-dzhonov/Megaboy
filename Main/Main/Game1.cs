@@ -72,8 +72,11 @@ namespace Main
             meleeEnemy1.Load(Content);
             Enemy rangedEnemy1 = new Ranged(1000, 100);
             rangedEnemy1.Load(Content);
+            Enemy boss = new Boss( 900/*9500*/, 100, 100, 100);
+            boss.Load(Content);
             enemies.Add(meleeEnemy1);
             enemies.Add(rangedEnemy1);
+            enemies.Add(boss);
             pewPew = Content.Load<SoundEffect>("pewpew");
         }
 

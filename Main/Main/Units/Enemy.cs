@@ -21,7 +21,10 @@ namespace Main
         protected bool hasJumped = false;
         protected string spriteName;
 
-        public Enemy(int positonX, int positionY)
+        protected int rectangleSizeWidth;
+        protected int rectangleSizeHeight;
+
+        public Enemy(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50)
         {
             this.position.X = positonX;
             this.position.Y = positionY;
@@ -30,6 +33,9 @@ namespace Main
             this.patrolDistance = 50;
             this.velocity.X = 1f;
             this.velocity.Y = 1f;
+
+            this.rectangleSizeWidth = rectangleWidth;
+            this.rectangleSizeHeight = rectangleHeight;
         }
 
         public void Update(GameTime gameTime, int playerX, int playerY)
@@ -37,7 +43,7 @@ namespace Main
 
             position += velocity;
 
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
             if (position.X > patrolPositon.X)
             {
                 if ((int)(position.X - patrolPositon.X) > patrolDistance)
