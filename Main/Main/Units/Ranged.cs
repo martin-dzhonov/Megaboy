@@ -17,7 +17,7 @@ namespace Main
         public Ranged(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50)
             : base(positonX, positionY, rectangleWidth, rectangleHeight)
         {
-            this.spriteName = "Archer";
+            this.spriteName = "ranged1";
         }
     }
 }

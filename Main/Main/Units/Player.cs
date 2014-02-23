@@ -17,12 +17,13 @@ namespace Main
     {
         private Texture2D standingTexture;
         private Texture2D runningTexture;
+        private Texture2D shootingTexture;
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
 
-        const int FRAMES_PER_ROW = 32;
+        const int FRAMES_PER_ROW = 15;
         const int NUM_ROWS = 1;
-        const int NUM_FRAMES = 32;
+        const int NUM_FRAMES = 15;
         
     
         int frameHeight;
@@ -46,8 +47,9 @@ namespace Main
         public override void Load(ContentManager contentManager)
         {
             position = new Vector2(0, 0);
-            this.runningTexture = contentManager.Load <Texture2D>("running");
-            this.standingTexture = contentManager.Load<Texture2D>("standing1");
+            this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
+            this.standingTexture = contentManager.Load<Texture2D>("standing2");
+            this.shootingTexture = contentManager.Load<Texture2D>("shooting1");
             this.texture = runningTexture;
             // calculate frame size
             frameWidth = this.texture.Width / FRAMES_PER_ROW;
@@ -88,8 +90,15 @@ namespace Main
             }
             else
             {
-                this.texture = standingTexture;
-                AnimateStanding(gameTime);
+                if (Keyboard.GetState().IsKeyDown(Keys.X))
+                {
+                    this.texture = shootingTexture;
+                }
+                else
+                {
+                    this.texture = standingTexture;
+                }
+                this.sourceRectangle = new Rectangle(0, 0, standingTexture.Width, standingTexture.Height);
                 velocity.X = 0f;
                
             }
@@ -102,29 +111,19 @@ namespace Main
             }
         }
 
-        public void AnimateStanding(GameTime gameTime)
-        {
-            if (LookingRight)
-            {
-                 this.sourceRectangle = new Rectangle(0, 0, 60, this.standingTexture.Height);
-            }         
-            else
-            {
-                this.sourceRectangle = new Rectangle(60, 0, 60, this.standingTexture.Height);
-            }
-        }
+
         public void AnimateRight(GameTime gameTime)
         {
-            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
+            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
             if (this.Timer > interval)
             {
                 this.CurrentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame < 16 || CurrentFrame >= 32)
+            if (this.CurrentFrame >= 15)
             {
-                this.CurrentFrame = 16;
+                this.CurrentFrame = 0;
             }
         }
         public void AnimateLeft(GameTime gameTime)
@@ -136,7 +135,7 @@ namespace Main
                 this.CurrentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame > 15)
+            if (this.CurrentFrame >= 15)
             {
                 this.CurrentFrame = 0;
             }
@@ -182,7 +181,15 @@ namespace Main
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.texture, rectangle, this.sourceRectangle, Color.White);
+            if (velocity.X > 0 || LookingRight == true)
+            {
+                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
+            }
+            
         }
     }
 }

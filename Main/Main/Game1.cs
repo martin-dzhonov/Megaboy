@@ -36,8 +36,8 @@ namespace Main
         ContinuingBackground background;
         List<Projectile> projectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
-        SoundEffect pewPew;
-        bool xPressed;
+
+        bool xPressed; //x - shoot
         static readonly int tileSize = 50;
 
 
@@ -67,17 +67,8 @@ namespace Main
             map.Generate(ReadMapFromFIle(), tileSize);
             background.Load(Content, 10);
             player.Load(Content);
-            //Enemies
-            Enemy meleeEnemy1 = new Melee(500, 100);
-            meleeEnemy1.Load(Content);
-            Enemy rangedEnemy1 = new Ranged(1000, 100);
-            rangedEnemy1.Load(Content);
-            Enemy boss = new Boss( 900/*9500*/, 100, 100, 100);
-            boss.Load(Content);
-            enemies.Add(meleeEnemy1);
-            enemies.Add(rangedEnemy1);
-            enemies.Add(boss);
-            pewPew = Content.Load<SoundEffect>("pewpew");
+            LoadEnemies();
+            
         }
 
         protected override void UnloadContent()
@@ -93,7 +84,6 @@ namespace Main
 
             if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
             {
-                pewPew.Play();
                 ShootProjectile();
             }
             xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
@@ -168,6 +158,40 @@ namespace Main
             base.Draw(gameTime);
         }
 
+        static int[,] ReadMapFromFIle()
+        {
+            StreamReader mapFile = new StreamReader(@"..\..\..\..\MainContent\MapMatrix.txt");
+            int[,] mapRead;
+            using (mapFile)
+            {
+                mapRead = new int[11, 200];
+                string line = string.Empty;
+                int row = 0;
+                while ((line = mapFile.ReadLine()) != null)
+                {
+                    int[] lineArr = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+                    for (int col = 0; col < mapRead.GetLength(1); col++)
+                    {
+                        mapRead[row, col] = lineArr[col];
+                    }
+                    row++;
+                }
+            }
+            return mapRead;
+        }
+        public void LoadEnemies()
+        {
+            Enemy meleeEnemy1 = new Melee(500, 100);
+            meleeEnemy1.Load(Content);
+            Enemy rangedEnemy1 = new Ranged(1000, 100);
+            rangedEnemy1.Load(Content);
+            Enemy boss = new Boss(900/*9500*/, 100, 100, 100);
+            boss.Load(Content);
+            enemies.Add(meleeEnemy1);
+            enemies.Add(rangedEnemy1);
+            enemies.Add(boss);
+        }
         public void UpdateProjectiles()
         {
             for (int i = 0; i < projectiles.Count; i++)
@@ -195,29 +219,5 @@ namespace Main
             newProjectile.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + newProjectile.Velocity * 3;
             projectiles.Add(newProjectile);
         }
-
-        static int[,] ReadMapFromFIle()
-        {
-            StreamReader mapFile = new StreamReader(@"..\..\..\..\MainContent\MapMatrix.txt");
-            int[,] mapRead;
-            using (mapFile)
-            {
-                mapRead = new int[11, 200];
-                string line = string.Empty;
-                int row = 0;
-                while ((line = mapFile.ReadLine()) != null)
-                {
-                    int[] lineArr = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-
-                    for (int col = 0; col < mapRead.GetLength(1); col++)
-                    {
-                        mapRead[row, col] = lineArr[col];
-                    }
-                    row++;
-                }
-            }
-            return mapRead;
-        }
-
     }
 }

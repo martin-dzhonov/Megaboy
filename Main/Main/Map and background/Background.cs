@@ -12,7 +12,6 @@ namespace Main
 {
     class Background
     {
-        protected string spriteName = "Forest2";
         protected Texture2D texture;
         protected Rectangle rectangle;
 
@@ -33,7 +32,7 @@ namespace Main
 
         public void Load(ContentManager contentManager, int numberOfScreens)
         {
-            this.texture = contentManager.Load<Texture2D>(this.spriteName);
+            this.texture = contentManager.Load<Texture2D>("Forest2");
             this.numberOfScreens = numberOfScreens;
         }
     }
