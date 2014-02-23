@@ -23,8 +23,8 @@ namespace Main
     //TODO: NPCs
     //TODO: Storyline ?
     //TODO: Different player heroes ?
-    //TODO: Longer map
-    //TODO: Boss fight
+    //TODO: Longer map /done - 200 units
+    //TODO: Boss fight /done - added boss
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
