@@ -25,6 +25,7 @@ namespace Main
     //TODO: Different player heroes ?
     //TODO: Longer map
     //TODO: Boss fight
+
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
@@ -34,8 +35,8 @@ namespace Main
         Camera camera;
         ContinuingBackground background;
         List<Projectile> projectiles = new List<Projectile>();
-        
         List<Enemy> enemies = new List<Enemy>();
+        SoundEffect pewPew;
         bool xPressed;
         static readonly int tileSize = 50;
 
@@ -73,6 +74,7 @@ namespace Main
             rangedEnemy1.Load(Content);
             enemies.Add(meleeEnemy1);
             enemies.Add(rangedEnemy1);
+            pewPew = Content.Load<SoundEffect>("pewpew");
         }
 
         protected override void UnloadContent()
@@ -88,6 +90,7 @@ namespace Main
 
             if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
             {
+                pewPew.Play();
                 ShootProjectile();
             }
             xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
