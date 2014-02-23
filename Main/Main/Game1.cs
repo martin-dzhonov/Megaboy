@@ -64,7 +64,7 @@ namespace Main
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
-            background.Load(Content, 2);
+            background.Load(Content, 10);
             player.Load(Content);
             //Enemies
             Enemy meleeEnemy1 = new Melee(500, 100);
@@ -196,7 +196,7 @@ namespace Main
             int[,] mapRead;
             using (mapFile)
             {
-                mapRead = new int[11, 40];
+                mapRead = new int[11, 200];
                 string line = string.Empty;
                 int row = 0;
                 while ((line = mapFile.ReadLine()) != null)

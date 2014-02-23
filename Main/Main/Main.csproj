@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Enum\PlayerSize.cs" />
     <Compile Include="Enum\WindowSizes.cs" />
+    <Compile Include="Interfaces\IDyable.cs" />
     <Compile Include="Interfaces\IMap.cs" />
     <Compile Include="Map and background\Background.cs" />
     <Compile Include="Map and background\Camera.cs" />
