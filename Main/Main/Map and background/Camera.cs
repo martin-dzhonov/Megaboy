@@ -62,7 +62,5 @@ namespace Main
             transform = Matrix.CreateTranslation(new Vector3(-centre.X + (viewport.Width / 2), -centre.Y + (viewport.Height / 2), 0));
 
         }
-
-
     }
 }
