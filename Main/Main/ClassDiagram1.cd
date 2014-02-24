@@ -74,9 +74,10 @@
   <Class Name="Main.Enemy" Collapsed="true">
     <Position X="7.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQQgAEAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>IAQQiAEAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAg=</HashCode>
       <FileName>Units\Enemy.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Main.Melee" Collapsed="true">
     <Position X="7.25" Y="3" Width="1.5" />
@@ -95,7 +96,7 @@
   <Class Name="Main.Player" Collapsed="true">
     <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IASAiACIAIAAAgAgBgAAAACACAEBQAAgAAQAUAAEAAA=</HashCode>
+      <HashCode>IASAiACIAIAAAgAgBgAAAACACAEBQAAgAAQAUAAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -124,7 +125,7 @@
   <Class Name="Main.Boss" Collapsed="true">
     <Position X="9.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Units\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -142,11 +143,11 @@
       <FileName>Interfaces\IMap.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Main.Interfaces.IDyable" Collapsed="true">
+  <Interface Name="Main.Interfaces.IHealth" Collapsed="true">
     <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IDyable.cs</FileName>
+      <FileName>Interfaces\IHealth.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Main.Enum.WindowSize" Collapsed="true">

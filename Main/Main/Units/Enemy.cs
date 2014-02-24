@@ -9,10 +9,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Main.Interfaces;
 namespace Main
 {
-    abstract class Enemy : Unit
+    abstract class Enemy : Unit, IHealth
     {
         protected float playerDistanceX;
         protected float playerDistanceY;
@@ -23,6 +23,7 @@ namespace Main
 
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;
+        private int health;
 
         public Enemy(int positionX, int positionY) : this(positionX, positionY, 50, 50){}
         public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
@@ -39,9 +40,20 @@ namespace Main
             this.rectangleSizeHeight = rectangleHeight;
         }
 
+        public int Health
+        {
+            get
+            {
+                return this.health;
+            }
+            set
+            {
+                this.health = value;
+            }
+        }
+
         public void Update(GameTime gameTime, int playerX, int playerY)
         {
-
             position += velocity;
 
             this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
@@ -92,7 +104,6 @@ namespace Main
                 velocity.Y += 0.4f;
             }
         }
-
 
         public override void Load(ContentManager contentManager)
         {
@@ -157,5 +168,6 @@ namespace Main
         {
             throw new NotImplementedException();
         }
+
     }
 }

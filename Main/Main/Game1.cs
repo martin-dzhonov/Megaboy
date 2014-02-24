@@ -104,26 +104,7 @@ namespace Main
                 for (int i = 0; i < enemies.Count; i++)
                 {
                     enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
-                }
-         
-                for (int i = 0; i < projectiles.Count; i++)
-                {
-                    for (int j = 0; j < enemies.Count; j++)
-                    {
-                        if (i >= 0)
-                        {
-                            if (projectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
-                            {
-                                explosions.Add(new Explosion(Content, enemies[j].Rectangle.X, enemies[j].Rectangle.Y));
-                                enemies.RemoveAt(j);
-                                j--;
-                                projectiles.RemoveAt(i);
-                                i--;
-                            }
-                        }
-                    }
-                    
-                }
+                }        
 
                 for (int i = 0; i < projectiles.Count; i++)
                 {
@@ -132,6 +113,28 @@ namespace Main
                         explosions.Add(new Explosion(Content, projectiles[i].Rectangle.X, projectiles[i].Rectangle.Y));
                         projectiles.RemoveAt(i);
                         i--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                for (int j = 0; j < enemies.Count; j++)
+                {
+                    if (i >= 0)
+                    {
+                        if (projectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
+                        {
+                            explosions.Add(new Explosion(Content, enemies[j].Rectangle.X, enemies[j].Rectangle.Y));
+                            enemies[j].Health--;
+                            if (enemies[j].Health <= 0)
+                            {
+                                enemies.RemoveAt(j);
+                                j--;
+                            }
+                            projectiles.RemoveAt(i);
+                            i--;
+                        }
                     }
                 }
             }
@@ -165,10 +168,8 @@ namespace Main
                 {
                     explosions.RemoveAt(i);
                     i--;
-                }
-                
+                }   
             }
-
             spriteBatch.End();
 
             base.Draw(gameTime);

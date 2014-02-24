@@ -10,17 +10,17 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Main.Enum;
 using Microsoft.Xna.Framework.Media;
-
+using Main.Interfaces;
 namespace Main
 {
-    class Player : Unit, IMovable
+    class Player : Unit, IHealth
     {
         private Texture2D standingTexture;
         private Texture2D runningTexture;
         private Texture2D shootingTexture;
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
-
+        private int health;
         const int FRAMES_PER_ROW = 15;
         const int NUM_ROWS = 1;
         const int NUM_FRAMES = 15;
@@ -32,6 +32,18 @@ namespace Main
         
 
         public bool LookingRight { get; set; }
+        public int Health
+        {
+            get
+            {
+                return this.health;
+            }
+            set
+            {
+                this.health = value;
+            }
+        }
+
         public Vector2 Position
         {
             get
