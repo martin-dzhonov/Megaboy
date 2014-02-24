@@ -212,7 +212,7 @@ namespace Main
 
         public void LoadNpcs()
         {
-            NPC maleNpc = new MaleNpc(200, 100);
+            //NPC maleNpc = new MaleNpc(200, 100);
             maleNpc.Load(Content);
 
             
