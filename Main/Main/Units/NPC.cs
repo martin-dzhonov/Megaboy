@@ -15,6 +15,9 @@ namespace Main
     abstract class NPC : Unit
 
     {
-
+        protected string spriteName;
+        public NPC(int positionX, int positionY);
+        public abstract bool isReached(Player player);
+        
     }
 }
