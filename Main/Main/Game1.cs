@@ -209,6 +209,17 @@ namespace Main
             }
             return mapRead;
         }
+
+        public void LoadNpcs()
+        {
+            NPC maleNpc = new MaleNpc(200, 100);
+            maleNpc.Load(Content);
+
+            
+            // NPC femaleNpc = new FemaleNpc(800, 200);
+            // femaleNpc.Load(Content);
+
+        }
         public void LoadEnemies()
         {
             Enemy meleeEnemy1 = new Melee(500, 100);
