@@ -71,6 +71,11 @@ namespace Main
                 velocity.Y += 0.4f;
             }
         }
+        public void Shoot()
+        {
+            
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (lookingRight)

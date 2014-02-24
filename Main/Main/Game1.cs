@@ -34,6 +34,7 @@ namespace Main
         Camera camera;
         ContinuingBackground background;
         List<Projectile> playerProjectiles = new List<Projectile>();
+        List<Projectile> enemyProjectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
 
@@ -94,6 +95,11 @@ namespace Main
             foreach (var enemy in enemies)
             {
                 enemy.Update(gameTime, (int)player.Position.X,(int)player.Position.Y);
+                if(enemy.GetType().Name == "Ranged")
+                {
+                    var ranged = (Ranged)enemy;
+                    ranged.Shoot(); //TODO shoot
+                }
             }
 
             foreach (var tile in map.CollisionTiles)
@@ -213,7 +219,7 @@ namespace Main
             for (int i = 0; i < playerProjectiles.Count; i++)
             {
                 playerProjectiles[i].UpdatePosition();
-                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 500)
+                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 400)
                 {
                     playerProjectiles.RemoveAt(i);
                     i--;
