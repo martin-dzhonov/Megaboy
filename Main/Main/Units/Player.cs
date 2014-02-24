@@ -44,13 +44,6 @@ namespace Main
             }
         }
 
-        public Vector2 Position
-        {
-            get
-            {
-                return this.position;
-            }
-        }
 
         public float Timer { get; set; }
 
