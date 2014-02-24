@@ -48,8 +48,8 @@ namespace Main
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
 
-            int detectionDistanceX = 300;
-            int detectionDistanceY = 100;
+            int detectionDistanceX = 350;
+            int detectionDistanceY = 200;
 
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX
                 && playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
@@ -64,16 +64,6 @@ namespace Main
                     lookingRight = true;
                     velocity.X = 0f;             
                 }
-            }
-            else
-            {
-                
-            }
-            if (hasJumped == true)
-            {
-                position.Y -= 4f;
-                velocity.Y = -8f;
-                hasJumped = false;
             }
 
             if (velocity.Y < 12)
