@@ -29,6 +29,7 @@ namespace Main
         int frameHeight;
         int frameWidth;
         float interval = 30;
+        
 
         public bool LookingRight { get; set; }
         public Vector2 Position

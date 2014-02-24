@@ -100,6 +100,7 @@ namespace Main
             foreach (var tile in map.CollisionTiles)
             {
                 player.Collision(tile.Rectangle, map.Width, map.Height);
+
                 for (int i = 0; i < enemies.Count; i++)
                 {
                     enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
@@ -109,21 +110,30 @@ namespace Main
                 {
                     for (int j = 0; j < enemies.Count; j++)
                     {
-                        if (projectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
+                        if (i >= 0)
                         {
-                            explosions.Add(new Explosion(Content, enemies[j].Rectangle.X, enemies[j].Rectangle.Y));
-                            enemies.RemoveAt(j);
-                            j--;
+                            if (projectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
+                            {
+                                explosions.Add(new Explosion(Content, enemies[j].Rectangle.X, enemies[j].Rectangle.Y));
+                                enemies.RemoveAt(j);
+                                j--;
+                                projectiles.RemoveAt(i);
+                                i--;
+                            }
                         }
                     }
+                    
+                }
 
+                for (int i = 0; i < projectiles.Count; i++)
+                {
                     if (projectiles[i].Rectangle.Intersects(tile.Rectangle))
                     {
                         explosions.Add(new Explosion(Content, projectiles[i].Rectangle.X, projectiles[i].Rectangle.Y));
                         projectiles.RemoveAt(i);
                         i--;
                     }
-                }  
+                }
             }
 
             camera.Update(player.Position, map.Width, map.Height);
