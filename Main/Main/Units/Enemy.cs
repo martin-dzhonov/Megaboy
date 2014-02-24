@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
 namespace Main
 {
-    abstract class Enemy : Unit, IHealth
+    public abstract class Enemy : Unit, IHealth
     {
         protected float playerDistanceX;
         protected float playerDistanceY;

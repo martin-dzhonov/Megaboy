@@ -12,8 +12,8 @@ using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
 namespace Main
 {
-    
-     abstract class Unit
+
+    public abstract class Unit
     {
         protected Texture2D texture;
         protected Vector2 position;

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Melee : Enemy
+    public class Melee : Enemy
     {
         public Melee(int positonX, int positionY) : base (positonX, positionY)
         {       
