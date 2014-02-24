@@ -98,7 +98,7 @@ namespace Main
                 if(enemy.GetType().Name == "Ranged")
                 {
                     var ranged = (Ranged)enemy;
-                    ranged.Shoot(); //TODO shoot
+                    ranged.Shoot(enemyProjectiles, Content); //TODO shoot
                 }
             }
 
@@ -166,6 +166,10 @@ namespace Main
             {
                 projectile.Draw(spriteBatch);
             }
+            foreach (var projectile in enemyProjectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
             for (int i = 0; i < explosions.Count; i++)
 			{
                 explosions[i].Draw(spriteBatch);
@@ -224,6 +228,10 @@ namespace Main
                     playerProjectiles.RemoveAt(i);
                     i--;
                 }
+            }
+            for (int i = 0; i < enemyProjectiles.Count; i++)
+            {
+                enemyProjectiles[i].UpdatePosition();
             }
         }
 

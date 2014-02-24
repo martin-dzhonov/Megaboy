@@ -54,6 +54,7 @@ namespace Main
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX
                 && playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
             {
+                
                 if (playerDistanceX < 0)
                 {
                     lookingRight = false;
@@ -71,9 +72,24 @@ namespace Main
                 velocity.Y += 0.4f;
             }
         }
-        public void Shoot()
+        public void Shoot(List<Projectile> projectiles,  ContentManager contentManager)
         {
-            
+            Random rnd = new Random();
+            int random = rnd.Next(1, 100);
+            if (random > 98)
+            {
+                Projectile fireball = new Fireball(contentManager);
+                if (this.lookingRight)
+                {
+                    fireball.ShootRight();
+                }
+                else
+                {
+                    fireball.ShootLeft();
+                }
+                fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 6) + fireball.Velocity * 3;
+                projectiles.Add(fireball);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

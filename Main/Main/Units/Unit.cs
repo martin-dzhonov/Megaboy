@@ -19,6 +19,18 @@ namespace Main
         protected Vector2 position;
         protected Rectangle rectangle;
         protected Vector2 velocity;
+        public Vector2 Position
+        {
+            get
+            {
+                return this.position;
+            }
+            set
+            {
+                this.position = value;
+            }
+        }
+
         public Vector2 Velocity
         {
             get
