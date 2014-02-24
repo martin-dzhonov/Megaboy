@@ -18,6 +18,12 @@ namespace Main
         protected string spriteName;
         public NPC(int positionX, int positionY);
         public abstract bool isReached(Player player);
+
+        public override void Load(ContentManager contentManager)
+        {
+            this.texture = contentManager.Load<Texture2D>(spriteName);
+        }
+
         
     }
 }
