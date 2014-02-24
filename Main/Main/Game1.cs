@@ -18,13 +18,12 @@ namespace Main
     //TODO: Start and end screen
     //TODO: Music and sound effects
     //TODO: Different types of melee and range enemies
-    //TODO: Health
-    //TODO: Enemies health
     //TODO: NPCs
     //TODO: Storyline ?
     //TODO: Different player heroes ?
+    //TODO: Add enemies on map
+    //TODO: Boss fight / boss added still need to make fight animation
     //TODO: Longer map /done - 200 units
-    //TODO: Boss fight /done - added boss
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -34,7 +33,7 @@ namespace Main
         Map map;
         Camera camera;
         ContinuingBackground background;
-        List<Projectile> projectiles = new List<Projectile>();
+        List<Projectile> playerProjectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
 
@@ -85,7 +84,7 @@ namespace Main
 
             if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
             {
-                ShootProjectile();
+                Shoot();
             }
             xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
             UpdateProjectiles();
@@ -106,33 +105,33 @@ namespace Main
                     enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
                 }        
 
-                for (int i = 0; i < projectiles.Count; i++)
+                for (int i = 0; i < playerProjectiles.Count; i++)
                 {
-                    if (projectiles[i].Rectangle.Intersects(tile.Rectangle))
+                    if (playerProjectiles[i].Rectangle.Intersects(tile.Rectangle))
                     {
-                        explosions.Add(new Explosion(Content, projectiles[i].Rectangle.X, projectiles[i].Rectangle.Y));
-                        projectiles.RemoveAt(i);
+                        explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
+                        playerProjectiles.RemoveAt(i);
                         i--;
                     }
                 }
             }
 
-            for (int i = 0; i < projectiles.Count; i++)
+            for (int i = 0; i < playerProjectiles.Count; i++)
             {
                 for (int j = 0; j < enemies.Count; j++)
                 {
                     if (i >= 0)
                     {
-                        if (projectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
+                        if (playerProjectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
                         {
-                            explosions.Add(new Explosion(Content, enemies[j].Rectangle.X, enemies[j].Rectangle.Y));
+                            explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
                             enemies[j].Health--;
                             if (enemies[j].Health <= 0)
                             {
                                 enemies.RemoveAt(j);
                                 j--;
                             }
-                            projectiles.RemoveAt(i);
+                            playerProjectiles.RemoveAt(i);
                             i--;
                         }
                     }
@@ -157,7 +156,7 @@ namespace Main
             {
                 enemy.Draw(spriteBatch);
             }
-            foreach (var projectile in projectiles)
+            foreach (var projectile in playerProjectiles)
             {
                 projectile.Draw(spriteBatch);
             }
@@ -201,7 +200,7 @@ namespace Main
         {
             Enemy meleeEnemy1 = new Melee(500, 100);
             meleeEnemy1.Load(Content);
-            Enemy rangedEnemy1 = new Ranged(1300, 100);
+            Enemy rangedEnemy1 = new Ranged(450, 100);
             rangedEnemy1.Load(Content);
             Enemy boss = new Boss(900, 100);
             boss.Load(Content);
@@ -211,30 +210,30 @@ namespace Main
         }
         public void UpdateProjectiles()
         {
-            for (int i = 0; i < projectiles.Count; i++)
+            for (int i = 0; i < playerProjectiles.Count; i++)
             {
-                projectiles[i].UpdatePosition();
-                if (Vector2.Distance(projectiles[i].Position, player.Position) > 500)
+                playerProjectiles[i].UpdatePosition();
+                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 500)
                 {
-                    projectiles.RemoveAt(i);
+                    playerProjectiles.RemoveAt(i);
                     i--;
                 }
             }
         }
 
-        public void ShootProjectile()
+        public void Shoot()
         {
-            Projectile newProjectile = new Projectile(Content);
+            Projectile fireball = new Fireball(Content);
             if (player.LookingRight)
             {
-                newProjectile.ShootRight();
+                fireball.ShootRight();
             }
             else
             {
-                newProjectile.ShootLeft();
+                fireball.ShootLeft();
             }
-            newProjectile.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + newProjectile.Velocity * 3;
-            projectiles.Add(newProjectile);
+            fireball.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + fireball.Velocity * 3;
+            playerProjectiles.Add(fireball);
         }
 
     }

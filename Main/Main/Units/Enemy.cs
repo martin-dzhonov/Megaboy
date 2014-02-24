@@ -20,7 +20,7 @@ namespace Main
         protected int patrolDistance;
         protected bool hasJumped = false;
         protected string spriteName;
-
+       
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;
         private int health;
@@ -52,7 +52,7 @@ namespace Main
             }
         }
 
-        public void Update(GameTime gameTime, int playerX, int playerY)
+        public virtual void Update(GameTime gameTime, int playerX, int playerY)
         {
             position += velocity;
 
@@ -110,7 +110,7 @@ namespace Main
             this.texture = contentManager.Load<Texture2D>(spriteName);
         }
 
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public virtual void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
 
             if (rectangle.TouchTopOf(newRectangle))

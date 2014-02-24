@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
 namespace Main
 {
-    class Player : Unit, IHealth
+    class Player : Unit
     {
         private Texture2D standingTexture;
         private Texture2D runningTexture;
@@ -59,6 +59,7 @@ namespace Main
         
         public override void Load(ContentManager contentManager)
         {
+            this.Health = 3;
             position = new Vector2(0, 0);
             this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
             this.standingTexture = contentManager.Load<Texture2D>("standing2");

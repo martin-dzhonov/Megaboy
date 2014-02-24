@@ -11,19 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Projectile
+    abstract class Projectile
     {
-        private Texture2D texture;
-        private Rectangle rectangle;
-        private Vector2 position;
-        private Vector2 velocity;
+        protected Texture2D texture;
+        protected Rectangle rectangle;
+        protected Vector2 position;
+        protected Vector2 velocity  ;
 
-
-        public Projectile(ContentManager contentManager)
-        {
-            this.texture = contentManager.Load<Texture2D>("Projectile");
-            this.Rectangle = new Rectangle(0,0,0,0);
-        }
         public Rectangle Rectangle
         {
             get

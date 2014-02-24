@@ -75,8 +75,10 @@
     <Compile Include="Enum\PlayerSize.cs" />
     <Compile Include="Enum\WindowSizes.cs" />
     <Compile Include="Explosion.cs" />
+    <Compile Include="Fireball.cs" />
     <Compile Include="Interfaces\IHealth.cs" />
     <Compile Include="Interfaces\IMap.cs" />
+    <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="Map and background\Background.cs" />
     <Compile Include="Map and background\Camera.cs" />
     <Compile Include="Units\Boss.cs" />

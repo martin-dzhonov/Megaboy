@@ -9,11 +9,11 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Main.Interfaces;
 namespace Main
 {
     
-    public abstract class Unit
+     abstract class Unit
     {
         protected Texture2D texture;
         protected Vector2 position;
@@ -43,9 +43,8 @@ namespace Main
             }
         }
 
-        public abstract void Update(GameTime gameTime);
         public abstract void Load(ContentManager contentManager);
+        public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch);
-        
     }
 }

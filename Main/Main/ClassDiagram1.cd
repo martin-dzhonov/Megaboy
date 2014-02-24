@@ -3,7 +3,7 @@
   <Class Name="Main.Game1" Collapsed="true">
     <Position X="15" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQAEEAEAwAAA4AAAAAAAAAAAACAAAgBAABAQBAAIAQ=</HashCode>
+      <HashCode>gAQAEEAEAwAAB4AAAAAAAAAAAACAAAgBAAAAQAAQIAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -99,7 +99,6 @@
       <HashCode>IASAiACIAIAAAgAgBgAAAACACAEBQAAgAAQAUAAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Main.Unit" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
@@ -111,7 +110,7 @@
   <Class Name="Main.Ranged" Collapsed="true">
     <Position X="5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -125,7 +124,7 @@
   <Class Name="Main.Boss" Collapsed="true">
     <Position X="9.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
