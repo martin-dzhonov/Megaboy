@@ -99,6 +99,7 @@
     <Compile Include="Units\Ranged.cs" />
     <Compile Include="RectangleHelper.cs" />
     <Compile Include="Map and background\Tiles.cs" />
+    <Compile Include="Units\RangedEnemies\DrowRanger.cs" />
     <Compile Include="Units\Unit.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -98,7 +98,7 @@ namespace Main
             foreach (var enemy in enemies)
             {
                 enemy.Update(gameTime, (int)player.Position.X,(int)player.Position.Y);
-                if(enemy.GetType().Name == "Ranged")
+                if(enemy is Ranged)
                 {
                     var ranged = (Ranged)enemy;
                     ranged.Shoot(enemyProjectiles, Content); //TODO shoot
@@ -229,11 +229,15 @@ namespace Main
             Enemy spiritBreaker = new SpiritBreaker(1500, 50);
             spiritBreaker.Load(Content);
 
+            Enemy drowRanger = new DrowRanger(1000, 300);
+            drowRanger.Load(Content);
+
             enemies.Add(meleeEnemy1);
             enemies.Add(rangedEnemy1);
             enemies.Add(antiMage);
             enemies.Add(ursa);
             enemies.Add(spiritBreaker);
+            enemies.Add(drowRanger);
             enemies.Add(boss);
         }
         public void UpdateProjectiles()
