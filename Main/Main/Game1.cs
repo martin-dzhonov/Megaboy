@@ -15,6 +15,15 @@ using Main.Enum;
 
 namespace Main
 {
+    //TODO: Start and end screen
+    //TODO: Music and sound effects
+    //TODO: Different types of melee and range enemies
+    //TODO: NPCs
+    //TODO: Storyline ?
+    //TODO: Different player heroes ?
+    //TODO: Add enemies on map
+    //TODO: Boss fight / boss added still need to make fight animation
+    //TODO: Longer map /done - 200 units
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -24,10 +33,12 @@ namespace Main
         Map map;
         Camera camera;
         ContinuingBackground background;
-        List<Projectile> projectiles = new List<Projectile>();
-        Enemy enemy;
+        List<Projectile> playerProjectiles = new List<Projectile>();
+        List<Projectile> enemyProjectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
-        bool spacePressed;
+        List<Explosion> explosions = new List<Explosion>();
+
+        bool xPressed; //x - shoot
         static readonly int tileSize = 50;
 
 
@@ -41,36 +52,136 @@ namespace Main
             graphics.PreferredBackBufferHeight = (int)WindowSize.Height;
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             map = new Map();
             player = new Player();
             background = new ContinuingBackground();
-            camera = new Camera(GraphicsDevice.Viewport);
-            enemy = new Melee(500,100);       
+            camera = new Camera(GraphicsDevice.Viewport);      
 ;           base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            enemy.Load(Content);
-            enemies.Add(enemy);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
-            background.Load(Content, 2);
+            background.Load(Content, 10);
             player.Load(Content);
+            LoadEnemies();
             
+        }
+
+        protected override void UnloadContent()
+        {
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
+            {
+                Shoot();
+            }
+            xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
+            UpdateProjectiles();
+
+            player.Update(gameTime);
+
+            foreach (var enemy in enemies)
+            {
+                enemy.Update(gameTime, (int)player.Position.X,(int)player.Position.Y);
+                if(enemy.GetType().Name == "Ranged")
+                {
+                    var ranged = (Ranged)enemy;
+                    ranged.Shoot(enemyProjectiles, Content); //TODO shoot
+                }
+            }
+
+            foreach (var tile in map.CollisionTiles)
+            {
+                player.Collision(tile.Rectangle, map.Width, map.Height);
+
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
+                }        
+
+                for (int i = 0; i < playerProjectiles.Count; i++)
+                {
+                    if (playerProjectiles[i].Rectangle.Intersects(tile.Rectangle))
+                    {
+                        explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
+                        playerProjectiles.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < playerProjectiles.Count; i++)
+            {
+                for (int j = 0; j < enemies.Count; j++)
+                {
+                    if (i >= 0)
+                    {
+                        if (playerProjectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
+                        {
+                            explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
+                            enemies[j].Health--;
+                            if (enemies[j].Health <= 0)
+                            {
+                                enemies.RemoveAt(j);
+                                j--;
+                            }
+                            playerProjectiles.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+
+            camera.Update(player.Position, map.Width, map.Height);
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
+
+            background.Draw(spriteBatch);
+            map.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+
+            foreach (var enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
+            foreach (var projectile in playerProjectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
+            foreach (var projectile in enemyProjectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
+            for (int i = 0; i < explosions.Count; i++)
+			{
+                explosions[i].Draw(spriteBatch);
+                if (explosions[i].Finished)
+                {
+                    explosions.RemoveAt(i);
+                    i--;
+                }   
+            }
+            spriteBatch.End();
+
+            base.Draw(gameTime);
         }
 
         static int[,] ReadMapFromFIle()
@@ -79,7 +190,7 @@ namespace Main
             int[,] mapRead;
             using (mapFile)
             {
-                mapRead = new int[11, 40];
+                mapRead = new int[11, 200];
                 string line = string.Empty;
                 int row = 0;
                 while ((line = mapFile.ReadLine()) != null)
@@ -95,117 +206,49 @@ namespace Main
             }
             return mapRead;
         }
-
-        protected override void UnloadContent()
+        public void LoadEnemies()
         {
+            Enemy meleeEnemy1 = new Melee(500, 100);
+            meleeEnemy1.Load(Content);
+            Enemy rangedEnemy1 = new Ranged(450, 100);
+            rangedEnemy1.Load(Content);
+            Enemy boss = new Boss(900, 100);
+            boss.Load(Content);
+            enemies.Add(meleeEnemy1);
+            enemies.Add(rangedEnemy1);
+            enemies.Add(boss);
         }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        protected override void Update(GameTime gameTime)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                this.Exit();
-            }
-
-            if (Keyboard.GetState().IsKeyUp(Keys.Space) && spacePressed == true)
-            {
-                ShootProjectile();
-            }
-            spacePressed = Keyboard.GetState().IsKeyDown(Keys.Space);
-            UpdateProjectiles();
-
-            player.Update(gameTime);
-
-            foreach (var enm in enemies)
-            {
-                enm.Update(gameTime, player.X, player.Y);
-            }
-
-            foreach (var tile in map.CollisionTiles)
-            {
-                player.Collision(tile.Rectangle, map.Width, map.Height);
-                enemy.Collision(tile.Rectangle, map.Width, map.Height);
-                for (int i = 0; i < projectiles.Count; i++)
-                {
-                    for (int j = 0; j < enemies.Count; j++)
-                    {
-                        if (projectiles[i].Collided(enemy.Rectangle))
-                        {
-                            enemies.RemoveAt(j);
-                            j--;
-                        }
-                    }
-
-                    if (projectiles[i].Collided(tile.Rectangle))
-                    {
-                        projectiles.RemoveAt(i);
-                        i--;
-                    }
-                }
-                
-            }
-
-            camera.Update(player.Position, map.Width, map.Height);
-            base.Update(gameTime);
-        }
-
         public void UpdateProjectiles()
         {
-            for (int i = 0; i < projectiles.Count; i++)
+            for (int i = 0; i < playerProjectiles.Count; i++)
             {
-                projectiles[i].Position += projectiles[i].Velocity;
-                if (Vector2.Distance(projectiles[i].Position, player.Position) > 500)
+                playerProjectiles[i].UpdatePosition();
+                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 400)
                 {
-                    projectiles.RemoveAt(i);
+                    playerProjectiles.RemoveAt(i);
                     i--;
                 }
             }
+            for (int i = 0; i < enemyProjectiles.Count; i++)
+            {
+                enemyProjectiles[i].UpdatePosition();
+            }
         }
 
-        public void ShootProjectile()
+        public void Shoot()
         {
-            Projectile newProjectile = new Projectile(Content);
+            Projectile fireball = new Fireball(Content);
             if (player.LookingRight)
             {
-                newProjectile.ShootRight();
+                fireball.ShootRight();
             }
             else
             {
-                newProjectile.ShootLeft();
+                fireball.ShootLeft();
             }
-            newProjectile.Position = new Vector2(player.X, player.Y + 20) + newProjectile.Velocity * 2;
-            projectiles.Add(newProjectile);
+            fireball.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + fireball.Velocity * 3;
+            playerProjectiles.Add(fireball);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
-
-            background.Draw(spriteBatch);
-            map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-
-            foreach (var enm in enemies)
-            {
-                enm.Draw(spriteBatch);
-            }
-            foreach (var projectile in projectiles)
-            {
-                projectile.Draw(spriteBatch);
-            }
-
-            spriteBatch.End();
-
-            base.Draw(gameTime);
-        }
     }
 }

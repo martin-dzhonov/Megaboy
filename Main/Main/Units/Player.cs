@@ -8,56 +8,42 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Main.Enum;
 using Microsoft.Xna.Framework.Media;
-
+using Main.Interfaces;
 namespace Main
 {
-    class Player : Unit, IUnit, IMovable
+    class Player : Unit
     {
+        private Texture2D standingTexture;
+        private Texture2D runningTexture;
+        private Texture2D shootingTexture;
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
-
-        const int FRAMES_PER_ROW = 8;
+        private int health;
+        const int FRAMES_PER_ROW = 15;
         const int NUM_ROWS = 1;
-        const int NUM_FRAMES = 8;
-        private const string STRIP_NAME = "16jpo1w";
-        private const int PLAYER_SIZE = 60;
+        const int NUM_FRAMES = 15;
+        
     
         int frameHeight;
         int frameWidth;
-        float interval = 60;
+        float interval = 30;
+        
 
         public bool LookingRight { get; set; }
-
-        public Vector2 Position
+        public int Health
         {
             get
             {
-                return this.position;
-            }
-        }
-
-        public int X
-        {
-            get { return (int)this.position.X; }
-        }
-
-        public int Y
-        {
-            get { return (int)this.position.Y; }
-        }
-
-        public float Interval 
-        { 
-            get
-            {
-                return this.interval;
+                return this.health;
             }
             set
             {
-                this.interval = value;
+                this.health = value;
             }
         }
+
 
         public float Timer { get; set; }
 
@@ -66,9 +52,12 @@ namespace Main
         
         public override void Load(ContentManager contentManager)
         {
+            this.Health = 3;
             position = new Vector2(0, 0);
-            this.texture = contentManager.Load<Texture2D>(STRIP_NAME);
-
+            this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
+            this.standingTexture = contentManager.Load<Texture2D>("standing2");
+            this.shootingTexture = contentManager.Load<Texture2D>("shooting1");
+            this.texture = runningTexture;
             // calculate frame size
             frameWidth = this.texture.Width / FRAMES_PER_ROW;
             frameHeight = this.texture.Height / NUM_ROWS;
@@ -80,7 +69,7 @@ namespace Main
         public override void Update(GameTime gameTime)
         {
             position += velocity;          
-            rectangle = new Rectangle((int)position.X, (int)position.Y, PLAYER_SIZE, PLAYER_SIZE);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, (int)PlayerSize.Width, (int)PlayerSize.Height);
 
             ReadInput(gameTime);
 
@@ -95,6 +84,7 @@ namespace Main
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 this.LookingRight = true;
+                this.texture = runningTexture;
                 AnimateRight(gameTime);
                 velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
             }
@@ -102,11 +92,22 @@ namespace Main
             {
                 velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
                 this.LookingRight = false;
+                this.texture = runningTexture;
                 AnimateLeft(gameTime);
             }
             else
             {
+                if (Keyboard.GetState().IsKeyDown(Keys.X))
+                {
+                    this.texture = shootingTexture;
+                }
+                else
+                {
+                    this.texture = standingTexture;
+                }
+                this.sourceRectangle = new Rectangle(0, 0, standingTexture.Width, standingTexture.Height);
                 velocity.X = 0f;
+               
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
@@ -117,16 +118,17 @@ namespace Main
             }
         }
 
+
         public void AnimateRight(GameTime gameTime)
         {
-            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
+            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (this.Timer > Interval)
+            if (this.Timer > interval)
             {
                 this.CurrentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame >= 4)
+            if (this.CurrentFrame >= 15)
             {
                 this.CurrentFrame = 0;
             }
@@ -135,17 +137,17 @@ namespace Main
         {
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (this.Timer > Interval)
+            if (this.Timer > interval)
             {
                 this.CurrentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame > 7 || this.CurrentFrame < 4)
+            if (this.CurrentFrame >= 15)
             {
-                this.CurrentFrame = 4;
+                this.CurrentFrame = 0;
             }
         }
-        public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
@@ -182,15 +184,19 @@ namespace Main
                 position.Y = yOffset - rectangle.Height;
             }
         }
+            
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.texture, rectangle, this.sourceRectangle, Color.White);
-        }
-
-        public override void Update(GameTime gameTime, int playerX, int playerY)
-        {
-            throw new NotImplementedException();
+            if (velocity.X > 0 || LookingRight == true)
+            {
+                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
+            }
+            
         }
     }
 }

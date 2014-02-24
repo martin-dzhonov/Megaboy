@@ -11,20 +11,25 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Projectile
+    abstract class Projectile
     {
-        private Texture2D texture;
-        private Rectangle rectangle;
-        private Vector2 position;
-        private Vector2 velocity;
-        private bool isVisible;
+        protected Texture2D texture;
+        protected Rectangle rectangle;
+        protected Vector2 position;
+        protected Vector2 velocity  ;
 
-
-        public Projectile(ContentManager contentManager)
+        public Rectangle Rectangle
         {
-            this.texture = contentManager.Load<Texture2D>("Projectile");
-            this.isVisible = false;
+            get
+            {
+                return this.rectangle;
+            }
+            set
+            {
+                this.rectangle = value;
+            }
         }
+
         public Vector2 Position
         {
             get
@@ -49,39 +54,10 @@ namespace Main
             }
         }
 
-        public bool IsVisible
+        public void UpdatePosition()
         {
-            get
-            {
-                return this.isVisible;
-            }
-
-            set
-            {
-                this.isVisible = value;
-            }
-        }
-
-        public bool Collided(Rectangle newRectangle)
-        {
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
-            if (rectangle.TouchTopOf(newRectangle))
-            {
-                return true;
-            }
-            if (rectangle.TouchLeftOff(newRectangle))
-            {
-                return true;
-            }
-            if (rectangle.TouchRightOff(newRectangle))
-            {
-                return true;
-            }
-            if (rectangle.TouchBottomOf(newRectangle))
-            {
-                return true;
-            }
-            return false;
+            this.position += this.velocity;
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, 30, 30);
         }
 
         public void ShootLeft()
@@ -94,7 +70,14 @@ namespace Main
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White);//, 0f, origin, 1f, SpriteEffects.None, 0);
+            if (velocity.X > 0)
+            {
+            spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0,0), SpriteEffects.None, 0f);
+            }
+            else
+            {
+            spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
+            }
         }
     }
 }

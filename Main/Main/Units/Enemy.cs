@@ -9,52 +9,72 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Main.Interfaces;
 namespace Main
 {
-    class Melee : Enemy
+    abstract class Enemy : Unit, IHealth
     {
-        private float playerDistanceX;
-        private float playerDistanceY;
-        private Vector2 patrolPositon;
-        private int patrolDistance;
-        private bool hasJumped = false;
+        protected float playerDistanceX;
+        protected float playerDistanceY;
+        protected Vector2 patrolPositon;
+        protected int patrolDistance;
+        protected bool hasJumped = false;
+        protected string spriteName;
+       
+        protected int rectangleSizeWidth;
+        protected int rectangleSizeHeight;
+        private int health;
 
-
-        public Melee(int positonX, int positionY)
+        public Enemy(int positionX, int positionY) : this(positionX, positionY, 50, 50){}
+        public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
         {
-            this.position.X = positonX;
+            this.position.X = positionX;
             this.position.Y = positionY;
-            this.patrolPositon.X = positonX;
+            this.patrolPositon.X = positionX;
             this.patrolPositon.Y = positionY;
             this.patrolDistance = 50;
             this.velocity.X = 1f;
             this.velocity.Y = 1f;
+
+            this.rectangleSizeWidth = rectangleWidth;
+            this.rectangleSizeHeight = rectangleHeight;
         }
-        public override void Update(GameTime gameTime, int playerX, int playerY)
+
+        public int Health
         {
-            
-            position += velocity;
-            
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, 50,50);
-            if(position.X > patrolPositon.X)
+            get
             {
-                if((int)(position.X - patrolPositon.X) > patrolDistance )
+                return this.health;
+            }
+            set
+            {
+                this.health = value;
+            }
+        }
+
+        public virtual void Update(GameTime gameTime, int playerX, int playerY)
+        {
+            position += velocity;
+
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
+            if (position.X > patrolPositon.X)
+            {
+                if ((int)(position.X - patrolPositon.X) > patrolDistance)
                 {
                     velocity.X = -1f;
                 }
             }
-            if(position.X < patrolPositon.X)
+            if (position.X < patrolPositon.X)
             {
-                if(Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
+                if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
                 {
                     velocity.X = 1f;
                 }
             }
 
-          playerDistanceX = playerX - position.X;
+            playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
-          
+
             int detectionDistanceX = 250;
             int detectionDistanceY = 200;
 
@@ -85,19 +105,18 @@ namespace Main
             }
         }
 
-
         public override void Load(ContentManager contentManager)
         {
-            this.texture = contentManager.Load<Texture2D>("darkKnight");
+            this.texture = contentManager.Load<Texture2D>(spriteName);
         }
 
-        public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public virtual void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
-          
+
             if (rectangle.TouchTopOf(newRectangle))
             {
                 velocity.Y = 0f;
-                
+
             }
             if (rectangle.TouchLeftOff(newRectangle))
             {
@@ -111,11 +130,10 @@ namespace Main
                 velocity.X = 1f;
                 patrolPositon.X += 10;
             }
-            if(rectangle.TouchBottomOf(newRectangle))
+            if (rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
             }
-
             if (position.X < 0)
             {
                 position.X = 0;
@@ -135,16 +153,21 @@ namespace Main
         }
 
         public override void Draw(SpriteBatch spriteBatch)
-        {       
-            spriteBatch.Draw(texture, rectangle, Color.White);
-            /*if (velocity.X > 0)
+        {
+            if (velocity.X > 0)
             {
-                spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(50,50), SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
             else
             {
-                spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(50, 50), SpriteEffects.FlipHorizontally, 0f);
-            }*/
+                spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
+            }
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
