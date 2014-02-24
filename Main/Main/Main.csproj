@@ -91,6 +91,8 @@
     <Compile Include="Units\MeleeEnemies\SpiritBreaker.cs" />
     <Compile Include="Units\MeleeEnemies\UrsaWarrior.cs" />
     <Compile Include="Units\NPC.cs" />
+    <Compile Include="Units\NPCs\FemaleNpc.cs" />
+    <Compile Include="Units\NPCs\MaleNpc.cs" />
     <Compile Include="Units\Player.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

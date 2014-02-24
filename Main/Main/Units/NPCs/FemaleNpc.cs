@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Main
 {
-    public class FemaleNpc : NPC
+    class FemaleNpc : NPC
     {
 
         public FemaleNpc(int positionX, int positionY) : base(positionX, positionY)
