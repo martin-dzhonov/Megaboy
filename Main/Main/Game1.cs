@@ -36,6 +36,7 @@ namespace Main
         ContinuingBackground background;
         List<Projectile> projectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
+        List<Explosion> explosions = new List<Explosion>();
 
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
@@ -102,12 +103,6 @@ namespace Main
                 for (int i = 0; i < enemies.Count; i++)
                 {
                     enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
-                    if(player.Rectangle.Intersects(enemies[i].Rectangle))
-                    {
-                        enemies.RemoveAt(i);
-                        i--;
-                    }
-
                 }
          
                 for (int i = 0; i < projectiles.Count; i++)
@@ -116,6 +111,7 @@ namespace Main
                     {
                         if (projectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
                         {
+                            explosions.Add(new Explosion(Content, enemies[j].Rectangle.X, enemies[j].Rectangle.Y));
                             enemies.RemoveAt(j);
                             j--;
                         }
@@ -123,11 +119,11 @@ namespace Main
 
                     if (projectiles[i].Rectangle.Intersects(tile.Rectangle))
                     {
+                        explosions.Add(new Explosion(Content, projectiles[i].Rectangle.X, projectiles[i].Rectangle.Y));
                         projectiles.RemoveAt(i);
                         i--;
                     }
-                }
-                
+                }  
             }
 
             camera.Update(player.Position, map.Width, map.Height);
@@ -151,6 +147,16 @@ namespace Main
             foreach (var projectile in projectiles)
             {
                 projectile.Draw(spriteBatch);
+            }
+            for (int i = 0; i < explosions.Count; i++)
+			{
+                explosions[i].Draw(spriteBatch);
+                if (explosions[i].Finished)
+                {
+                    explosions.RemoveAt(i);
+                    i--;
+                }
+                
             }
 
             spriteBatch.End();
@@ -219,5 +225,6 @@ namespace Main
             newProjectile.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + newProjectile.Velocity * 3;
             projectiles.Add(newProjectile);
         }
+
     }
 }
