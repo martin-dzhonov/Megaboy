@@ -65,27 +65,6 @@ namespace Main
             this.position += this.velocity;
             this.rectangle = new Rectangle((int)position.X, (int)position.Y, 30, 30);
         }
-        public bool Collided(Rectangle newRectangle)
-        {
-            
-            if (rectangle.ProjectileTouchTopOf(newRectangle))
-            {
-                return true;
-            }
-            if (rectangle.ProjectileTouchLeftOf(newRectangle))
-            {
-                return true;
-            }
-            if (rectangle.ProjectileTouchRightOf(newRectangle))
-            {
-                return true;
-            }
-            if (rectangle.ProjectileTouchBottomOf(newRectangle))
-            {
-                return true;
-            }
-            return false;
-        }
 
         public void ShootLeft()
         {

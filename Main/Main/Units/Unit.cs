@@ -37,6 +37,10 @@ namespace Main
             {
                 return this.rectangle;
             }
+            set
+            {
+                this.rectangle = value;
+            }
         }
 
         public abstract void Update(GameTime gameTime);

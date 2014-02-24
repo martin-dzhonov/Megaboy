@@ -24,11 +24,12 @@ namespace Main
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;
 
-        public Enemy(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50)
+        public Enemy(int positionX, int positionY) : this(positionX, positionY, 50, 50){}
+        public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
         {
-            this.position.X = positonX;
+            this.position.X = positionX;
             this.position.Y = positionY;
-            this.patrolPositon.X = positonX;
+            this.patrolPositon.X = positionX;
             this.patrolPositon.Y = positionY;
             this.patrolDistance = 50;
             this.velocity.X = 1f;
@@ -142,7 +143,7 @@ namespace Main
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (velocity.X < 0)
+            if (velocity.X > 0)
             {
                 spriteBatch.Draw(texture, rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }

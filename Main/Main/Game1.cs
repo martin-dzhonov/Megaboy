@@ -200,9 +200,9 @@ namespace Main
         {
             Enemy meleeEnemy1 = new Melee(500, 100);
             meleeEnemy1.Load(Content);
-            Enemy rangedEnemy1 = new Ranged(1000, 100);
+            Enemy rangedEnemy1 = new Ranged(1300, 100);
             rangedEnemy1.Load(Content);
-            Enemy boss = new Boss(900/*9500*/, 100, 100, 100);
+            Enemy boss = new Boss(900, 100);
             boss.Load(Content);
             enemies.Add(meleeEnemy1);
             enemies.Add(rangedEnemy1);

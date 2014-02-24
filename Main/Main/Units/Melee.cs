@@ -16,6 +16,7 @@ namespace Main
     {
         public Melee(int positonX, int positionY) : base (positonX, positionY)
         {       
+            
             this.spriteName = "melee1";
         }
     }

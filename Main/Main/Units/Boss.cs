@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Main
 {
-    class Boss : Ranged, Interfaces.IDyable
+    class Boss : Enemy
     {
         private int health = 100;
 
-        public Boss(int positonX, int positionY, int rectangleWidth = 100, int rectangleHeight = 100)
+        public Boss(int positonX, int positionY, int rectangleWidth = 130, int rectangleHeight = 130)
             : base(positonX, positionY, rectangleWidth, rectangleHeight)
         {
             this.spriteName = "Boss";
@@ -19,7 +19,7 @@ namespace Main
             get
             {
                 return this.health;
-            }
+            } 
         }
     }
 }
