@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Main.Units.NPCs
+namespace Main
 {
     public class MaleNpc : NPC
     {
@@ -25,10 +25,7 @@ namespace Main.Units.NPCs
             }
         }
 
-        public override void Load(Microsoft.Xna.Framework.Content.ContentManager contentManager)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
