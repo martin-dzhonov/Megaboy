@@ -93,6 +93,7 @@
     <Compile Include="Units\NPCs\NPC.cs" />
     <Compile Include="Units\NPCs\FemaleNpc.cs" />
     <Compile Include="Units\NPCs\MaleNpc.cs" />
+    <Compile Include="Units\NPCs\ToolTip.cs" />
     <Compile Include="Units\Player.cs" />
     <Compile Include="Projectiles\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
