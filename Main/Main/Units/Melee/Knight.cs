@@ -22,8 +22,8 @@ namespace Main
         public Knight(int positonX, int positionY, ContentManager contentManager)
             : base(positonX, positionY)
         {
-            this.rectangleSizeWidth = 60;
-            this.rectangleSizeHeight = 70;
+            this.rectangleSizeWidth = 70;
+            this.rectangleSizeHeight = 80;
             this.Health = 2;
             this.spriteName = "knightWalking";
             this.conentManager = contentManager;
@@ -38,7 +38,7 @@ namespace Main
 
             if(atacking == false)
             {
-                this.AnimateWalking(gameTime, "knightWalking", 6, 1);
+                this.AnimateWalking(gameTime, "knightWalking1", 6, 1);
             }
             else
             {
