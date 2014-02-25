@@ -33,6 +33,7 @@ namespace Main
 
         public override void Update(GameTime gameTime, int playerX, int playerY)
         {
+           
             position += velocity;
 
             if(atacking == false)
@@ -41,7 +42,7 @@ namespace Main
             }
             else
             {
-                this.AnimateAttack(gameTime, "knightAttack", 4, 1);
+                this.AnimateAttack(gameTime, "knightAttack1", 4, 1);
 
                 if(this.CurrentFrame >= 4)
                 {

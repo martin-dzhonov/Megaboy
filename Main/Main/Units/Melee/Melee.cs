@@ -108,11 +108,11 @@ namespace Main
         {
             if (this.velocity.X > 0)
             {
-                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight), sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
             else
             {
-                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
+                spriteBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight), sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
             }
         }
 
