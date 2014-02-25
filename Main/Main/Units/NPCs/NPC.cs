@@ -21,7 +21,7 @@ namespace Main
         {
             this.spriteName = spriteName;
             this.position = new Vector2(posX, posY);
-            this.rectangle = new Rectangle(posX, posY, 100, 100);
+            this.rectangle = new Rectangle(posX, posY, 90, 110);
         }
 
         public override void Load(ContentManager contentManager)
