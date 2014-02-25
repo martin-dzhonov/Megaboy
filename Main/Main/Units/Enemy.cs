@@ -99,6 +99,47 @@ namespace Main
                 position.Y = yOffset - rectangle.Height;
             }
         }
+        public virtual void PlayerCollision(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+
+            if (rectangle.TouchTopOf(newRectangle))
+            {
+                velocity.Y = 0f;
+
+            }
+            if (rectangle.TouchLeftOff(newRectangle))
+            {
+
+                velocity.X = -1f;
+                patrolPositon.X -= 10;
+            }
+            if (rectangle.TouchRightOff(newRectangle))
+            {
+
+                velocity.X = 1f;
+                patrolPositon.X += 10;
+            }
+            if (rectangle.TouchBottomOf(newRectangle))
+            {
+                velocity.Y = 1f;
+            }
+            if (position.X < 0)
+            {
+                position.X = 0;
+            }
+            if (position.X > xOffset - rectangle.Width)
+            {
+                position.X = xOffset - rectangle.Width;
+            }
+            if (position.Y < 0)
+            {
+                velocity.Y = 1f;
+            }
+            if (position.Y > yOffset - rectangle.Height)
+            {
+                position.Y = yOffset - rectangle.Height;
+            }
+        }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
