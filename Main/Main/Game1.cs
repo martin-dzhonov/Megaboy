@@ -45,6 +45,8 @@ namespace Main
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private Rectangle endingRect = new Rectangle(10000, 0, 200, 10000000);
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -91,6 +93,12 @@ namespace Main
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
+            
+            if (player.Rectangle.Intersects(endingRect))
+            {
+                this.Exit();
+            }
+            
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 this.Exit();
