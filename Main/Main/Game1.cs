@@ -172,8 +172,8 @@ namespace Main
             {
                 case GameState.StartMenu:
                     spriteBatch.Begin();
-                   
-                    spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+
+                    spriteBatch.Draw(Content.Load<Texture2D>("startScreenBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
 
