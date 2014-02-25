@@ -37,6 +37,8 @@ namespace Main
         List<Projectile> enemyProjectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
+        NPC maleNpc;
+        NPC femaleNpc;
         Button startButton;
         Button exitButton;
         bool xPressed; //x - shoot
@@ -83,7 +85,7 @@ namespace Main
             background.Load(Content, 10);
             player.Load(Content);
             LoadEnemies();
-            
+            LoadNpcs();
         }
 
         protected override void UnloadContent()
@@ -176,6 +178,8 @@ namespace Main
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     player.Draw(spriteBatch);
+                    maleNpc.Draw(spriteBatch);
+                    
 
                     foreach (var enemy in enemies)
                     {
@@ -239,7 +243,8 @@ namespace Main
         
         public void LoadNpcs()
         {
-            
+            maleNpc = new MaleNpc("maleNpc",1400 , 55);
+            maleNpc.Load(Content);
 
         }
         public void LoadEnemies()
