@@ -8,7 +8,8 @@ namespace Main
 {
     class MaleNpc : NPC
     {
-        public MaleNpc(string spriteName, int posX, int posY) : base(spriteName, posX, posY)
+        public MaleNpc(string spriteName, int posX, int posY, ToolTip toolTip)
+            : base(spriteName, posX, posY, toolTip)
         {
 
         }
