@@ -22,7 +22,7 @@ namespace Main
         protected bool lookingRight = true;
 
         protected float walkAnimationTimer = 0.30f;
-        protected float attackAnimationTimer = 0.30f;
+        protected float attackAnimationTimer = 0.15f;
         protected int framesPerRow;
         protected int numRows;
         protected int frameHeight;
@@ -38,8 +38,19 @@ namespace Main
         {
             this.Health = 4;
         }
-       
-       
+        
+        public bool Atacking
+        {
+            get
+            {
+                return this.atacking;
+            }
+            set
+            {
+                this.atacking = value;
+            }
+        }
+
         public void AnimateWalking(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
             this.framesPerRow = framesPerRow;
@@ -47,7 +58,6 @@ namespace Main
 
             frameWidth = this.texture.Width / framesPerRow;
             frameHeight = this.texture.Height / numRows;
-
 
             this.texture = conentManager.Load<Texture2D>(spriteName);
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
@@ -66,6 +76,7 @@ namespace Main
                 this.CurrentFrame = 0;
             }
         }
+
         public void AnimateAttack(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
             
@@ -84,7 +95,7 @@ namespace Main
             if (attackAnimationTimer <= 0)
             {
                 this.CurrentFrame++;
-                attackAnimationTimer = 0.30f;
+                attackAnimationTimer = 0.15f;
             }
 
             if (this.CurrentFrame > 4)

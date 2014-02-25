@@ -16,7 +16,7 @@ namespace Main
     class Knight : Melee
     {
         
-        private bool atacking = false;
+        
         private float attackTimer = 1.5f;
 
         public Knight(int positonX, int positionY, ContentManager contentManager)

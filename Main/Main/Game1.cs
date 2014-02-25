@@ -148,7 +148,7 @@ namespace Main
                         ProjectilesCollison(tile);
                     }
                     HitEnemies();
-                    HitHero();
+                    HitPlayer();
             
                     camera.Update(player.Position, map.Width, map.Height);
 
@@ -170,14 +170,12 @@ namespace Main
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
-                    
 
                     spriteBatch.End();
                     break;
                 case GameState.Playing :
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
 
-                    
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     player.Draw(spriteBatch);
@@ -213,7 +211,7 @@ namespace Main
                     spriteBatch.Begin();
 
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(0, 100, (int)WindowSize.Width, 200), Color.White);
                     spriteBatch.End();
                     break;
             }
@@ -305,16 +303,33 @@ namespace Main
                 }
             }
         }
-        public void HitHero()
+        public void HitPlayer()
         {
             for (int i = 0; i < enemyProjectiles.Count; i++)
             {
+                
                 if(enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
                 {
                     player.Health--;
                     enemyProjectiles.RemoveAt(i);
                     i--;
                 }
+            }
+            foreach (var enemy in enemies)
+            {
+                if (enemy is Melee)
+                {
+                    var melee = (Melee)enemy;
+                    if(melee.Atacking == true)
+                    {
+                        if(melee.Rectangle.Intersects(player.Rectangle))
+                        {
+                            player.Health = player.Health - 1;
+                            melee.Atacking = false;
+                        }
+                    }
+                }
+
             }
         }
         public void ProjectilesCollison(CollisionTile tile)

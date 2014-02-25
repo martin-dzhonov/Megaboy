@@ -52,7 +52,7 @@ namespace Main
         
         public override void Load(ContentManager contentManager)
         {
-            this.Health = 3;
+            this.Health = 5;
             position = new Vector2(0, 0);
             this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
             this.standingTexture = contentManager.Load<Texture2D>("standing2");
