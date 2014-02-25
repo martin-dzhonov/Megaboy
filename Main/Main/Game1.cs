@@ -325,7 +325,6 @@ namespace Main
                         if(melee.Rectangle.Intersects(player.Rectangle))
                         {
                             player.Health = player.Health - 1;
-                            melee.Atacking = false;
                         }
                     }
                 }
