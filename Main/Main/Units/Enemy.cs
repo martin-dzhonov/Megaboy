@@ -24,7 +24,7 @@ namespace Main
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;
         private int health;
-        float timer;
+
         public Enemy(int positionX, int positionY) : this(positionX, positionY, 50, 50){}
         public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
         {

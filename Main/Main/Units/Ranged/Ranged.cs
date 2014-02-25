@@ -14,28 +14,22 @@ using Main.Projectiles;
 namespace Main
 {
     abstract class Ranged : Enemy
-    {
-        
+    {       
         Rectangle sourceRectangle;
-        private bool lookingRight;
-        float timer = 2;
-        float animationTimer = 0.25f;
+        private bool lookingRight = true;
+        float animationTimer = 0.20f;
         private int FRAMES_PER_ROW;
         private int NUM_ROWS;
-
+        float previousVelocity;
         protected ContentManager conentManager;
         int frameHeight;
         int frameWidth;
-        float interval = 30;
+
         public int CurrentFrame { get; set; }
         public Ranged(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50) : base(positonX, positionY, rectangleWidth, rectangleHeight)
         { 
-
-            // set initial source rectangle
             this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
             this.Health = 2;
-            
-   
         }
 
         public override void Update(GameTime gameTime, int playerX, int playerY)
@@ -80,6 +74,18 @@ namespace Main
                     velocity.X = 0f;             
                 }
             }
+            else
+            {
+                if(lookingRight)
+                {
+                    velocity.X = 1f;
+                }
+                else
+                {
+                    velocity.X = -1f;
+                }
+            }
+            
 
             if (velocity.Y < 12)
             {
@@ -87,55 +93,59 @@ namespace Main
             }
             if (velocity.X != 0)
             {
-
-                FRAMES_PER_ROW = 6;
-                NUM_ROWS = 1;
-                frameWidth = this.texture.Width / FRAMES_PER_ROW;
-                frameHeight = this.texture.Height / NUM_ROWS;
-               
-                
-                this.texture = conentManager.Load<Texture2D>("archerWalking");
-                this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
-                float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                animationTimer -= elapsed;
-                if (animationTimer < 0)
-                {
-                    this.CurrentFrame++;
-                    this.animationTimer = 0.25f;
-                }
-                if (this.CurrentFrame >= 6)
-                {
-                    this.CurrentFrame = 0;
-                }
+                AnimateWalking(gameTime);
             }
             else 
             {
-                FRAMES_PER_ROW = 4;
-                NUM_ROWS = 1;
-                frameWidth = this.texture.Width / FRAMES_PER_ROW;
-                frameHeight = this.texture.Height / NUM_ROWS;
-                
-                this.texture = conentManager.Load<Texture2D>("archerShooting");
-                
-                this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
-                float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                animationTimer -= elapsed;
-                if (animationTimer < 0)
-                {
-                    this.CurrentFrame++;
-                    this.animationTimer = 0.3f;
-                }
-                if (this.CurrentFrame > 4)
-                {
-                    this.CurrentFrame = 0;
-                }
+                AnimateShooting(gameTime);
             }
         }
+        public void AnimateWalking(GameTime gameTime)
+        {
+            FRAMES_PER_ROW = 6;
+            NUM_ROWS = 1;
+            frameWidth = this.texture.Width / FRAMES_PER_ROW;
+            frameHeight = this.texture.Height / NUM_ROWS;
 
+
+            this.texture = conentManager.Load<Texture2D>("archerWalking");
+            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            animationTimer -= elapsed;
+            if (animationTimer < 0)
+            {
+                this.CurrentFrame++;
+                this.animationTimer = 0.20f;
+            }
+            if (this.CurrentFrame >= 6)
+            {
+                this.CurrentFrame = 0;
+            }
+        }
+        public void AnimateShooting(GameTime gameTime)
+        {
+            FRAMES_PER_ROW = 4;
+            NUM_ROWS = 1;
+            frameWidth = this.texture.Width / FRAMES_PER_ROW;
+            frameHeight = this.texture.Height / NUM_ROWS;
+
+            this.texture = conentManager.Load<Texture2D>("archerShooting");
+
+            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            animationTimer -= elapsed;
+            if (animationTimer < 0)
+            {
+                this.CurrentFrame++;
+                this.animationTimer = 0.40f;
+            }
+            if (this.CurrentFrame > 4)
+            {
+                this.CurrentFrame = 0;
+            }
+        }
         public void Shoot(List<Projectile> projectiles, ContentManager contentManager, GameTime gameTime)
         {
-            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timer -= elapsed;
             if (this.CurrentFrame == 4 && this.velocity.X == 0)
             {
                 Projectile fireball = new Arrow(contentManager);
@@ -152,7 +162,6 @@ namespace Main
 
                 projectiles.Add(fireball);
 
-                timer = 2;
                 this.CurrentFrame = 0;
             }
         }

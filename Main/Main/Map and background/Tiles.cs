@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    class Tiles
+    public class Tiles
     {
         protected Texture2D texture;
         public Rectangle Rectangle { get; set; }
@@ -24,7 +24,7 @@ namespace Main
         }
     }
 
-    class CollisionTile : Tiles
+    public class CollisionTile : Tiles
     {
         public CollisionTile(int i, Rectangle rectangle)
         {

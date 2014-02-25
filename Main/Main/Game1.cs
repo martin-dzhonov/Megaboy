@@ -90,6 +90,7 @@ namespace Main
                 Shoot();
             }
             xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
+
             UpdateProjectiles();
 
             player.Update(gameTime);
@@ -100,7 +101,7 @@ namespace Main
                 if(enemy is Ranged)
                 {
                     var ranged = (Ranged)enemy;
-                    ranged.Shoot(enemyProjectiles, Content,gameTime); //TODO shoot
+                    ranged.Shoot(enemyProjectiles, Content,gameTime);
                 }
             }
 
@@ -113,47 +114,11 @@ namespace Main
                     enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
                 }        
 
-                for (int i = 0; i < playerProjectiles.Count; i++)
-                {
-                    if (playerProjectiles[i].Rectangle.Intersects(tile.Rectangle))
-                    {
-                        explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
-                        playerProjectiles.RemoveAt(i);
-                        i--;
-                    }
-                }
-                for (int i = 0; i < enemyProjectiles.Count; i++)
-                {
-                    if (enemyProjectiles[i].Rectangle.Intersects(tile.Rectangle) || enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
-                    {
-                        enemyProjectiles.RemoveAt(i);
-                        i--;
-                    }
-                }
+                ProjectilesCollison(tile);
+               
             }
-
-            for (int i = 0; i < playerProjectiles.Count; i++)
-            {
-                for (int j = 0; j < enemies.Count; j++)
-                {
-                    if (i >= 0)
-                    {
-                        if (playerProjectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
-                        {
-                            explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
-                            enemies[j].Health--;
-                            if (enemies[j].Health <= 0)
-                            {
-                                enemies.RemoveAt(j);
-                                j--;
-                            }
-                            playerProjectiles.RemoveAt(i);
-                            i--;
-                        }
-                    }
-                }
-            }
-
+            HitEnemies();
+            
             camera.Update(player.Position, map.Width, map.Height);
             base.Update(gameTime);
         }
@@ -216,7 +181,7 @@ namespace Main
             }
             return mapRead;
         }
-
+        
         public void LoadNpcs()
         {
             NPC maleNpc = new MaleNpc(200, 100);
@@ -258,6 +223,64 @@ namespace Main
             enemies.Add(drowRanger);
             enemies.Add(boss);
         }
+        public void Shoot()
+        {
+            Projectile fireball = new Fireball(Content);
+            if (player.LookingRight)
+            {
+                fireball.ShootRight();
+            }
+            else
+            {
+                fireball.ShootLeft();
+            }
+            fireball.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + fireball.Velocity * 3;
+            playerProjectiles.Add(fireball);
+        }
+        public void HitEnemies()
+        {
+            for (int i = 0; i < playerProjectiles.Count; i++)
+            {
+                for (int j = 0; j < enemies.Count; j++)
+                {
+                    if (i >= 0)
+                    {
+                        if (playerProjectiles[i].Rectangle.Intersects(enemies[j].Rectangle))
+                        {
+                            explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
+                            enemies[j].Health--;
+                            if (enemies[j].Health <= 0)
+                            {
+                                enemies.RemoveAt(j);
+                                j--;
+                            }
+                            playerProjectiles.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+        }
+        public void ProjectilesCollison(CollisionTile tile)
+        {
+            for (int i = 0; i < playerProjectiles.Count; i++)
+            {
+                if (playerProjectiles[i].Rectangle.Intersects(tile.Rectangle))
+                {
+                    explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
+                    playerProjectiles.RemoveAt(i);
+                    i--;
+                }
+            }
+            for (int i = 0; i < enemyProjectiles.Count; i++)
+            {
+                if (enemyProjectiles[i].Rectangle.Intersects(tile.Rectangle))
+                {
+                    enemyProjectiles.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
         public void UpdateProjectiles()
         {
             for (int i = 0; i < playerProjectiles.Count; i++)
@@ -280,20 +303,7 @@ namespace Main
             }
         }
 
-        public void Shoot()
-        {
-            Projectile fireball = new Fireball(Content);
-            if (player.LookingRight)
-            {
-                fireball.ShootRight();
-            }
-            else
-            {
-                fireball.ShootLeft();
-            }
-            fireball.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + fireball.Velocity * 3;
-            playerProjectiles.Add(fireball);
-        }
+        
 
     }
 }
