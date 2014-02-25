@@ -15,18 +15,18 @@ namespace Main
 {
     abstract class Ranged : Enemy
     {       
-        Rectangle sourceRectangle;
-        private bool lookingRight = true;
-        float animationTimer = 0.20f;
-        private int FRAMES_PER_ROW;
-        private int NUM_ROWS;
-        float previousVelocity;
+        protected Rectangle sourceRectangle;
+        protected bool lookingRight = true;
+        protected float animationTimer = 0.20f;
+        protected int framesPerRow;
+        protected int numRows;
+
         protected ContentManager conentManager;
-        int frameHeight;
-        int frameWidth;
+        protected int frameHeight;
+        protected int frameWidth;
 
         public int CurrentFrame { get; set; }
-        public Ranged(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50) : base(positonX, positionY, rectangleWidth, rectangleHeight)
+        public Ranged(int positonX, int positionY) : base(positonX, positionY)
         { 
             this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
             this.Health = 2;
@@ -35,8 +35,11 @@ namespace Main
         public override void Update(GameTime gameTime, int playerX, int playerY)
         {
 
+            
             position += velocity;
             this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
+
+            //patroling
             if (position.X > patrolPositon.X)
             {
                 if ((int)(position.X - patrolPositon.X) > patrolDistance)
@@ -54,12 +57,14 @@ namespace Main
                 }
             }
 
+            //detection
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
 
             int detectionDistanceX = 350;
-            int detectionDistanceY = 200;
+            int detectionDistanceY = 150;
 
+            
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX &&
                 playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
             {
@@ -74,6 +79,7 @@ namespace Main
                     velocity.X = 0f;             
                 }
             }
+            //return to patroling
             else
             {
                 if(lookingRight)
@@ -86,59 +92,67 @@ namespace Main
                 }
             }
             
-
+            //gravity
             if (velocity.Y < 12)
             {
                 velocity.Y += 0.4f;
             }
+            //animation
             if (velocity.X != 0)
             {
-                AnimateWalking(gameTime);
+                AnimateWalking(gameTime, "",0 ,0);
             }
             else 
             {
-                AnimateShooting(gameTime);
+                AnimateShooting(gameTime, "", 0, 0);
             }
         }
-        public void AnimateWalking(GameTime gameTime)
+        public void AnimateWalking(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
-            FRAMES_PER_ROW = 6;
-            NUM_ROWS = 1;
-            frameWidth = this.texture.Width / FRAMES_PER_ROW;
-            frameHeight = this.texture.Height / NUM_ROWS;
+            this.framesPerRow = framesPerRow;
+            this.numRows = numRows;
+
+            frameWidth = this.texture.Width / framesPerRow;
+            frameHeight = this.texture.Height / numRows;
 
 
-            this.texture = conentManager.Load<Texture2D>("archerWalking");
+            this.texture = conentManager.Load<Texture2D>(spriteName);
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
+
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             animationTimer -= elapsed;
+
             if (animationTimer < 0)
             {
                 this.CurrentFrame++;
                 this.animationTimer = 0.20f;
             }
+
             if (this.CurrentFrame >= 6)
             {
                 this.CurrentFrame = 0;
             }
         }
-        public void AnimateShooting(GameTime gameTime)
+        public void AnimateShooting(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
-            FRAMES_PER_ROW = 4;
-            NUM_ROWS = 1;
-            frameWidth = this.texture.Width / FRAMES_PER_ROW;
-            frameHeight = this.texture.Height / NUM_ROWS;
+            this.framesPerRow = framesPerRow;
+            this.numRows = numRows;
 
-            this.texture = conentManager.Load<Texture2D>("archerShooting");
+            frameWidth = this.texture.Width / framesPerRow;
+            frameHeight = this.texture.Height / numRows;
 
+            this.texture = conentManager.Load<Texture2D>(spriteName);
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
+
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             animationTimer -= elapsed;
+
             if (animationTimer < 0)
             {
                 this.CurrentFrame++;
                 this.animationTimer = 0.40f;
             }
+
             if (this.CurrentFrame > 4)
             {
                 this.CurrentFrame = 0;
