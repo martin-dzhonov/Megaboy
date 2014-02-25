@@ -20,7 +20,6 @@ namespace Main
     //TODO: Different types of melee and range enemies
     //TODO: NPCs
     //TODO: Storyline ?
-    //TODO: Different player heroes ?
     //TODO: Add enemies on map
     //TODO: Boss fight / boss added still need to make fight animation
     //TODO: Longer map /done - 200 units
@@ -356,6 +355,7 @@ namespace Main
             for (int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
+                enemies[i].PlayerCollision(player.Rectangle, map.Width, map.Height);
             }
         }
         public void UpdateProjectiles()
