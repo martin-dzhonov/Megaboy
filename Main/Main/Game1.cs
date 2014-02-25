@@ -96,7 +96,7 @@ namespace Main
             
             if (player.Rectangle.Intersects(endingRect))
             {
-                this.Exit();
+                currentGameState = GameState.End;
             }
             
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -199,6 +199,14 @@ namespace Main
                         }
                     }
 
+                    spriteBatch.End();
+                    break;
+
+                case GameState.End :
+                    spriteBatch.Begin();
+
+                    spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(0, 100, (int)WindowSize.Width, 200), Color.White);
                     spriteBatch.End();
                     break;
             }
