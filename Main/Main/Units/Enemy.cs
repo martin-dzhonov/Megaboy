@@ -20,11 +20,11 @@ namespace Main
         protected int patrolDistance;
         protected bool hasJumped = false;
         protected string spriteName;
-       
+        
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;
         private int health;
-
+        float timer;
         public Enemy(int positionX, int positionY) : this(positionX, positionY, 50, 50){}
         public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
         {

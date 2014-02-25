@@ -12,7 +12,7 @@ namespace Main
             : base(positonX, positionY, rectangleWidth, rectangleHeight)
         {
             this.Health = 60;
-            this.spriteName = "Boss";
+            this.spriteName = "Pudge";
         }
   
     }

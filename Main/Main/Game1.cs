@@ -235,10 +235,10 @@ namespace Main
             Enemy antiMage = new AntiMage(1500, 700);
             antiMage.Load(Content);  
  
-            Enemy rangedEnemy1 = new Archer(450, 100);
+            Enemy rangedEnemy1 = new Archer(450, 100, Content);
             rangedEnemy1.Load(Content);
 
-            Enemy boss = new Pudge(900, 100);
+            Enemy boss = new Boss(900, 100);
             boss.Load(Content);
 
             Enemy ursa = new UrsaWarrior(500, 800);
@@ -247,7 +247,7 @@ namespace Main
             Enemy spiritBreaker = new SpiritBreaker(1500, 50);
             spiritBreaker.Load(Content);
 
-            Enemy drowRanger = new DrowRanger(1000, 300);
+            Enemy drowRanger = new Archer(1000, 300, Content);
             drowRanger.Load(Content);
 
             enemies.Add(meleeEnemy1);

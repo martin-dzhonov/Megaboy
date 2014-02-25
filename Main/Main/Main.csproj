@@ -88,7 +88,6 @@
     <Compile Include="Map and background\Map.cs" />
     <Compile Include="Units\Melee\Melee.cs" />
     <Compile Include="Units\Melee\AntiMage.cs" />
-    <Compile Include="Units\Boss\Pudge.cs" />
     <Compile Include="Units\Melee\SpiritBreaker.cs" />
     <Compile Include="Units\Melee\UrsaWarrior.cs" />
     <Compile Include="Units\NPCs\NPC.cs" />
