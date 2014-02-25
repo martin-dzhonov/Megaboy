@@ -249,34 +249,20 @@ namespace Main
         }
         public void LoadEnemies()
         {
-            Enemy meleeEnemy1 = new Melee(500, 100);
+            Enemy meleeEnemy1 = new Knight(500, 100, Content);
             meleeEnemy1.Load(Content);
 
-            Enemy antiMage = new AntiMage(1500, 700);
-            antiMage.Load(Content);  
- 
+
             Enemy rangedEnemy1 = new Archer(450, 100, Content);
             rangedEnemy1.Load(Content);
-
-            Enemy boss = new Boss(900, 100);
-            boss.Load(Content);
-
-            Enemy ursa = new UrsaWarrior(500, 800);
-            ursa.Load(Content);
-
-            Enemy spiritBreaker = new SpiritBreaker(1500, 50);
-            spiritBreaker.Load(Content);
 
             Enemy drowRanger = new Archer(1000, 300, Content);
             drowRanger.Load(Content);
 
             enemies.Add(meleeEnemy1);
-            enemies.Add(rangedEnemy1);
-            enemies.Add(antiMage);
-            enemies.Add(ursa);
-            enemies.Add(spiritBreaker);
+           enemies.Add(rangedEnemy1);
             enemies.Add(drowRanger);
-            enemies.Add(boss);
+
         }
         public void Shoot()
         {
