@@ -15,15 +15,31 @@ namespace Main
     abstract class NPC : Unit
 
     {
-        protected string spriteName;
-        public NPC(int positionX, int positionY){}
-        public abstract bool isReached(Player player);
+        string spriteName;
+
+        public NPC(string spriteName, int posX, int posY)
+        {
+            this.spriteName = spriteName;
+            this.position = new Vector2(posX, posY);
+            this.rectangle = new Rectangle(posX, posY, 100, 100);
+        }
 
         public override void Load(ContentManager contentManager)
         {
             this.texture = contentManager.Load<Texture2D>(spriteName);
         }
 
-        
+        public override void Update(GameTime gameTime, Player player)
+        {
+            if(this.rectangle.Intersects(player.Rectangle))
+            {
+                //talk
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, rectangle, Color.White);
+        }
     }
 }

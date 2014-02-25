@@ -1,6 +1,6 @@
 ﻿namespace Main
 {
-    public class AntiMage : Melee
+    class AntiMage : Melee
     {
         public AntiMage(int positonX, int positionY)
             : base(positonX, positionY)

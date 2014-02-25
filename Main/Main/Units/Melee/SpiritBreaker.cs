@@ -1,6 +1,6 @@
 ﻿namespace Main
 {
-    public class SpiritBreaker : Melee
+    class SpiritBreaker : Melee
     {
         public SpiritBreaker(int positonX, int positionY)
             : base(positonX, positionY)

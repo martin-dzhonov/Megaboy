@@ -231,12 +231,7 @@ namespace Main
         
         public void LoadNpcs()
         {
-            NPC maleNpc = new MaleNpc(200, 100);
-            maleNpc.Load(Content);
-
             
-            // NPC femaleNpc = new FemaleNpc(800, 200);
-            // femaleNpc.Load(Content);
 
         }
         public void LoadEnemies()

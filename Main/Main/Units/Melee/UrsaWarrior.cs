@@ -1,6 +1,6 @@
 ﻿namespace Main
 {
-    public class UrsaWarrior : Melee
+     class UrsaWarrior : Melee
     {
         public UrsaWarrior(int positonX, int positionY)
             : base(positonX, positionY)
