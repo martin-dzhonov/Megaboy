@@ -16,12 +16,14 @@ namespace Main
 
     {
         string spriteName;
+        public ToolTip toolTip;
 
-        public NPC(string spriteName, int posX, int posY)
+        public NPC(string spriteName, int posX, int posY, ToolTip toolTip)
         {
             this.spriteName = spriteName;
             this.position = new Vector2(posX, posY);
             this.rectangle = new Rectangle(posX, posY, 90, 110);
+            this.toolTip = toolTip;
         }
 
         public override void Load(ContentManager contentManager)
@@ -31,9 +33,13 @@ namespace Main
 
         public override void Update(GameTime gameTime, Player player)
         {
-            if(this.rectangle.Intersects(player.Rectangle))
+            if (player.Rectangle.Intersects(this.rectangle))
             {
-                //talk
+                toolTip.IsVisible = true;
+            }
+            else
+            {
+                toolTip.IsVisible = false;
             }
         }
 
