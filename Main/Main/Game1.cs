@@ -173,8 +173,8 @@ namespace Main
             {
                 case GameState.StartMenu:
                     spriteBatch.Begin();
-
-                    spriteBatch.Draw(Content.Load<Texture2D>("startScreenBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                   
+                    spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
 
@@ -265,7 +265,7 @@ namespace Main
             femaleNpc = new FemaleNpc("femaleNpc", 2750,100);
             femaleNpc.Load(Content);
 
-            femaleNpc2 = new FemaleNpc("femaleNpc", 6000, 360);
+            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360);
             femaleNpc2.Load(Content);
 
 
