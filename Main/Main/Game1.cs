@@ -38,6 +38,7 @@ namespace Main
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
         Button startButton;
+        Button exitButton;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
 
@@ -70,8 +71,10 @@ namespace Main
 
         protected override void LoadContent()
         {
-            startButton = new Button(Content, "startbutton", 300, 300);
-            startButton.SetPosition(500, 200);
+            startButton = new Button(Content, "startbutton", 100, 100);
+            startButton.SetPosition(300, 100);
+            exitButton = new Button(Content, "startbutton", 100, 100);
+            exitButton.SetPosition(300, 250);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
@@ -99,6 +102,11 @@ namespace Main
                     {
                         currentGameState = GameState.Playing;
                     }
+                    else if(exitButton.isClicked)
+                    {
+                        this.Exit();
+                    }
+                    exitButton.Update(mouse);
                     startButton.Update(mouse);
                     break;
                 case (GameState.Playing) :
@@ -125,13 +133,8 @@ namespace Main
 
                     foreach (var tile in map.CollisionTiles)
                     {
-                        player.Collision(tile.Rectangle, map.Width, map.Height);
-
-                        for (int i = 0; i < enemies.Count; i++)
-                        {
-                            enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
-                        }
-
+                        player.Collision(tile.Rectangle, map.Width, map.Height);                
+                        EnemiesCollision(tile);
                         ProjectilesCollison(tile);
                     }
                     HitEnemies();
@@ -155,6 +158,7 @@ namespace Main
                    
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
+                    exitButton.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
@@ -316,6 +320,13 @@ namespace Main
                 }
             }
         }
+        public void EnemiesCollision(CollisionTile tile)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
+            }
+        }
         public void UpdateProjectiles()
         {
             for (int i = 0; i < playerProjectiles.Count; i++)
@@ -337,8 +348,5 @@ namespace Main
                 }
             }
         }
-
-        
-
     }
 }
