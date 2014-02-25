@@ -20,8 +20,8 @@ namespace Main
         public Archer(int positonX, int positionY,ContentManager contentManager)
             : base(positonX, positionY)
         {
-            this.rectangleSizeWidth = 50;
-            this.rectangleSizeHeight = 50;
+            this.rectangleSizeWidth = 60;
+            this.rectangleSizeHeight = 70;
             this.Health = 2;
             this.spriteName = "archerWalking";
             this.conentManager = contentManager;

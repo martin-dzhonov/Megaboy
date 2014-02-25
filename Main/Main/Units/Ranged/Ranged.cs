@@ -166,7 +166,7 @@ namespace Main
         }
         public void Shoot(List<Projectile> projectiles, ContentManager contentManager, GameTime gameTime)
         {
-            if (this.CurrentFrame == 4 && this.velocity.X == 0)
+            if (this.CurrentFrame == 3 && this.velocity.X == 0)
             {
                 Projectile fireball = new Arrow(contentManager);
                 if (this.lookingRight)
@@ -178,7 +178,7 @@ namespace Main
                     fireball.ShootLeft();
                 }
 
-                fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 6) + fireball.Velocity * 3;
+                fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 15) + fireball.Velocity * 3;
 
                 projectiles.Add(fireball);
 

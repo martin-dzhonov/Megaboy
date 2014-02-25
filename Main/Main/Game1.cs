@@ -249,14 +249,14 @@ namespace Main
         }
         public void LoadEnemies()
         {
-            Enemy meleeEnemy1 = new Knight(500, 100, Content);
+            Enemy meleeEnemy1 = new Knight(500, 50, Content);
             meleeEnemy1.Load(Content);
 
 
-            Enemy rangedEnemy1 = new Archer(450, 100, Content);
+            Enemy rangedEnemy1 = new Archer(450, 50, Content);
             rangedEnemy1.Load(Content);
 
-            Enemy drowRanger = new Archer(1000, 300, Content);
+            Enemy drowRanger = new Archer(1000, 50, Content);
             drowRanger.Load(Content);
 
             enemies.Add(meleeEnemy1);
