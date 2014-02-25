@@ -77,7 +77,7 @@ namespace Main
         {
             startButton = new Button(Content, "startbutton", 348, 103);
             startButton.SetPosition(375, 100);
-            exitButton = new Button(Content, "exitbutton", 348, 103);
+            exitButton = new Button(Content, "startexitbutton", 348, 103);
             exitButton.SetPosition(375, 250);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
@@ -169,12 +169,14 @@ namespace Main
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
+                    
 
                     spriteBatch.End();
                     break;
                 case GameState.Playing :
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
 
+                    
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     player.Draw(spriteBatch);
@@ -210,7 +212,7 @@ namespace Main
                     spriteBatch.Begin();
 
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(0, 100, (int)WindowSize.Width, 200), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
                     spriteBatch.End();
                     break;
             }
