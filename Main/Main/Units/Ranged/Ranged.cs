@@ -14,16 +14,20 @@ using Main.Projectiles;
 namespace Main
 {
     abstract class Ranged : Enemy
-    {       
+    {
+        protected ContentManager conentManager;
         protected Rectangle sourceRectangle;
+
         protected bool lookingRight = true;
+
         protected float animationTimer = 0.20f;
         protected int framesPerRow;
-        protected int numRows;
-
-        protected ContentManager conentManager;
+        protected int numRows;   
         protected int frameHeight;
         protected int frameWidth;
+
+        protected int detectionDistanceX = 350;
+        protected int detectionDistanceY = 150;
 
         public int CurrentFrame { get; set; }
         public Ranged(int positonX, int positionY) : base(positonX, positionY)
@@ -42,6 +46,7 @@ namespace Main
             //patroling
             if (position.X > patrolPositon.X)
             {
+                
                 if ((int)(position.X - patrolPositon.X) > patrolDistance)
                 {
                     lookingRight = false;
@@ -61,13 +66,12 @@ namespace Main
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
 
-            int detectionDistanceX = 350;
-            int detectionDistanceY = 150;
-
+            
             
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX &&
                 playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
             {
+                
                 if (playerDistanceX < 0)
                 {
                     lookingRight = false;
@@ -82,6 +86,8 @@ namespace Main
             //return to patroling
             else
             {
+                
+
                 if(lookingRight)
                 {
                     velocity.X = 1f;

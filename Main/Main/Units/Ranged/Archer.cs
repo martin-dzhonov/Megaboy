@@ -54,13 +54,14 @@ namespace Main
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
 
-            int detectionDistanceX = 350;
-            int detectionDistanceY = 150;
+            this.detectionDistanceX = 400;
+            this.detectionDistanceY = 150;
 
 
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX &&
                 playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
             {
+
                 if (playerDistanceX < 0)
                 {
                     lookingRight = false;
@@ -75,6 +76,7 @@ namespace Main
             //return to patroling
             else
             {
+
                 if (lookingRight)
                 {
                     velocity.X = 1f;

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Main.Enum;
+using Main.StartMenu;
 
 namespace Main
 {
@@ -26,8 +27,8 @@ namespace Main
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+
+        GameState currentGameState;
         Player player;
         Map map;
         Camera camera;
@@ -36,10 +37,12 @@ namespace Main
         List<Projectile> enemyProjectiles = new List<Projectile>();
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
-
+        Button startButton;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
 
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
 
         public Game1()
         {
@@ -55,6 +58,8 @@ namespace Main
 
         protected override void Initialize()
         {
+            currentGameState = GameState.StartMenu;;
+            IsMouseVisible = true;
             map = new Map();
             player = new Player();
             background = new ContinuingBackground();
@@ -65,6 +70,8 @@ namespace Main
 
         protected override void LoadContent()
         {
+            startButton = new Button(Content, "startbutton", 300, 300);
+            startButton.SetPosition(500, 200);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
@@ -80,46 +87,59 @@ namespace Main
 
         protected override void Update(GameTime gameTime)
         {
+            MouseState mouse = Mouse.GetState();
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 this.Exit();
             }
-
-            if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
+            switch(currentGameState)
             {
-                Shoot();
-            }
-            xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
+                case (GameState.StartMenu):
+                    if (startButton.isClicked)
+                    {
+                        currentGameState = GameState.Playing;
+                    }
+                    startButton.Update(mouse);
+                    break;
+                case (GameState.Playing) :
 
-            UpdateProjectiles();
+                    if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
+                    {
+                        Shoot();
+                    }
+                    xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
 
-            player.Update(gameTime);
+                    UpdateProjectiles();
 
-            foreach (var enemy in enemies)
-            {
-                enemy.Update(gameTime, (int)player.Position.X,(int)player.Position.Y);
-                if(enemy is Ranged)
-                {
-                    var ranged = (Ranged)enemy;
-                    ranged.Shoot(enemyProjectiles, Content,gameTime);
-                }
-            }
+                    player.Update(gameTime);
 
-            foreach (var tile in map.CollisionTiles)
-            {
-                player.Collision(tile.Rectangle, map.Width, map.Height);
+                    foreach (var enemy in enemies)
+                    {
+                        enemy.Update(gameTime, (int)player.Position.X, (int)player.Position.Y);
+                        if (enemy is Ranged)
+                        {
+                            var ranged = (Ranged)enemy;
+                            ranged.Shoot(enemyProjectiles, Content, gameTime);
+                        }
+                    }
 
-                for (int i = 0; i < enemies.Count; i++)
-                {
-                    enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
-                }        
+                    foreach (var tile in map.CollisionTiles)
+                    {
+                        player.Collision(tile.Rectangle, map.Width, map.Height);
 
-                ProjectilesCollison(tile);
-               
-            }
-            HitEnemies();
+                        for (int i = 0; i < enemies.Count; i++)
+                        {
+                            enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
+                        }
+
+                        ProjectilesCollison(tile);
+                    }
+                    HitEnemies();
             
-            camera.Update(player.Position, map.Width, map.Height);
+                    camera.Update(player.Position, map.Width, map.Height);
+
+                    break;
+            }
             base.Update(gameTime);
         }
 
@@ -127,35 +147,50 @@ namespace Main
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
-
-            background.Draw(spriteBatch);
-            map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-
-            foreach (var enemy in enemies)
+            
+            switch(currentGameState)
             {
-                enemy.Draw(spriteBatch);
-            }
-            foreach (var projectile in playerProjectiles)
-            {
-                projectile.Draw(spriteBatch);
-            }
-            foreach (var projectile in enemyProjectiles)
-            {
-                projectile.Draw(spriteBatch);
-            }
-            for (int i = 0; i < explosions.Count; i++)
-			{
-                explosions[i].Draw(spriteBatch);
-                if (explosions[i].Finished)
-                {
-                    explosions.RemoveAt(i);
-                    i--;
-                }   
-            }
-            spriteBatch.End();
+                case GameState.StartMenu:
+                    spriteBatch.Begin();
+                   
+                    spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    startButton.Draw(spriteBatch);
 
+                    spriteBatch.End();
+                    break;
+                case GameState.Playing :
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
+
+                    background.Draw(spriteBatch);
+                    map.Draw(spriteBatch);
+                    player.Draw(spriteBatch);
+
+                    foreach (var enemy in enemies)
+                    {
+                        enemy.Draw(spriteBatch);
+                    }
+                    foreach (var projectile in playerProjectiles)
+                    {
+                        projectile.Draw(spriteBatch);
+                    }
+                    foreach (var projectile in enemyProjectiles)
+                    {
+                        projectile.Draw(spriteBatch);
+                    }
+                    for (int i = 0; i < explosions.Count; i++)
+                    {
+                        explosions[i].Draw(spriteBatch);
+                        if (explosions[i].Finished)
+                        {
+                            explosions.RemoveAt(i);
+                            i--;
+                        }
+                    }
+
+                    spriteBatch.End();
+                    break;
+            }
+           
             base.Draw(gameTime);
         }
 

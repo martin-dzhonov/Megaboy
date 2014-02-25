@@ -72,6 +72,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\GameState.cs" />
     <Compile Include="Enum\PlayerSize.cs" />
     <Compile Include="Enum\WindowSizes.cs" />
     <Compile Include="Projectiles\Arrow.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="Map and background\Background.cs" />
     <Compile Include="Map and background\Camera.cs" />
+    <Compile Include="StartMenu\Button.cs" />
     <Compile Include="Units\Boss\Boss.cs" />
     <Compile Include="Units\Enemy.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
