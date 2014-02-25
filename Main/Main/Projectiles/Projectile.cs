@@ -16,7 +16,9 @@ namespace Main
         protected Texture2D texture;
         protected Rectangle rectangle;
         protected Vector2 position;
-        protected Vector2 velocity  ;
+        protected Vector2 velocity;
+        protected int width;
+        protected int height;
 
         public Rectangle Rectangle
         {
@@ -57,7 +59,7 @@ namespace Main
         public void UpdatePosition()
         {
             this.position += this.velocity;
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, 30, 30);
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, this.width, this.height);
         }
 
         public void ShootLeft()

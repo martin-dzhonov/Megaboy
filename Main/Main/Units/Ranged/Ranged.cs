@@ -9,18 +9,20 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Main.Projectiles;
 namespace Main
 {
-    class Ranged : Enemy
+    abstract class Ranged : Enemy
     {
         private bool lookingRight;
+        float timer = 2;
 
         public Ranged(int positonX, int positionY, int rectangleWidth = 50, int rectangleHeight = 50)
             : base(positonX, positionY, rectangleWidth, rectangleHeight)
         {
             this.Health = 2;
             this.spriteName = "ranged1";
+            
         }
 
         public override void Update(GameTime gameTime, int playerX, int playerY)
@@ -72,13 +74,13 @@ namespace Main
                 velocity.Y += 0.4f;
             }
         }
-        public void Shoot(List<Projectile> projectiles,  ContentManager contentManager)
+        public void Shoot(List<Projectile> projectiles,  ContentManager contentManager, GameTime gameTime)
         {
-            Random rnd = new Random();
-            int random = rnd.Next(1, 100);
-            if (random > 98)
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timer -= elapsed;
+            if (timer < 0)
             {
-                Projectile fireball = new Fireball(contentManager);
+                Projectile fireball = new Arrow(contentManager);
                 if (this.lookingRight)
                 {
                     fireball.ShootRight();
@@ -87,9 +89,14 @@ namespace Main
                 {
                     fireball.ShootLeft();
                 }
+
                 fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 6) + fireball.Velocity * 3;
+
                 projectiles.Add(fireball);
+
+                timer = 2;
             }
+  
         }
 
         public override void Draw(SpriteBatch spriteBatch)

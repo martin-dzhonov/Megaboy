@@ -9,13 +9,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Main
+namespace Main.Projectiles
 {
-    class Fireball : Projectile
-    {     
-        public Fireball(ContentManager contentManager)
+    class Arrow : Projectile
+    {
+        public Arrow(ContentManager contentManager)
         {
-            this.texture = contentManager.Load<Texture2D>("Fireball");
+            this.texture = contentManager.Load<Texture2D>("arrow");
+            this.width = 40;
+            this.height = 8;
         }
     }
 }

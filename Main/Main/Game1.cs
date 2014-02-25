@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
 using Main.Enum;
 
 namespace Main
@@ -101,7 +100,7 @@ namespace Main
                 if(enemy is Ranged)
                 {
                     var ranged = (Ranged)enemy;
-                    ranged.Shoot(enemyProjectiles, Content); //TODO shoot
+                    ranged.Shoot(enemyProjectiles, Content,gameTime); //TODO shoot
                 }
             }
 
@@ -120,6 +119,14 @@ namespace Main
                     {
                         explosions.Add(new Explosion(Content, playerProjectiles[i].Rectangle.X, playerProjectiles[i].Rectangle.Y));
                         playerProjectiles.RemoveAt(i);
+                        i--;
+                    }
+                }
+                for (int i = 0; i < enemyProjectiles.Count; i++)
+                {
+                    if (enemyProjectiles[i].Rectangle.Intersects(tile.Rectangle) || enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
+                    {
+                        enemyProjectiles.RemoveAt(i);
                         i--;
                     }
                 }
@@ -228,7 +235,7 @@ namespace Main
             Enemy antiMage = new AntiMage(1500, 700);
             antiMage.Load(Content);  
  
-            Enemy rangedEnemy1 = new Ranged(450, 100);
+            Enemy rangedEnemy1 = new Archer(450, 100);
             rangedEnemy1.Load(Content);
 
             Enemy boss = new Pudge(900, 100);
@@ -265,6 +272,11 @@ namespace Main
             for (int i = 0; i < enemyProjectiles.Count; i++)
             {
                 enemyProjectiles[i].UpdatePosition();
+                if (Vector2.Distance(enemyProjectiles[i].Position, player.Position) > 500)
+                {
+                    enemyProjectiles.RemoveAt(i);
+                    i--;
+                }
             }
         }
 

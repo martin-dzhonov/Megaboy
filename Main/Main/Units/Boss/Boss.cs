@@ -11,7 +11,7 @@ namespace Main
         public Boss(int positonX, int positionY, int rectangleWidth = 130, int rectangleHeight = 130)
             : base(positonX, positionY, rectangleWidth, rectangleHeight)
         {
-            this.Health = 100;
+            this.Health = 60;
             this.spriteName = "Boss";
         }
   
