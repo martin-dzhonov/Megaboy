@@ -49,34 +49,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="melee1.png">
-      <Name>melee1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="running.png">
       <Name>running</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="pewpew.wav">
-      <Name>pewpew</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ranged1.png">
-      <Name>ranged1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Boss.png">
-      <Name>Boss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -117,27 +91,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AntiMage.png">
-      <Name>AntiMage</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="UrsaWarrior.png">
-      <Name>UrsaWarrior</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="SpiritBreaker.png">
-      <Name>SpiritBreaker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Pudge.png">
       <Name>Pudge</Name>
       <Importer>TextureImporter</Importer>
@@ -145,8 +98,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrowRanger.png">
-      <Name>DrowRanger</Name>
+    <Compile Include="Boss.png">
+      <Name>Boss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -161,13 +114,6 @@
   <ItemGroup>
     <Compile Include="archerWalking.png">
       <Name>archerWalking</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="archerSheet.png">
-      <Name>archerSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
