@@ -37,9 +37,10 @@ namespace Main
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
         NPC maleNpc;
-        NPC femaleNpc;
+        // NPC femaleNpc;
         Button startButton;
         Button exitButton;
+        Button playAgainButton;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
 
@@ -78,6 +79,7 @@ namespace Main
             startButton.SetPosition(375, 100);
             exitButton = new Button(Content, "startexitbutton", 348, 103);
             exitButton.SetPosition(375, 250);
+            playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
@@ -119,6 +121,8 @@ namespace Main
                     startButton.Update(mouse);
                     break;
                 case (GameState.Playing) :
+
+                    
 
                     if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
                     {
@@ -210,7 +214,13 @@ namespace Main
                     spriteBatch.Begin();
 
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(0, 100, (int)WindowSize.Width, 200), Color.White);
+
+                   // spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(0, 100, (int)WindowSize.Width, 200), Color.White);
+
+                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(560, 330, 190, 55), Color.White);
+
                     spriteBatch.End();
                     break;
             }
