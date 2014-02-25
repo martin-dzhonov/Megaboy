@@ -30,9 +30,8 @@ namespace Main
         protected int detectionDistanceY = 150;
 
         public int CurrentFrame { get; set; }
-        public Ranged(int positonX, int positionY) : base(positonX, positionY)
+        public Ranged(int positonX, int positionY) : base(positonX, positionY, 70, 50)
         { 
-            this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
             this.Health = 2;
         }
 
@@ -86,8 +85,6 @@ namespace Main
             //return to patroling
             else
             {
-                
-
                 if(lookingRight)
                 {
                     velocity.X = 1f;

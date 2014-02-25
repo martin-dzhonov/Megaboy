@@ -21,7 +21,8 @@ namespace Main
 
         protected bool lookingRight = true;
 
-        protected float animationTimer = 0.30f;
+        protected float walkAnimationTimer = 0.30f;
+        protected float attackAnimationTimer = 0.30f;
         protected int framesPerRow;
         protected int numRows;
         protected int frameHeight;
@@ -29,85 +30,16 @@ namespace Main
 
         protected int detectionDistanceX = 350;
         protected int detectionDistanceY = 150;
+        protected bool atacking = false;
 
         public int CurrentFrame { get; set; }
         public Melee(int positonX, int positionY)
-            : base(positonX, positionY)
+            : base(positonX, positionY, 70, 50)
         {
-            this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
-            this.Health = 2;
+            this.Health = 4;
         }
-
-        public override void Update(GameTime gameTime, int playerX, int playerY)
-        {
-            position += velocity;
-
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
-            if (position.X > patrolPositon.X)
-            {
-                this.AnimateWalking(gameTime, "knightWalking", 6, 1);
-                if ((int)(position.X - patrolPositon.X) > patrolDistance)
-                {
-                    velocity.X = -1f;
-                    lookingRight = false;
-
-                }
-            }
-            if (position.X < patrolPositon.X)
-            {
-                this.AnimateWalking(gameTime, "knightWalking", 6, 1);
-                if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
-                {
-                    velocity.X = 1f;
-                    lookingRight = true;
-                }
-            }
-
-            playerDistanceX = playerX - position.X;
-            playerDistanceY = playerY - position.Y;
-
-            int detectionDistanceX = 250;
-            int detectionDistanceY = 200;
-
-            if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX
-                && playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
-            {
-                float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                attackTimer -= elapsed;
-                if (attackTimer < 0)
-                {
-                    this.AnimateAttack(gameTime, "knightAttack", 4, 1);
-                    if (CurrentFrame >= 4)
-                    {
-                        attackTimer = 1f;
-                    }
-                }
-                if (playerDistanceX < 0)
-                {
-                    velocity.X = -1f;
-                    patrolPositon.X -= 1;
-                    lookingRight = false;
-                }
-                else if (playerDistanceX > 0)
-                {
-                    velocity.X = 1f;
-                    patrolPositon.X += 1;
-                    lookingRight = true;
-                }
-            }
-            if (hasJumped == true)
-            {
-                position.Y -= 4f;
-                velocity.Y = -8f;
-                hasJumped = false;
-            }
-
-            if (velocity.Y < 12)
-            {
-                velocity.Y += 0.4f;
-            }
-
-        }
+       
+       
         public void AnimateWalking(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
             this.framesPerRow = framesPerRow;
@@ -121,13 +53,13 @@ namespace Main
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
 
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            animationTimer -= elapsed;
+            walkAnimationTimer -= elapsed;
 
-            if (animationTimer < 0)
+            if (walkAnimationTimer <= 0)
             {
                 this.CurrentFrame++;
-                this.animationTimer = 0.20f;
-            }
+                walkAnimationTimer = 0.30f;
+            } 
 
             if (this.CurrentFrame >= 6)
             {
@@ -136,7 +68,7 @@ namespace Main
         }
         public void AnimateAttack(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
-            this.animationTimer = 0.4f;
+            
             this.framesPerRow = framesPerRow;
             this.numRows = numRows;
 
@@ -147,12 +79,12 @@ namespace Main
             this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
 
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            animationTimer -= elapsed;
+            attackAnimationTimer -= elapsed;
 
-            if (animationTimer < 0)
+            if (attackAnimationTimer <= 0)
             {
                 this.CurrentFrame++;
-                this.animationTimer = 0.4f;
+                attackAnimationTimer = 0.30f;
             }
 
             if (this.CurrentFrame > 4)
@@ -160,9 +92,10 @@ namespace Main
                 this.CurrentFrame = 0;
             }
         }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (lookingRight == true)
+            if (this.velocity.X > 0)
             {
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
@@ -171,5 +104,6 @@ namespace Main
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
             }
         }
+
     }
 }

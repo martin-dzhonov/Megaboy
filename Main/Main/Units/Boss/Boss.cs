@@ -14,6 +14,11 @@ namespace Main
             this.Health = 60;
             this.spriteName = "Pudge";
         }
-  
+
+
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, int playerX, int playerY)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

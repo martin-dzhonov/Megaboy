@@ -25,7 +25,7 @@ namespace Main
         protected int rectangleSizeHeight;
         private int health;
 
-        public Enemy(int positionX, int positionY) : this(positionX, positionY, 50, 50){}
+        
         public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
         {
             this.position.X = positionX;
@@ -35,7 +35,6 @@ namespace Main
             this.patrolDistance = 50;
             this.velocity.X = 1f;
             this.velocity.Y = 1f;
-
             this.rectangleSizeWidth = rectangleWidth;
             this.rectangleSizeHeight = rectangleHeight;
         }
@@ -52,58 +51,7 @@ namespace Main
             }
         }
 
-        public virtual void Update(GameTime gameTime, int playerX, int playerY)
-        {
-            position += velocity;
-
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
-            if (position.X > patrolPositon.X)
-            {
-                if ((int)(position.X - patrolPositon.X) > patrolDistance)
-                {
-                    velocity.X = -1f;
-                }
-            }
-            if (position.X < patrolPositon.X)
-            {
-                if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
-                {
-                    velocity.X = 1f;
-                }
-            }
-
-            playerDistanceX = playerX - position.X;
-            playerDistanceY = playerY - position.Y;
-
-            int detectionDistanceX = 250;
-            int detectionDistanceY = 200;
-
-            if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX
-                && playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
-            {
-                if (playerDistanceX < 0)
-                {
-                    velocity.X = -1f;
-                    patrolPositon.X -= 1;
-                }
-                else if (playerDistanceX > 0)
-                {
-                    velocity.X = 1f;
-                    patrolPositon.X += 1;
-                }
-            }
-            if (hasJumped == true)
-            {
-                position.Y -= 4f;
-                velocity.Y = -8f;
-                hasJumped = false;
-            }
-
-            if (velocity.Y < 12)
-            {
-                velocity.Y += 0.4f;
-            }
-        }
+        public abstract void Update(GameTime gameTime, int playerX, int playerY);
 
         public override void Load(ContentManager contentManager)
         {

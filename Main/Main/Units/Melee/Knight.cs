@@ -13,9 +13,11 @@ using Main.Projectiles;
 
 namespace Main
 {
-    class Knight : Ranged
+    class Knight : Melee
     {
-        private float attackTimer = 1f;
+        
+        private bool atacking = false;
+        private float attackTimer = 1.5f;
 
         public Knight(int positonX, int positionY, ContentManager contentManager)
             : base(positonX, positionY)
@@ -25,29 +27,40 @@ namespace Main
             this.Health = 2;
             this.spriteName = "knightWalking";
             this.conentManager = contentManager;
+            this.detectionDistanceX = 250;
+            this.detectionDistanceY = 200;
         }
 
         public override void Update(GameTime gameTime, int playerX, int playerY)
         {
             position += velocity;
 
+            if(atacking == false)
+            {
+                this.AnimateWalking(gameTime, "knightWalking", 6, 1);
+            }
+            else
+            {
+                this.AnimateAttack(gameTime, "knightAttack", 4, 1);
+
+                if(this.CurrentFrame >= 4)
+                {
+                    atacking = false;
+                }
+            }
             this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
             if (position.X > patrolPositon.X)
             {
-                this.AnimateWalking(gameTime, "knightWalking", 6, 1);
                 if ((int)(position.X - patrolPositon.X) > patrolDistance)
                 {
                     velocity.X = -1f;
-                    lookingRight = false;
                 }
             }
             if (position.X < patrolPositon.X)
             {
-                this.AnimateWalking(gameTime, "knightWalking", 6, 1);
                 if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
                 {
                     velocity.X = 1f;
-                    lookingRight = true;
                 }
             }
 
@@ -64,24 +77,18 @@ namespace Main
                 attackTimer -= elapsed;
                 if (attackTimer < 0)
                 {
-                    this.AnimateShooting(gameTime, "knightAttack", 4, 1);
-                    if (CurrentFrame >= 4)
-                    {
-                        attackTimer = 1f;
-
-                    }
+                    atacking = true;
+                    attackTimer = 1.5f;
                 }
                 if (playerDistanceX < 0)
                 {
                     velocity.X = -1f;
                     patrolPositon.X -= 1;
-                    lookingRight = false;
                 }
                 else if (playerDistanceX > 0)
                 {
                     velocity.X = 1f;
                     patrolPositon.X += 1;
-                    lookingRight = true;
                 }
             }
             if (hasJumped == true)
@@ -95,7 +102,6 @@ namespace Main
             {
                 velocity.Y += 0.4f;
             }
-
         }
 
     }

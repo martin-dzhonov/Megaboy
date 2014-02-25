@@ -101,7 +101,7 @@ namespace Main
                 currentGameState = GameState.End;
             }
             
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) || player.Health <= 0)
             {
                 this.Exit();
             }
@@ -148,6 +148,7 @@ namespace Main
                         ProjectilesCollison(tile);
                     }
                     HitEnemies();
+                    HitHero();
             
                     camera.Update(player.Position, map.Width, map.Height);
 
@@ -301,6 +302,18 @@ namespace Main
                             i--;
                         }
                     }
+                }
+            }
+        }
+        public void HitHero()
+        {
+            for (int i = 0; i < enemyProjectiles.Count; i++)
+            {
+                if(enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
+                {
+                    player.Health--;
+                    enemyProjectiles.RemoveAt(i);
+                    i--;
                 }
             }
         }
