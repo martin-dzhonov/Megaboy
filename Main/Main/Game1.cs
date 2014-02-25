@@ -37,7 +37,8 @@ namespace Main
         List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
         NPC maleNpc;
-        // NPC femaleNpc;
+        NPC femaleNpc;
+        NPC femaleNpc2;
         Button startButton;
         Button exitButton;
         Button playAgainButton;
@@ -124,7 +125,7 @@ namespace Main
 
                     if(playAgainButton.isClicked)
                     {
-                        currentGameState = GameState.StartMenu; // NEED FIX
+                        // NEED FIX
                     }
 
                     if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
@@ -186,6 +187,8 @@ namespace Main
                     map.Draw(spriteBatch);
                     player.Draw(spriteBatch);
                     maleNpc.Draw(spriteBatch);
+                    femaleNpc.Draw(spriteBatch);
+                    femaleNpc2.Draw(spriteBatch);
                     
 
                     foreach (var enemy in enemies)
@@ -258,6 +261,13 @@ namespace Main
         {
             maleNpc = new MaleNpc("maleNpc",530 , 250);
             maleNpc.Load(Content);
+
+            femaleNpc = new FemaleNpc("femaleNpc", 2750,100);
+            femaleNpc.Load(Content);
+
+            femaleNpc2 = new FemaleNpc("femaleNpc", 6000, 360);
+            femaleNpc2.Load(Content);
+
 
         }
         public void LoadEnemies()
