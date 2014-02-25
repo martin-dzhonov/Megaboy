@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Main.Game1" Collapsed="true">
-    <Position X="23" Y="4.25" Width="1.5" />
+    <Position X="17" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQAFEAEAwAAB4CAAAAAAAAAAACAAAgBAAAAQAAQIAQ=</HashCode>
+      <HashCode>gIQAFEEEQwAAB4AAqAAAAAAkAECAAAgBCAAAQIARIAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Background" Collapsed="true">
-    <Position X="0.5" Y="0.75" Width="1.5" />
+    <Position X="0.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Map and background\Background.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.ContinuingBackground" Collapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
+    <Position X="0.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Map and background\Background.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Camera" Collapsed="true">
-    <Position X="20.75" Y="4.25" Width="1.5" />
+    <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAQAAAAAAAABAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Map and background\Camera.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Map" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="20.75" Y="3" Width="1.5" />
+    <Position X="18.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEABAAAAgAAAAAAAEAAAAAAAAAAAQAAAEAAAAA=</HashCode>
       <FileName>Map and background\Map.cs</FileName>
@@ -37,136 +37,130 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Main.Tiles" Collapsed="true">
-    <Position X="2.75" Y="0.75" Width="1.5" />
+    <Position X="5.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAgAAAAAAAAAAAAAgAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Map and background\Tiles.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.CollisionTile" Collapsed="true">
-    <Position X="2.75" Y="2" Width="1.5" />
+    <Position X="5.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Map and background\Tiles.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Program" Collapsed="true">
-    <Position X="23" Y="1.75" Width="1.5" />
+    <Position X="20.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Explosion" Collapsed="true">
-    <Position X="23" Y="0.5" Width="1.5" />
+    <Position X="20.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAgAAAAQAACAECAEAQgAgAAQAQAAAAAA=</HashCode>
       <FileName>Projectiles\Explosion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Fireball" Collapsed="true">
-    <Position X="0.5" Y="5.25" Width="1.5" />
+    <Position X="0.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Projectiles\Fireball.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Projectile" Collapsed="true">
-    <Position X="1.75" Y="3.75" Width="1.5" />
+    <Position X="1.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAiQgQAAAICAAAAAgAgAAAAQAAAAGAAA=</HashCode>
       <FileName>Projectiles\Projectile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.RectangleHelper" Collapsed="true">
-    <Position X="23" Y="3" Width="1.5" />
+    <Position X="17" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAABAAAAAAAAAAAAAAAIAAAAAAAIAA=</HashCode>
       <FileName>RectangleHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Boss" Collapsed="true">
-    <Position X="18.25" Y="3.25" Width="1.5" />
+    <Position X="12.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Boss\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Enemy" Collapsed="true">
-    <Position X="11.75" Y="1.75" Width="1.5" />
+    <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQQiAEAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>IAQQiAkAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAg=</HashCode>
       <FileName>Units\Enemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Main.AntiMage" Collapsed="true">
-    <Position X="8.25" Y="4.75" Width="1.5" />
+  <Class Name="Main.Knight" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Melee\AntiMage.cs</FileName>
+      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Units\Melee\Knight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Melee" Collapsed="true">
-    <Position X="10.5" Y="3.25" Width="1.5" />
+    <Position X="5.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>YACAAAAAAAACAgAAAAAAAAAAADAIQgBoAAQAAEAAAAI=</HashCode>
       <FileName>Units\Melee\Melee.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.SpiritBreaker" Collapsed="true">
-    <Position X="10.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Melee\SpiritBreaker.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Main.UrsaWarrior" Collapsed="true">
-    <Position X="12.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Melee\UrsaWarrior.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Main.FemaleNpc" Collapsed="true">
-    <Position X="5.75" Y="3.25" Width="1.5" />
+    <Position X="1" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAgAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\NPCs\FemaleNpc.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.MaleNpc" Collapsed="true">
-    <Position X="8.25" Y="3.25" Width="1.5" />
+    <Position X="3.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\NPCs\MaleNpc.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.NPC" Collapsed="true">
-    <Position X="7.25" Y="2" Width="1.5" />
+    <Position X="2.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQgAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQQgAAAAAAAAgAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\NPCs\NPC.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Player" Collapsed="true">
-    <Position X="4.75" Y="2" Width="1.5" />
+    <Position X="14.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IASAiACIAIAAAgAABgAAAACACAEBQAAgAAQAUAAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Main.Archer" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Units\Ranged\Archer.cs</FileName>
+      <NewMemberFileName>Units\Ranged\DrowRanger.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Main.DrowRanger" Collapsed="true">
-    <Position X="17.25" Y="4.75" Width="1.5" />
+    <Position X="10" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged\DrowRanger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Ranged" Collapsed="true">
-    <Position X="16" Y="3.25" Width="1.5" />
+    <Position X="9" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAACBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AASAAAAAAAACBgAAAAAAQAAAADIIQAAoAAQAAAAAAAI=</HashCode>
       <FileName>Units\Ranged\Ranged.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -178,57 +172,70 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Projectiles.Arrow" Collapsed="true">
-    <Position X="3" Y="5.25" Width="1.5" />
+    <Position X="2.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Projectiles\Arrow.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Archer" Collapsed="true">
-    <Position X="14.75" Y="4.75" Width="1.5" />
+  <Class Name="Main.StartMenu.Button" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Ranged\Archer.cs</FileName>
-      <NewMemberFileName>Units\Ranged\DrowRanger.cs</NewMemberFileName>
+      <HashCode>AAQAAAAAAAAAAggAAIAAICAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>StartMenu\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Main.Units.NPCs.ToolTip" Collapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Units\NPCs\ToolTip.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Main.IMovable" Collapsed="true">
-    <Position X="17.5" Y="0.5" Width="1.5" />
+    <Position X="20.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IMovable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Main.Interfaces.IHealth" Collapsed="true">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Position X="17" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IHealth.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Main.Interfaces.IMap" Collapsed="true">
-    <Position X="15.25" Y="0.5" Width="1.5" />
+    <Position X="18.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAgAAAAAAAEAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Interfaces\IMap.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Main.Interfaces.IUnit" Collapsed="true">
-    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Position X="17" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IUnit.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="Main.Enum.GameState" Collapsed="true">
+    <Position X="17" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Enum\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Enum Name="Main.Enum.PlayerSize" Collapsed="true">
-    <Position X="20.75" Y="0.5" Width="1.5" />
+    <Position X="18.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enum\PlayerSize.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Main.Enum.WindowSize" Collapsed="true">
-    <Position X="20.75" Y="1.75" Width="1.5" />
+    <Position X="20.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enum\WindowSizes.cs</FileName>

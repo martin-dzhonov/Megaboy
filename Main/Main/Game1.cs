@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Main.Enum;
 using Main.StartMenu;
+using Main.Units.NPCs;
 
 namespace Main
 {
@@ -87,7 +88,7 @@ namespace Main
             background.Load(Content, 10);
             player.Load(Content);
             LoadEnemies();
-            LoadNpcs();
+            //LoadNpcs();
         }
 
         protected override void UnloadContent()
@@ -137,9 +138,9 @@ namespace Main
                     UpdateProjectiles();
 
                     player.Update(gameTime);
-                    maleNpc.Update(gameTime, player);
-                    femaleNpc2.Update(gameTime, player);
-                    femaleNpc.Update(gameTime, player);
+                    //maleNpc.Update(gameTime, player);
+                    //femaleNpc2.Update(gameTime, player);
+                    //femaleNpc.Update(gameTime, player);
 
                     foreach (var enemy in enemies)
                     {
@@ -189,12 +190,12 @@ namespace Main
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     player.Draw(spriteBatch);
-                    maleNpc.Draw(spriteBatch);
-                    femaleNpc.Draw(spriteBatch);
-                    femaleNpc2.Draw(spriteBatch);
-                    maleNpc.toolTip.Draw(spriteBatch);
-                    femaleNpc.toolTip.Draw(spriteBatch);
-                    femaleNpc2.toolTip.Draw(spriteBatch);
+                    //maleNpc.Draw(spriteBatch);
+                    //femaleNpc.Draw(spriteBatch);
+                    //femaleNpc2.Draw(spriteBatch);
+                    //maleNpc.toolTip.Draw(spriteBatch);
+                    //femaleNpc.toolTip.Draw(spriteBatch);
+                    //femaleNpc2.toolTip.Draw(spriteBatch);
                     
 
                     foreach (var enemy in enemies)
@@ -263,19 +264,19 @@ namespace Main
             return mapRead;
         }
         
-        public void LoadNpcs()
-        {
-            maleNpc = new MaleNpc("maleNpc",530 , 250, new ToolTip(Content, "quest1",400,30,250));
-            maleNpc.Load(Content);
+        //public void LoadNpcs()
+        //{
+        //    maleNpc = new MaleNpc("maleNpc",530 , 250, new ToolTip(Content, "quest1",400,30,250));
+        //    maleNpc.Load(Content);
 
-            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2590, 7,200));
-            femaleNpc.Load(Content);
+        //    femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2590, 7,200));
+        //    femaleNpc.Load(Content);
 
-            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest2", 6000, 360, 200));
-            femaleNpc2.Load(Content);
+        //    femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest2", 6000, 360, 200));
+        //    femaleNpc2.Load(Content);
 
 
-        }
+        //}
         public void LoadEnemies()
         {
             Enemy meleeEnemy1 = new Knight(500, 50, Content);
