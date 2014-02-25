@@ -122,7 +122,10 @@ namespace Main
                     break;
                 case (GameState.Playing) :
 
-                    
+                    if(playAgainButton.isClicked)
+                    {
+                        currentGameState = GameState.StartMenu; // NEED FIX
+                    }
 
                     if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
                     {
