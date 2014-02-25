@@ -73,10 +73,10 @@ namespace Main
 
         protected override void LoadContent()
         {
-            startButton = new Button(Content, "startbutton", 100, 100);
-            startButton.SetPosition(300, 100);
-            exitButton = new Button(Content, "startbutton", 100, 100);
-            exitButton.SetPosition(300, 250);
+            startButton = new Button(Content, "startbutton", 348, 103);
+            startButton.SetPosition(375, 100);
+            exitButton = new Button(Content, "exitbutton", 348, 103);
+            exitButton.SetPosition(375, 250);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
