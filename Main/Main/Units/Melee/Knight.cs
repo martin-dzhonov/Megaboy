@@ -24,7 +24,7 @@ namespace Main
         {
             this.rectangleSizeWidth = 70;
             this.rectangleSizeHeight = 80;
-            this.Health = 3;
+            this.Health = 5;
             this.spriteName = "knightWalking2";
             this.conentManager = contentManager;
             this.detectionDistanceX = 250;
