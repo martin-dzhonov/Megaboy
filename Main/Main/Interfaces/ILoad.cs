@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Main
+namespace Main.Interfaces
 {
-    interface IMovable
+    interface Interface1
     {
     }
 }
