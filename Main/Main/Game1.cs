@@ -78,10 +78,10 @@ namespace Main
             gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
             instance = gameMusicLoop.CreateInstance();
             instance.IsLooped = true;
-            startButton = new Button(Content, "startbutton", 348, 103);
-            startButton.SetPosition(375, 100);
-            exitButton = new Button(Content, "startexitbutton", 348, 103);
-            exitButton.SetPosition(375, 250);
+            startButton = new Button(Content, "playbuttonNEW", 348, 103);
+            startButton.SetPosition(375, 125);
+            exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
+            exitButton.SetPosition(375, 300);
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
@@ -300,7 +300,7 @@ namespace Main
             enemies.Add(ogre1);
             enemies.Add(orc1);
             enemies.Add(meleeEnemy1);
-           enemies.Add(rangedEnemy1);
+            enemies.Add(rangedEnemy1);
             enemies.Add(drowRanger);
 
         }
