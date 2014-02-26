@@ -14,16 +14,11 @@ using Main.Enum;
 using Main.StartMenu;
 using Main;
 
-
-
 namespace Main
 {
-  
     //TODO: Add enemies on map
-
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-
         GameState currentGameState;
         Player player;
         Map map;
@@ -59,12 +54,12 @@ namespace Main
             graphics.PreferredBackBufferWidth = (int)WindowSize.Width;
             graphics.PreferredBackBufferHeight = (int)WindowSize.Height;
             this.IsMouseVisible = true;
-            
         }
 
         protected override void Initialize()
         {
-            currentGameState = GameState.StartMenu;;
+            currentGameState = GameState.StartMenu;
+            ;
             IsMouseVisible = true;
             map = new Map();
             player = new Player();
@@ -72,7 +67,8 @@ namespace Main
 
             camera = new Camera(GraphicsDevice.Viewport);
             
-;           base.Initialize();
+            ;
+            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -120,7 +116,7 @@ namespace Main
                     {
                         currentGameState = GameState.Playing;
                     }
-                    else if(exitButton.isClicked)
+                    else if (exitButton.isClicked)
                     {
                         this.Exit();
                     }
@@ -130,15 +126,15 @@ namespace Main
                 case (GameState.Playing) :
                    
                     instance.Play();
-                    if(witch.Health == 0)
+                    if (witch.Health == 0)
                     {
                         currentGameState = GameState.End;
                     }
-                    if(player.Health <= 0)
+                    if (player.Health <= 0)
                     {
                         currentGameState = GameState.Dead;
                     }
-                    if(playAgainButton.isClicked)
+                    if (playAgainButton.isClicked)
                     {
                         // NEED FIX
                     }
@@ -203,7 +199,6 @@ namespace Main
                     exitOnEndScreen.Update(mouse);
                     startOnEndScreen.Update(mouse);
                     break;
-
             }
             base.Update(gameTime);
         }
@@ -211,7 +206,6 @@ namespace Main
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             
             switch(currentGameState)
             {
@@ -222,12 +216,11 @@ namespace Main
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
 
-
                     spriteBatch.End();
                     break;
                 case GameState.Playing :
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
-
+                    
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     player.Draw(spriteBatch, camera);
@@ -237,7 +230,6 @@ namespace Main
                     maleNpc.toolTip.Draw(spriteBatch);
                     femaleNpc.toolTip.Draw(spriteBatch);
                     femaleNpc2.toolTip.Draw(spriteBatch);
-                    
 
                     foreach (var enemy in enemies)
                     {
@@ -264,7 +256,6 @@ namespace Main
 
                     spriteBatch.End();
                     break;
-
                 case GameState.End :
                     spriteBatch.Begin();
 
@@ -272,7 +263,6 @@ namespace Main
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
                     startOnEndScreen.Draw(spriteBatch);
                     exitOnEndScreen.Draw(spriteBatch);
-
 
                     spriteBatch.End();
                     break;
@@ -319,7 +309,6 @@ namespace Main
             maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 400, 8, 533, 295));
             maleNpc.Load(Content);
 
-
             femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2800, 5, 215, 165));
             femaleNpc.Load(Content);
 
@@ -329,9 +318,7 @@ namespace Main
 
         public void DrawNpcStuff(SpriteBatch spriteBatch)
         {
-            
         }
-
 
         public void LoadEnemies()
         {
@@ -358,7 +345,6 @@ namespace Main
             Enemy knight5 = new Knight(5000, 50, Content);
             knight5.Load(Content);
 
-
             enemies.Add(archer1);
             enemies.Add(archer2);
             enemies.Add(archer3);
@@ -370,9 +356,8 @@ namespace Main
             enemies.Add(knight3);
             enemies.Add(knight4);
             enemies.Add(knight5);
-
-
         }
+
         public void Shoot()
         {
             Projectile fireball = new Fireball(Content);
@@ -387,6 +372,7 @@ namespace Main
             fireball.Position = new Vector2((int)player.Position.X, (int)player.Position.Y + 6) + fireball.Velocity * 3;
             playerProjectiles.Add(fireball);
         }
+
         public void HitEnemies()
         {
             for (int i = 0; i < playerProjectiles.Count; i++)
@@ -411,12 +397,12 @@ namespace Main
                 }
             }
         }
+
         public void HitPlayer()
         {
             for (int i = 0; i < enemyProjectiles.Count; i++)
             {
-                
-                if(enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
+                if (enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
                 {
                     player.Health -= 7;
                     enemyProjectiles.RemoveAt(i);
@@ -428,9 +414,9 @@ namespace Main
                 if (enemy is Melee)
                 {
                     var melee = (Melee)enemy;
-                    if(melee.Atacking == true)
+                    if (melee.Atacking == true)
                     {
-                        if(melee.Rectangle.Intersects(player.Rectangle))
+                        if (melee.Rectangle.Intersects(player.Rectangle))
                         {
                             if (melee.CurrentFrame == 3)
                             {
@@ -439,9 +425,9 @@ namespace Main
                         }
                     }
                 }
-
             }
         }
+
         public void ProjectilesCollison(CollisionTile tile)
         {
             for (int i = 0; i < playerProjectiles.Count; i++)
@@ -461,19 +447,20 @@ namespace Main
                     i--;
                 }
             }
-            if(playerProjectiles.Count > 5)
+            if (playerProjectiles.Count > 5)
             {
                 playerProjectiles.RemoveAt(playerProjectiles.Count - 1);
             }
         }
+
         public void EnemiesCollision(CollisionTile tile)
         {
             for (int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
-                
             }
         }
+
         public void UpdateProjectiles()
         {
             for (int i = 0; i < playerProjectiles.Count; i++)
