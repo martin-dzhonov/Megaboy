@@ -99,6 +99,7 @@ namespace Main
 
         protected override void UnloadContent()
         {
+            Content.Unload();
         }
 
         protected override void Update(GameTime gameTime)
