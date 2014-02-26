@@ -58,7 +58,7 @@ namespace Main
             }
             set
             {
-                if (value <= -5)
+                if (value <= -1000)
                 {
                     throw new InvalidHealthException("Invalid enemy health.");
                 }

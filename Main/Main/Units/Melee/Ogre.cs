@@ -22,7 +22,7 @@ namespace Main
         {
             this.rectangleSizeWidth = 100;
             this.rectangleSizeHeight = 120;
-            this.Health = 6;
+            this.Health = 8;
             this.texture = contentManager.Load<Texture2D>("ogreWalking");
             this.conentManager = contentManager;
             this.detectionDistanceX = 250;
