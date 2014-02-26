@@ -39,10 +39,9 @@ namespace Main
         Button startButton;
         Button exitButton;
         Button playAgainButton;
-
         Button startOnEndScreen;
         Button exitOnEndScreen; 
-        
+
         SoundEffect gameMusicLoop;
         SoundEffectInstance instance;
         bool xPressed; //x - shoot
@@ -86,7 +85,6 @@ namespace Main
             startButton.SetPosition(375, 125);
             exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
             exitButton.SetPosition(375, 300);
-
             startOnEndScreen = new Button(Content, "playAgainButton", 250, 70);
             startOnEndScreen.SetPosition(200, 300);
             exitOnEndScreen = new Button(Content, "startexitbutton", 250, 70);
@@ -181,7 +179,6 @@ namespace Main
                     camera.Update(player.Position, map.Width, map.Height);
 
                     break;
-
                 case (GameState.End):
                     if (startOnEndScreen.isClicked)
                     {
@@ -206,6 +203,7 @@ namespace Main
                     exitOnEndScreen.Update(mouse);
                     startOnEndScreen.Update(mouse);
                     break;
+
             }
             base.Update(gameTime);
         }
@@ -272,8 +270,9 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
-                    startOnEndScreen.Draw(spriteBatch);
+                                        startOnEndScreen.Draw(spriteBatch);
                     exitOnEndScreen.Draw(spriteBatch);
+
 
                     spriteBatch.End();
                     break;
@@ -282,8 +281,7 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
-                    startOnEndScreen.Draw(spriteBatch);
-                    exitOnEndScreen.Draw(spriteBatch);
+
                     spriteBatch.End();
                     break;
             }
@@ -345,7 +343,7 @@ namespace Main
             archer4.Load(Content);
             Enemy archer5 = new Archer(4100, 50, Content);
             archer5.Load(Content);
-            Enemy archer6 = new Archer(5500, 50, Content);
+            Enemy archer6 = new Archer(4500, 50, Content);
             archer6.Load(Content);
             Enemy knight1 = new Knight(5500, 50, Content);
             knight1.Load(Content);
