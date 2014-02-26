@@ -37,18 +37,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tile1.jpg">
-      <Name>Tile1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Tile2.jpg">
-      <Name>Tile2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Forest2.jpg">
       <Name>Forest2</Name>
       <Importer>TextureImporter</Importer>
@@ -217,13 +205,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="quest1.png">
-      <Name>quest1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="startBackground.jpg">
       <Name>startBackground</Name>
       <Importer>TextureImporter</Importer>
@@ -281,13 +262,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="quest2.png">
-      <Name>quest2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sounds\loop.wav">
       <Name>loop</Name>
       <Importer>WavImporter</Importer>
@@ -330,6 +304,30 @@
   <ItemGroup>
     <Compile Include="dead.jpg">
       <Name>dead</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tile1.png">
+      <Name>Tile1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tile2.png">
+      <Name>Tile2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="quest1.png">
+      <Name>quest1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="quest2.png">
+      <Name>quest2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
