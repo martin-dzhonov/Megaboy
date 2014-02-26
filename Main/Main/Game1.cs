@@ -274,8 +274,10 @@ namespace Main
 
         public void LoadNpcs()
         {
-            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "quest1", 400, 30, 250, 250));
+            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 420, 20, 533, 295));
             maleNpc.Load(Content);
+
+            
 
 
             femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2800, 5, 215, 165));
