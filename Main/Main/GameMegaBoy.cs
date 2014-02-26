@@ -311,7 +311,7 @@ namespace Main
             maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 400, 8, 533, 295));
             maleNpc.Load(Content);
 
-            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2800, 5, 215, 165));
+            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest1", 2800, 5, 215, 165));
             femaleNpc.Load(Content);
 
             femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest2", 6030, 250, 215, 165));
