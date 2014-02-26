@@ -3,7 +3,7 @@
   <Class Name="Main.Game1" Collapsed="true">
     <Position X="17" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gIQAFEEEQwAAB4CAqAAAAAAkAECAAAgBCAAAQIARIAQ=</HashCode>
+      <HashCode>gIQIFEEEQwAAB4CAqAAAAAAkAEDAAAgBCAAAQIARIAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -85,13 +85,6 @@
       <FileName>RectangleHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Boss" Collapsed="true">
-    <Position X="12.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Boss\Boss.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Main.Enemy" Collapsed="true">
     <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
@@ -99,13 +92,6 @@
       <FileName>Units\Enemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Main.Knight" Collapsed="true">
-    <Position X="5.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Melee\Knight.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="Main.Melee" Collapsed="true">
     <Position X="5.5" Y="3.25" Width="1.5" />
@@ -138,7 +124,7 @@
   <Class Name="Main.Player" Collapsed="true">
     <Position X="14.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IASAiACIAIAAAgCABgAAAACACAEBQAAgAARA0AAEAAg=</HashCode>
+      <HashCode>IASAiACIAIAACgCABgAIAACACAEBQAAgAARA0AAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -175,6 +161,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\NPCs\ToolTip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Main.Boss" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Units\Boss\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Main.IMovable" Collapsed="true">

@@ -17,9 +17,7 @@ using Main;
 
 namespace Main
 {
-    //TODO: Start and end screen
-    //TODO: Music and sound effects
-    //TODO: Different types of melee and range enemies
+  
     //TODO: NPCs
     //TODO: Storyline ?
     //TODO: Add enemies on map
@@ -48,7 +46,7 @@ namespace Main
         SoundEffectInstance instance;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
-        
+        Boss witch;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -81,6 +79,7 @@ namespace Main
 
         protected override void LoadContent()
         {
+            witch = new Boss(1200, 50, Content);
             gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
             instance = gameMusicLoop.CreateInstance();
             instance.IsLooped = true;
@@ -131,8 +130,12 @@ namespace Main
                     startButton.Update(mouse);
                     break;
                 case (GameState.Playing) :
+                   
                     instance.Play();
-                    
+                    if(witch.Health == 0)
+                    {
+                        currentGameState = GameState.End;
+                    }
                     if(playAgainButton.isClicked)
                     {
                         // NEED FIX
@@ -302,6 +305,10 @@ namespace Main
 
             Enemy ogre1 = new Ogre(1100,50, Content);
             Enemy orc1 = new Orc(600, 50, Content);
+
+            
+
+            enemies.Add(witch);
             enemies.Add(ogre1);
             enemies.Add(orc1);
             enemies.Add(meleeEnemy1);
