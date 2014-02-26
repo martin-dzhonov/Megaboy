@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Main.Enum;
 using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
-
+using Main.Exceptions;
 namespace Main
 {
     class Player : Unit, IHealth
@@ -46,6 +46,10 @@ namespace Main
             }
             set
             {
+                if(value <= 0)
+                {
+                    throw new InvalidHealthException("You have entered invalid enemy health.");
+                }
                 this.health = value;
             }
         }

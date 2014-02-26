@@ -88,6 +88,7 @@
     <Compile Include="Enum\GameState.cs" />
     <Compile Include="Enum\PlayerSize.cs" />
     <Compile Include="Enum\WindowSizes.cs" />
+    <Compile Include="Exceptions\InvalidHealthException.cs" />
     <Compile Include="Interfaces\IDraw.cs" />
     <Compile Include="Interfaces\ILoad.cs" />
     <Compile Include="Interfaces\IUpdate.cs" />
