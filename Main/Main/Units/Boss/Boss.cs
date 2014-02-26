@@ -56,8 +56,8 @@ namespace Main
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
 
-            this.detectionDistanceX = 300;
-            this.detectionDistanceY = 100;
+            this.detectionDistanceX = 420;
+            this.detectionDistanceY = 120;
 
 
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX &&

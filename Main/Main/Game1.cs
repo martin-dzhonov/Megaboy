@@ -335,27 +335,42 @@ namespace Main
 
         public void LoadEnemies()
         {
-            Enemy meleeEnemy1 = new Knight(500, 50, Content);
-            meleeEnemy1.Load(Content);
+            Enemy archer1 = new Archer(1500, 50, Content);
+            archer1.Load(Content);
+            Enemy archer2 = new Archer(1700, 50, Content);
+            archer2.Load(Content);
+            Enemy archer3 = new Archer(2000, 50, Content);
+            archer3.Load(Content);
+            Enemy archer4 = new Archer(3650, 300, Content);
+            archer4.Load(Content);
+            Enemy archer5 = new Archer(4100, 50, Content);
+            archer5.Load(Content);
+            Enemy archer6 = new Archer(5500, 50, Content);
+            archer6.Load(Content);
+            Enemy knight1 = new Knight(5500, 50, Content);
+            knight1.Load(Content);
+            Enemy knight2 = new Knight(2500, 350, Content);
+            knight2.Load(Content);
+            Enemy knight3 = new Knight(3700, 50, Content);
+            knight3.Load(Content);
+            Enemy knight4 = new Knight(4000, 50, Content);
+            knight4.Load(Content);
+            Enemy knight5 = new Knight(5000, 50, Content);
+            knight5.Load(Content);
 
 
-            Enemy rangedEnemy1 = new Archer(450, 50, Content);
-            rangedEnemy1.Load(Content);
+            enemies.Add(archer1);
+            enemies.Add(archer2);
+            enemies.Add(archer3);
+            enemies.Add(archer4);
+            enemies.Add(archer5);
+            enemies.Add(archer6);
+            enemies.Add(knight1);
+            enemies.Add(knight2);
+            enemies.Add(knight3);
+            enemies.Add(knight4);
+            enemies.Add(knight5);
 
-            Enemy drowRanger = new Archer(1000, 50, Content);
-            drowRanger.Load(Content);
-
-            Enemy ogre1 = new Ogre(1100,50, Content);
-            Enemy orc1 = new Orc(600, 50, Content);
-
-            
-
-            enemies.Add(witch);
-            enemies.Add(ogre1);
-            enemies.Add(orc1);
-            enemies.Add(meleeEnemy1);
-            enemies.Add(rangedEnemy1);
-            enemies.Add(drowRanger);
 
         }
         public void Shoot()
