@@ -59,10 +59,12 @@ namespace Main
         protected override void Initialize()
         {
             currentGameState = GameState.StartMenu;
-            ;
+            
+            //Design pattern singleton
+            player = Player.GetState();
             IsMouseVisible = true;
             map = new Map();
-            player = new Player();
+
             background = new ContinuingBackground();
 
             camera = new Camera(GraphicsDevice.Viewport);
@@ -259,7 +261,7 @@ namespace Main
                 case GameState.End :
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
                     startOnEndScreen.Draw(spriteBatch);
                     exitOnEndScreen.Draw(spriteBatch);
@@ -269,7 +271,7 @@ namespace Main
                 case GameState.Dead :
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
                     startOnEndScreen.Draw(spriteBatch);
                     exitOnEndScreen.Draw(spriteBatch);

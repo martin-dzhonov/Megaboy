@@ -16,6 +16,10 @@ namespace Main
 {
     class Player : Unit, IHealth
     {
+        //Design pattern Singleton
+        private static Player instance;
+        private static object lockThis = new object();
+
         private Texture2D standingTexture;
         private Texture2D runningTexture;
         private Texture2D shootingTexture;
@@ -225,7 +229,18 @@ namespace Main
             }
             
         }
-
+        //Design pattern Singleton
+        public static Player GetState()
+        {
+            lock(lockThis)
+            {
+                if(instance == null)
+                {
+                    instance = new Player();
+                }
+                return instance;
+            }
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             throw new NotImplementedException();
