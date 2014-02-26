@@ -113,8 +113,8 @@
     <Compile Include="Units\Player.cs" />
     <Compile Include="Projectiles\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="GameMain.cs" />
+    <Compile Include="GameMegaBoy.cs" />
     <Compile Include="Units\Ranged\Archer.cs" />
     <Compile Include="Units\Ranged\Orc.cs" />
     <Compile Include="Units\Ranged\Ranged.cs" />

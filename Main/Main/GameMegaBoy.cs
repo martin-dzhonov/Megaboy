@@ -17,7 +17,7 @@ using Main;
 namespace Main
 {
     //TODO: Add enemies on map
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class GameMegaBoy : Microsoft.Xna.Framework.Game
     {
         GameState currentGameState;
         Player player;
@@ -45,7 +45,7 @@ namespace Main
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public GameMegaBoy()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

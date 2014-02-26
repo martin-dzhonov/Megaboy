@@ -3,14 +3,14 @@ using System;
 namespace Main
 {
 #if WINDOWS || XBOX
-    static class Program
+    static class GameMain
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (GameMegaBoy game = new GameMegaBoy())
             {
                 game.Run();
             }
