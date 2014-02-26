@@ -217,11 +217,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="quest-2.png">
-      <Name>quest-2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="quest1.png">
       <Name>quest1</Name>
       <Importer>TextureImporter</Importer>
@@ -234,18 +229,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="quest-2.png">
-      <Name>quest-2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="quest1.png">
-      <Name>quest1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="quest2.png">
-      <Name>quest2</Name>
+    <Compile Include="startBackground.jpg">
+      <Name>startBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
