@@ -21,6 +21,8 @@ namespace Main
         private Texture2D shootingTexture;
         private Texture2D healthBarTexture;
         private Texture2D rocketsSprite;
+        private Texture2D healthSign;
+        private Texture2D ammoSign;
 
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
@@ -61,6 +63,8 @@ namespace Main
 
             this.healthBarTexture = contentManager.Load<Texture2D>("redSquare");
             this.rocketsSprite = contentManager.Load<Texture2D>("greenSquare");
+            this.healthSign = contentManager.Load<Texture2D>("health");
+            this.ammoSign = contentManager.Load<Texture2D>("ammo");
             this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
             this.standingTexture = contentManager.Load<Texture2D>("standing2");
             this.shootingTexture = contentManager.Load<Texture2D>("shooting1");
@@ -200,14 +204,19 @@ namespace Main
             
             if (velocity.X > 0 || LookingRight == true)
             {
-                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 250, (int)camera.Centre.Y - 250, (5 - projectiles) * 30, 12), Color.White);
-                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 480, (int)camera.Centre.Y - 250, this.Health * 5 , 12), Color.White);
+                
+                spriteBatch.Draw(ammoSign, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 260, 150 , 20), Color.White);
+                spriteBatch.Draw(healthSign, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 260, 150, 20), Color.White);
+                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 235, (5 - projectiles) * 30, 12), Color.White);
+                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 235, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
             else
             {
-                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 250, (int)camera.Centre.Y - 250, (5 -projectiles) * 30, 12), Color.White);
-                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 480, (int)camera.Centre.Y - 250, this.Health * 5 , 12), Color.White);
+                spriteBatch.Draw(ammoSign, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 260, 150, 20), Color.White);
+                spriteBatch.Draw(healthSign, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 260, 150, 20), Color.White);
+                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 235, (5 -projectiles) * 30, 12), Color.White);
+                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 235, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
             }
             
