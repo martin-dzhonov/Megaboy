@@ -270,7 +270,7 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
-                                        startOnEndScreen.Draw(spriteBatch);
+                    startOnEndScreen.Draw(spriteBatch);
                     exitOnEndScreen.Draw(spriteBatch);
 
 
@@ -281,6 +281,8 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
+                    startOnEndScreen.Draw(spriteBatch);
+                    exitOnEndScreen.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
