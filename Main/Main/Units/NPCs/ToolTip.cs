@@ -3,15 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Main.Units.NPCs
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Main.Projectiles;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace Main
 {
-    class ToolTip
+    public class ToolTip
     {
         public bool IsVisible { get; set; }
+        protected Texture2D texture;
+        protected string spriteName;
+        protected Rectangle rectangle;
+        protected Vector2 position;
 
-        internal void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public ToolTip(ContentManager content, string spriteName, int posX, int posY, int width, int hight)
         {
-            throw new NotImplementedException();
+            this.texture = content.Load<Texture2D>(spriteName);
+            this.position = new Vector2(posX, posY);
+            this.rectangle = new Rectangle(posX, posY, width, hight);
+         }
+
+        public void Load(ContentManager contentManager)
+        {
+            this.texture = contentManager.Load<Texture2D>(spriteName);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (IsVisible)
+            {
+                spriteBatch.Draw(texture, rectangle, Color.White);
+            }
+
         }
     }
 }
