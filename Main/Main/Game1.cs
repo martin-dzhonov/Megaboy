@@ -277,7 +277,7 @@ namespace Main
 
         public void LoadNpcs()
         {
-            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 530, 30, 250, 250));
+            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 400, 8, 533, 295));
             maleNpc.Load(Content);
 
 
