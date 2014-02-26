@@ -44,6 +44,8 @@ namespace Main
         Button startButton;
         Button exitButton;
         Button playAgainButton;
+        SoundEffect gameMusicLoop;
+        SoundEffectInstance instance;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
         
@@ -79,17 +81,20 @@ namespace Main
 
         protected override void LoadContent()
         {
-
-            startButton = new Button(Content, "playbuttonNEW", 348, 103);
-            startButton.SetPosition(375, 150);
-            exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
-            exitButton.SetPosition(375, 300);
+            gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
+            instance = gameMusicLoop.CreateInstance();
+            instance.IsLooped = true;
+            startButton = new Button(Content, "startbutton", 348, 103);
+            startButton.SetPosition(375, 100);
+            exitButton = new Button(Content, "startexitbutton", 348, 103);
+            exitButton.SetPosition(375, 250);
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
             background.Load(Content, 10);
             player.Load(Content);
+
             LoadEnemies();
             LoadNpcs();
         }
@@ -126,7 +131,8 @@ namespace Main
                     startButton.Update(mouse);
                     break;
                 case (GameState.Playing) :
-
+                    instance.Play();
+                    
                     if(playAgainButton.isClicked)
                     {
                         // NEED FIX
@@ -182,7 +188,7 @@ namespace Main
                 case GameState.StartMenu:
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("megamanwalpaper"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
 
@@ -272,10 +278,10 @@ namespace Main
             maleNpc.Load(Content);
 
 
-            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest-2", 2800, 5, 215, 165));
+            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2800, 5, 215, 165));
             femaleNpc.Load(Content);
 
-            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest-2", 6030, 250, 215, 165));
+            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest2", 6030, 250, 215, 165));
             femaleNpc2.Load(Content);
         }
 
