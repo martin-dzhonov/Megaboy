@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Main.Units.NPCs;
+
 namespace Main
 {
 
@@ -46,6 +46,7 @@ namespace Main
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            
             spriteBatch.Draw(texture, rectangle, Color.White);
         }
     }
