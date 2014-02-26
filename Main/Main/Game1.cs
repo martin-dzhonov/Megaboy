@@ -82,6 +82,7 @@ namespace Main
             startButton.SetPosition(375, 125);
             exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
             exitButton.SetPosition(375, 300);
+
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
@@ -101,7 +102,7 @@ namespace Main
         {
             MouseState mouse = Mouse.GetState();
             
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape) || player.Health <= 0)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 this.Exit();
             }
@@ -125,6 +126,10 @@ namespace Main
                     if(witch.Health == 0)
                     {
                         currentGameState = GameState.End;
+                    }
+                    if(player.Health <= 0)
+                    {
+                        currentGameState = GameState.Dead;
                     }
                     if(playAgainButton.isClicked)
                     {
@@ -214,6 +219,7 @@ namespace Main
                     {
                         projectile.Draw(spriteBatch);
                     }
+
                     for (int i = 0; i < explosions.Count; i++)
                     {
                         explosions[i].Draw(spriteBatch);
@@ -234,6 +240,14 @@ namespace Main
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(560, 330, 190, 55), Color.White);
+
+                    spriteBatch.End();
+                    break;
+                case GameState.Dead :
+                    spriteBatch.Begin();
+
+                    spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
 
                     spriteBatch.End();
                     break;
@@ -410,7 +424,7 @@ namespace Main
             for (int i = 0; i < playerProjectiles.Count; i++)
             {
                 playerProjectiles[i].UpdatePosition();
-                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 900)
+                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 800)
                 {
                     playerProjectiles.RemoveAt(i);
                     i--;

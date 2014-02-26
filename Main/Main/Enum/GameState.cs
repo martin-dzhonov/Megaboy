@@ -7,6 +7,6 @@ namespace Main.Enum
 {
     public enum GameState
     {
-        StartMenu, Playing, End
+        StartMenu, Playing, End, Dead
     }
 }

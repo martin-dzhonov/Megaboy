@@ -13,7 +13,8 @@ using Main.Interfaces;
 namespace Main
 {
 
-     abstract class Unit
+
+     abstract class Unit : ILoad, IUpdate, IDraw
     {
         protected Texture2D texture;
         protected Vector2 position;

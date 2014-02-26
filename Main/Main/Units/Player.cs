@@ -14,7 +14,7 @@ using Main.Interfaces;
 
 namespace Main
 {
-    class Player : Unit
+    class Player : Unit, IHealth
     {
         private Texture2D standingTexture;
         private Texture2D runningTexture;
