@@ -272,10 +272,10 @@ namespace Main
             maleNpc.Load(Content);
 
 
-            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2800, 5, 215, 165));
+            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest-2", 2800, 5, 215, 165));
             femaleNpc.Load(Content);
 
-            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest2", 6030, 250, 215, 165));
+            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 360, new ToolTip(Content, "quest-2", 6030, 250, 215, 165));
             femaleNpc2.Load(Content);
         }
 
