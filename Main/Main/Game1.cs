@@ -292,6 +292,10 @@ namespace Main
             Enemy drowRanger = new Archer(1000, 50, Content);
             drowRanger.Load(Content);
 
+            Enemy ogre1 = new Ogre(1100,50, Content);
+            Enemy orc1 = new Orc(600, 50, Content);
+            enemies.Add(ogre1);
+            enemies.Add(orc1);
             enemies.Add(meleeEnemy1);
            enemies.Add(rangedEnemy1);
             enemies.Add(drowRanger);

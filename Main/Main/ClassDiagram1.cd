@@ -3,7 +3,7 @@
   <Class Name="Main.Game1" Collapsed="true">
     <Position X="17" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gIQAFEEEQwAAB4AAqAAAAAAkAECAAAgBCAAAQIARIAQ=</HashCode>
+      <HashCode>gIQAFEEEQwAAB4CAqAAAAAAkAECAAAgBCAAAQIARIAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -138,23 +138,8 @@
   <Class Name="Main.Player" Collapsed="true">
     <Position X="14.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IASAiACIAIAAAgCABgAAAACACAEBQAAgAAQAUAAEAAg=</HashCode>
+      <HashCode>IASAiACIAIAAAgCABgAAAACACAEBQAAgAARA0AAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Main.Archer" Collapsed="true">
-    <Position X="7.75" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Ranged\Archer.cs</FileName>
-      <NewMemberFileName>Units\Ranged\DrowRanger.cs</NewMemberFileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Main.DrowRanger" Collapsed="true">
-    <Position X="10" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Units\Ranged\DrowRanger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Ranged" Collapsed="true">

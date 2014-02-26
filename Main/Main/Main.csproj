@@ -103,6 +103,7 @@
     <Compile Include="Map and background\Map.cs" />
     <Compile Include="Units\Melee\Knight.cs" />
     <Compile Include="Units\Melee\Melee.cs" />
+    <Compile Include="Units\Melee\Ogre.cs" />
     <Compile Include="Units\NPCs\NPC.cs" />
     <Compile Include="Units\NPCs\FemaleNpc.cs" />
     <Compile Include="Units\NPCs\MaleNpc.cs" />
@@ -113,10 +114,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Units\Ranged\Archer.cs" />
+    <Compile Include="Units\Ranged\Orc.cs" />
     <Compile Include="Units\Ranged\Ranged.cs" />
     <Compile Include="RectangleHelper.cs" />
     <Compile Include="Map and background\Tiles.cs" />
-    <Compile Include="Units\Ranged\DrowRanger.cs" />
     <Compile Include="Units\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
