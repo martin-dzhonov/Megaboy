@@ -22,6 +22,18 @@ namespace Main
             this.viewport = viewport;
         }
 
+        public Vector2 Centre
+        {
+            get
+            {
+                return this.centre;
+            }
+            set
+            {
+                this.centre = value;
+            }
+        }
+
         public Matrix Transform
         {
             get

@@ -18,13 +18,15 @@ namespace Main
         private Texture2D standingTexture;
         private Texture2D runningTexture;
         private Texture2D shootingTexture;
+        private Texture2D healthBarTexture;
+
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
         private int health;
         const int FRAMES_PER_ROW = 15;
         const int NUM_ROWS = 1;
         const int NUM_FRAMES = 15;
-        
+ 
     
         int frameHeight;
         int frameWidth;
@@ -52,8 +54,10 @@ namespace Main
         
         public override void Load(ContentManager contentManager)
         {
-            this.Health = 5;
-            position = new Vector2(0, 0);
+            
+            this.Health = 35;
+
+            this.healthBarTexture = contentManager.Load<Texture2D>("outreach");
             this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
             this.standingTexture = contentManager.Load<Texture2D>("standing2");
             this.shootingTexture = contentManager.Load<Texture2D>("shooting1");
@@ -68,6 +72,7 @@ namespace Main
         }
         public override void Update(GameTime gameTime)
         {
+
             position += velocity;          
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)PlayerSize.Width, (int)PlayerSize.Height);
 
@@ -186,17 +191,24 @@ namespace Main
         }
             
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             if (velocity.X > 0 || LookingRight == true)
             {
+                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 480, (int)camera.Centre.Y - 250, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
             else
             {
+                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 480, (int)camera.Centre.Y - 250, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
             }
             
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
         }
     }
 }

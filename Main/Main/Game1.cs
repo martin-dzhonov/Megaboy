@@ -70,6 +70,7 @@ namespace Main
             map = new Map();
             player = new Player();
             background = new ContinuingBackground();
+
             camera = new Camera(GraphicsDevice.Viewport);
             
 ;           base.Initialize();
@@ -77,6 +78,7 @@ namespace Main
 
         protected override void LoadContent()
         {
+
             startButton = new Button(Content, "startbutton", 348, 103);
             startButton.SetPosition(375, 100);
             exitButton = new Button(Content, "startexitbutton", 348, 103);
@@ -138,6 +140,7 @@ namespace Main
                     UpdateProjectiles();
 
                     player.Update(gameTime);
+
                     //maleNpc.Update(gameTime, player);
                     //femaleNpc2.Update(gameTime, player);
                     //femaleNpc.Update(gameTime, player);
@@ -177,10 +180,11 @@ namespace Main
             {
                 case GameState.StartMenu:
                     spriteBatch.Begin();
-                   
+                    
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0,0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
+
 
                     spriteBatch.End();
                     break;
@@ -189,7 +193,7 @@ namespace Main
 
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
-                    player.Draw(spriteBatch);
+                    player.Draw(spriteBatch, camera);
                     //maleNpc.Draw(spriteBatch);
                     //femaleNpc.Draw(spriteBatch);
                     //femaleNpc2.Draw(spriteBatch);
@@ -227,9 +231,6 @@ namespace Main
                     spriteBatch.Begin();
 
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-
-                   // spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(0, 100, (int)WindowSize.Width, 200), Color.White);
-
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(560, 330, 190, 55), Color.White);
@@ -339,7 +340,7 @@ namespace Main
                 
                 if(enemyProjectiles[i].Rectangle.Intersects(player.Rectangle))
                 {
-                    player.Health--;
+                    player.Health -= 7;
                     enemyProjectiles.RemoveAt(i);
                     i--;
                 }
@@ -353,7 +354,10 @@ namespace Main
                     {
                         if(melee.Rectangle.Intersects(player.Rectangle))
                         {
-                            player.Health = player.Health - 1;
+                            if (melee.CurrentFrame == 3)
+                            {
+                                player.Health = player.Health - 1;
+                            }
                         }
                     }
                 }
@@ -385,7 +389,7 @@ namespace Main
             for (int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].Collision(tile.Rectangle, map.Width, map.Height);
-                enemies[i].PlayerCollision(player.Rectangle, map.Width, map.Height);
+                
             }
         }
         public void UpdateProjectiles()

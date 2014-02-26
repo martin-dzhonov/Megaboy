@@ -24,5 +24,10 @@ namespace Main
             this.conentManager = contentManager;
             this.spriteName = "DrowRanger";
         }
+
+         public override void Update(GameTime gameTime, int playerX, int playerY)
+         {
+             throw new NotImplementedException();
+         }
     }
 }

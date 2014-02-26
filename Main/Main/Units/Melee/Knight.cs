@@ -25,7 +25,7 @@ namespace Main
             this.rectangleSizeWidth = 70;
             this.rectangleSizeHeight = 80;
             this.Health = 2;
-            this.spriteName = "knightWalking";
+            this.spriteName = "knightWalking2";
             this.conentManager = contentManager;
             this.detectionDistanceX = 250;
             this.detectionDistanceY = 200;
@@ -38,11 +38,11 @@ namespace Main
 
             if(atacking == false)
             {
-                this.AnimateWalking(gameTime, "knightWalking1", 6, 1);
+                this.AnimateWalking(gameTime, "knightWalking2", 6, 1);
             }
             else
             {
-                this.AnimateAttack(gameTime, "knightAttack1", 4, 1);
+                this.AnimateAttack(gameTime, "knightAttack2", 4, 1);
 
                 if(this.CurrentFrame >= 4)
                 {
@@ -50,20 +50,6 @@ namespace Main
                 }
             }
             this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
-            if (position.X > patrolPositon.X)
-            {
-                if ((int)(position.X - patrolPositon.X) > patrolDistance)
-                {
-                    velocity.X = -1f;
-                }
-            }
-            if (position.X < patrolPositon.X)
-            {
-                if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
-                {
-                    velocity.X = 1f;
-                }
-            }
 
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
@@ -74,6 +60,16 @@ namespace Main
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX
                 && playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
             {
+                if (playerDistanceX < 0)
+                {
+                    velocity.X = -1f;
+
+                }
+                else if (playerDistanceX > 0)
+                {
+                    velocity.X = 1f;
+
+                }
                 float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 attackTimer -= elapsed;
                 if (attackTimer < 0)
@@ -81,24 +77,32 @@ namespace Main
                     atacking = true;
                     attackTimer = 1.5f;
                 }
-                if (playerDistanceX < 0)
+                
+            }
+            else
+            {
+                if (position.X > patrolPositon.X)
                 {
-                    velocity.X = -1f;
-                    patrolPositon.X -= 1;
+                    if ((int)(position.X - patrolPositon.X) > patrolDistance)
+                    {
+                        velocity.X = -1f;
+                    }
                 }
-                else if (playerDistanceX > 0)
+                else if (position.X < patrolPositon.X)
                 {
-                    velocity.X = 1f;
-                    patrolPositon.X += 1;
+                    if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
+                    {
+                        velocity.X = 1f;
+                    }
                 }
             }
+
             if (hasJumped == true)
             {
                 position.Y -= 4f;
                 velocity.Y = -8f;
                 hasJumped = false;
             }
-
             if (velocity.Y < 12)
             {
                 velocity.Y += 0.4f;

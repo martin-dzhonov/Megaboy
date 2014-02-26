@@ -15,7 +15,7 @@ namespace Main
 {
     abstract class Melee : Enemy
     {
-        private float attackTimer = 1f;
+
         protected ContentManager conentManager;
         protected Rectangle sourceRectangle;
 

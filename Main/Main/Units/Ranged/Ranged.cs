@@ -20,7 +20,7 @@ namespace Main
 
         protected bool lookingRight = true;
 
-        protected float animationTimer = 0.20f;
+        protected float animationTimer = 0.30f;
         protected int framesPerRow;
         protected int numRows;   
         protected int frameHeight;
@@ -30,86 +30,10 @@ namespace Main
         protected int detectionDistanceY = 150;
 
         public int CurrentFrame { get; set; }
-        public Ranged(int positonX, int positionY) : base(positonX, positionY, 70, 50)
+        public Ranged(int positonX, int positionY) : base(positonX, positionY)
         { 
-            this.Health = 2;
         }
 
-        public override void Update(GameTime gameTime, int playerX, int playerY)
-        {
-
-            
-            position += velocity;
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
-
-            //patroling
-            if (position.X > patrolPositon.X)
-            {
-                
-                if ((int)(position.X - patrolPositon.X) > patrolDistance)
-                {
-                    lookingRight = false;
-                    velocity.X = -1f;
-                }
-            }
-            if (position.X < patrolPositon.X)
-            {
-                if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
-                {
-                    lookingRight = true;
-                    velocity.X = 1f;
-                }
-            }
-
-            //detection
-            playerDistanceX = playerX - position.X;
-            playerDistanceY = playerY - position.Y;
-
-            
-            
-            if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX &&
-                playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
-            {
-                
-                if (playerDistanceX < 0)
-                {
-                    lookingRight = false;
-                    velocity.X = 0f;
-                }
-                else if (playerDistanceX > 0)
-                {
-                    lookingRight = true;
-                    velocity.X = 0f;             
-                }
-            }
-            //return to patroling
-            else
-            {
-                if(lookingRight)
-                {
-                    velocity.X = 1f;
-                }
-                else
-                {
-                    velocity.X = -1f;
-                }
-            }
-            
-            //gravity
-            if (velocity.Y < 12)
-            {
-                velocity.Y += 0.4f;
-            }
-            //animation
-            if (velocity.X != 0)
-            {
-                AnimateWalking(gameTime, "",0 ,0);
-            }
-            else 
-            {
-                AnimateShooting(gameTime, "", 0, 0);
-            }
-        }
         public void AnimateWalking(GameTime gameTime, string spriteName, int framesPerRow, int numRows)
         {
             this.framesPerRow = framesPerRow;
@@ -128,10 +52,10 @@ namespace Main
             if (animationTimer < 0)
             {
                 this.CurrentFrame++;
-                this.animationTimer = 0.20f;
+                this.animationTimer = 0.30f;
             }
 
-            if (this.CurrentFrame >= 6)
+            if (this.CurrentFrame > 5)
             {
                 this.CurrentFrame = 0;
             }
@@ -156,7 +80,7 @@ namespace Main
                 this.animationTimer = 0.40f;
             }
 
-            if (this.CurrentFrame > 4)
+            if (this.CurrentFrame > 3)
             {
                 this.CurrentFrame = 0;
             }

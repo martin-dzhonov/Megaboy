@@ -20,10 +20,10 @@ namespace Main
         public Archer(int positonX, int positionY,ContentManager contentManager)
             : base(positonX, positionY)
         {
-            this.rectangleSizeWidth = 60;
+            this.rectangleSizeWidth = 90;
             this.rectangleSizeHeight = 70;
             this.Health = 2;
-            this.spriteName = "archerWalking";
+            this.spriteName = "archerWalking1";
             this.conentManager = contentManager;
         }
 
@@ -55,7 +55,7 @@ namespace Main
             playerDistanceY = playerY - position.Y;
 
             this.detectionDistanceX = 400;
-            this.detectionDistanceY = 150;
+            this.detectionDistanceY = 200;
 
 
             if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX &&
@@ -95,11 +95,11 @@ namespace Main
             //animation
             if (velocity.X != 0)
             {
-                this.AnimateWalking(gameTime, "archerWalking", 6 ,1);
+                this.AnimateWalking(gameTime, "archerWalking1", 6 ,1);
             }
             else
             {
-                this.AnimateShooting(gameTime, "archerShooting",4, 1);
+                this.AnimateShooting(gameTime, "archerShooting1",4, 1);
             }
         }
         

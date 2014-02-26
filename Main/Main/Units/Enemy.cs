@@ -25,7 +25,17 @@ namespace Main
         protected int rectangleSizeHeight;
         private int health;
 
-        
+        public Enemy(int positionX, int positionY)
+        {
+            this.position.X = positionX;
+            this.position.Y = positionY;
+            this.patrolPositon.X = positionX;
+            this.patrolPositon.Y = positionY;
+            this.patrolDistance = 50;
+            this.velocity.X = 1f;
+            this.velocity.Y = 1f;
+        }
+
         public Enemy(int positionX, int positionY, int rectangleWidth , int rectangleHeight)
         {
             this.position.X = positionX;
@@ -69,13 +79,11 @@ namespace Main
             if (rectangle.TouchLeftOff(newRectangle))
             {
                 hasJumped = true;
-                velocity.X = -1f;
                 patrolPositon.X -= 10;
             }
             if (rectangle.TouchRightOff(newRectangle))
             {
                 hasJumped = true;
-                velocity.X = 1f;
                 patrolPositon.X += 10;
             }
             if (rectangle.TouchBottomOf(newRectangle))
@@ -99,48 +107,7 @@ namespace Main
                 position.Y = yOffset - rectangle.Height;
             }
         }
-        public virtual void PlayerCollision(Rectangle newRectangle, int xOffset, int yOffset)
-        {
-
-            if (rectangle.TouchTopOf(newRectangle))
-            {
-                velocity.Y = 0f;
-
-            }
-            if (rectangle.TouchLeftOff(newRectangle))
-            {
-
-                velocity.X = -1f;
-                patrolPositon.X -= 10;
-            }
-            if (rectangle.TouchRightOff(newRectangle))
-            {
-
-                velocity.X = 1f;
-                patrolPositon.X += 10;
-            }
-            if (rectangle.TouchBottomOf(newRectangle))
-            {
-                velocity.Y = 1f;
-            }
-            if (position.X < 0)
-            {
-                position.X = 0;
-            }
-            if (position.X > xOffset - rectangle.Width)
-            {
-                position.X = xOffset - rectangle.Width;
-            }
-            if (position.Y < 0)
-            {
-                velocity.Y = 1f;
-            }
-            if (position.Y > yOffset - rectangle.Height)
-            {
-                position.Y = yOffset - rectangle.Height;
-            }
-        }
-
+       
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (velocity.X > 0)

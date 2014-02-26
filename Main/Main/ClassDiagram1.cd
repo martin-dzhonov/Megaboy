@@ -24,7 +24,7 @@
   <Class Name="Main.Camera" Collapsed="true">
     <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAQAAAAAAAABAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ABQAAAAQAAAAAAAABAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Map and background\Camera.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -95,7 +95,7 @@
   <Class Name="Main.Enemy" Collapsed="true">
     <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQQiAkAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>IAQQiAEAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAg=</HashCode>
       <FileName>Units\Enemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -138,7 +138,7 @@
   <Class Name="Main.Player" Collapsed="true">
     <Position X="14.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IASAiACIAIAAAgAABgAAAACACAEBQAAgAAQAUAAEAAg=</HashCode>
+      <HashCode>IASAiACIAIAAAgCABgAAAACACAEBQAAgAAQAUAAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -153,14 +153,14 @@
   <Class Name="Main.DrowRanger" Collapsed="true">
     <Position X="10" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged\DrowRanger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Ranged" Collapsed="true">
     <Position X="9" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AASAAAAAAAACBgAAAAAAQAAAADIIQAAoAAQAAAAAAAI=</HashCode>
+      <HashCode>AACAAAAAAAACBgAAAAAAQAAAADIIQAAoAAQAAAAAAAI=</HashCode>
       <FileName>Units\Ranged\Ranged.cs</FileName>
     </TypeIdentifier>
   </Class>
