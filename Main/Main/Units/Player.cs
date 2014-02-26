@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Main.Enum;
 using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
+
 namespace Main
 {
     class Player : Unit
@@ -19,6 +20,7 @@ namespace Main
         private Texture2D runningTexture;
         private Texture2D shootingTexture;
         private Texture2D healthBarTexture;
+        private Texture2D rocketsSprite;
 
         private Rectangle sourceRectangle;
         private bool hasJumped = false;
@@ -26,7 +28,7 @@ namespace Main
         const int FRAMES_PER_ROW = 15;
         const int NUM_ROWS = 1;
         const int NUM_FRAMES = 15;
- 
+        private int projectiles;
     
         int frameHeight;
         int frameWidth;
@@ -57,7 +59,8 @@ namespace Main
             
             this.Health = 35;
 
-            this.healthBarTexture = contentManager.Load<Texture2D>("outreach");
+            this.healthBarTexture = contentManager.Load<Texture2D>("redSquare");
+            this.rocketsSprite = contentManager.Load<Texture2D>("greenSquare");
             this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
             this.standingTexture = contentManager.Load<Texture2D>("standing2");
             this.shootingTexture = contentManager.Load<Texture2D>("shooting1");
@@ -70,8 +73,9 @@ namespace Main
             this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
 
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, int projectilesNum)
         {
+            this.projectiles = projectilesNum;
 
             position += velocity;          
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)PlayerSize.Width, (int)PlayerSize.Height);
@@ -193,13 +197,16 @@ namespace Main
 
         public override void Draw(SpriteBatch spriteBatch, Camera camera)
         {
+            
             if (velocity.X > 0 || LookingRight == true)
             {
+                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 250, (int)camera.Centre.Y - 250, (5 - projectiles) * 30, 12), Color.White);
                 spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 480, (int)camera.Centre.Y - 250, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
             else
             {
+                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 250, (int)camera.Centre.Y - 250, (5 -projectiles) * 30, 12), Color.White);
                 spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 480, (int)camera.Centre.Y - 250, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
             }

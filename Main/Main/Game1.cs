@@ -33,9 +33,9 @@ namespace Main
         Map map;
         Camera camera;
         ContinuingBackground background;
-        List<Projectile> playerProjectiles = new List<Projectile>();
-        List<Projectile> enemyProjectiles = new List<Projectile>();
-        List<Enemy> enemies = new List<Enemy>();
+        public static List<Projectile> playerProjectiles = new List<Projectile>();
+        public static List<Projectile> enemyProjectiles = new List<Projectile>();
+        static List<Enemy> enemies = new List<Enemy>();
         List<Explosion> explosions = new List<Explosion>();
         NPC maleNpc;
         NPC femaleNpc;
@@ -45,7 +45,7 @@ namespace Main
         Button playAgainButton;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
-
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -139,7 +139,7 @@ namespace Main
 
                     UpdateProjectiles();
 
-                    player.Update(gameTime);
+                    player.Update(gameTime, playerProjectiles.Count);
 
                     //maleNpc.Update(gameTime, player);
                     //femaleNpc2.Update(gameTime, player);
@@ -383,6 +383,10 @@ namespace Main
                     i--;
                 }
             }
+            if(playerProjectiles.Count > 5)
+            {
+                playerProjectiles.RemoveAt(playerProjectiles.Count - 1);
+            }
         }
         public void EnemiesCollision(CollisionTile tile)
         {
@@ -397,7 +401,7 @@ namespace Main
             for (int i = 0; i < playerProjectiles.Count; i++)
             {
                 playerProjectiles[i].UpdatePosition();
-                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 400)
+                if (Vector2.Distance(playerProjectiles[i].Position, player.Position) > 900)
                 {
                     playerProjectiles.RemoveAt(i);
                     i--;

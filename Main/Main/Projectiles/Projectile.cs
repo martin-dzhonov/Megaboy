@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Main
 {
-    abstract class Projectile
+    public abstract class Projectile
     {
         protected Texture2D texture;
         protected Rectangle rectangle;

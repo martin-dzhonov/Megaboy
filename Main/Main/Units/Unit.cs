@@ -58,8 +58,9 @@ namespace Main
         public abstract void Load(ContentManager contentManager);
         public virtual void Update(GameTime gameTime) {}
         public virtual void Update(GameTime gameTime, Player player) {}
- 
+        public virtual void Update(GameTime gameTime, int projectilesNum) {}
         public abstract void Draw(SpriteBatch spriteBatch);
         public virtual void Draw(SpriteBatch spriteBatch,Camera camera) {}
+        
     }
 }
