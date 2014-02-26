@@ -3,7 +3,7 @@
   <Class Name="Main.Game1" Collapsed="true">
     <Position X="17" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gIQIFEEEQwAAB4CAqAAAAAAkAEDAAAgBCAAAQIARIAQ=</HashCode>
+      <HashCode>gIQIFEEEQwAAB4CIqAAAAAAkAEDAAAgBCAAAQIARIAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -64,11 +64,12 @@
       <FileName>Projectiles\Explosion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Fireball" Collapsed="true">
+  <Class Name="Main.BossProjectile" Collapsed="true">
     <Position X="0.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Projectiles\Fireball.cs</FileName>
+      <FileName>Projectiles\BossProjectile.cs</FileName>
+      <NewMemberFileName>Projectiles\Fireball.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Projectile" Collapsed="true">
@@ -166,7 +167,7 @@
   <Class Name="Main.Boss" Collapsed="true">
     <Position X="7.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Boss\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>

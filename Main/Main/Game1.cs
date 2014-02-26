@@ -79,7 +79,7 @@ namespace Main
 
         protected override void LoadContent()
         {
-            witch = new Boss(1200, 50, Content);
+            witch = new Boss(5000, 50, Content);
             gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
             instance = gameMusicLoop.CreateInstance();
             instance.IsLooped = true;
@@ -277,10 +277,8 @@ namespace Main
 
         public void LoadNpcs()
         {
-            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 420, 20, 533, 295));
+            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 530, 30, 250, 250));
             maleNpc.Load(Content);
-
-            
 
 
             femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest2", 2800, 5, 215, 165));

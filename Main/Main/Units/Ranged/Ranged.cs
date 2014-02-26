@@ -85,7 +85,7 @@ namespace Main
                 this.CurrentFrame = 0;
             }
         }
-        public void Shoot(List<Projectile> projectiles, ContentManager contentManager, GameTime gameTime)
+        public virtual void Shoot(List<Projectile> projectiles, ContentManager contentManager, GameTime gameTime)
         {
             if (this.CurrentFrame == 3 && this.velocity.X == 0)
             {

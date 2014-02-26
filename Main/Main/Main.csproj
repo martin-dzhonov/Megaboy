@@ -89,6 +89,7 @@
     <Compile Include="Enum\PlayerSize.cs" />
     <Compile Include="Enum\WindowSizes.cs" />
     <Compile Include="Projectiles\Arrow.cs" />
+    <Compile Include="Projectiles\BossProjectile.cs" />
     <Compile Include="Projectiles\Explosion.cs" />
     <Compile Include="Projectiles\Fireball.cs" />
     <Compile Include="Interfaces\IHealth.cs" />

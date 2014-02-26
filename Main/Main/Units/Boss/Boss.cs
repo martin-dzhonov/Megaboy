@@ -26,6 +26,7 @@ namespace Main
             this.spriteName = "bossWalking";
             this.texture = contentManager.Load<Texture2D>("bossWalking");
             this.conentManager = contentManager;
+            this.patrolDistance = 500;
         }
 
         public override void Update(GameTime gameTime, int playerX, int playerY)
@@ -55,7 +56,7 @@ namespace Main
             playerDistanceX = playerX - position.X;
             playerDistanceY = playerY - position.Y;
 
-            this.detectionDistanceX = 400;
+            this.detectionDistanceX = 300;
             this.detectionDistanceY = 200;
 
 
@@ -93,6 +94,13 @@ namespace Main
             {
                 velocity.Y += 0.4f;
             }
+            if (hasJumped == true)
+            {
+                position.Y -= 4f;
+                velocity.Y = -8f;
+                hasJumped = false;
+            }
+
             //animation
             if (velocity.X != 0)
             {
@@ -101,6 +109,49 @@ namespace Main
             else
             {
                 this.AnimateShooting(gameTime, "bossAttack", 4, 1);
+            }
+        }
+
+      
+        public override void Shoot(List<Projectile> projectiles, ContentManager contentManager, GameTime gameTime)
+        {
+            if (this.CurrentFrame == 3 && this.velocity.X == 0)
+            {
+                Projectile fireball = new BossProjectile(contentManager);
+                if (this.lookingRight)
+                {
+                    fireball.ShootRight();
+                }
+                else
+                {
+                    fireball.ShootLeft();
+                }
+                Projectile fireball1 = new BossProjectile(contentManager);
+                if (this.lookingRight)
+                {
+                    fireball1.ShootRight();
+                }
+                else
+                {
+                    fireball1.ShootLeft();
+                }
+                Projectile fireball2 = new BossProjectile(contentManager);
+                if (this.lookingRight)
+                {
+                    fireball2.ShootRight();
+                }
+                else
+                {
+                    fireball2.ShootLeft();
+                }
+
+                fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 0) + fireball.Velocity * 3;
+                fireball1.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 20) + fireball.Velocity * 3;
+                fireball2.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 40) + fireball.Velocity * 3;
+                projectiles.Add(fireball);
+                projectiles.Add(fireball1);
+                projectiles.Add(fireball2);
+                this.CurrentFrame = 0;
             }
         }
 

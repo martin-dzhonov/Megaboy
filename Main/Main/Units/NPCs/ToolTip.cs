@@ -28,8 +28,8 @@ namespace Main
             this.texture = content.Load<Texture2D>(spriteName);
             this.position = new Vector2(posX, posY);
             this.rectangle = new Rectangle(posX, posY, width, hight);
-         }
-
+        }
+        
         public void Load(ContentManager contentManager)
         {
             this.texture = contentManager.Load<Texture2D>(spriteName);
