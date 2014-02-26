@@ -44,6 +44,8 @@ namespace Main
         Button startButton;
         Button exitButton;
         Button playAgainButton;
+        Button startOnEndScreen;
+        Button exitOnEndScreen;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
         
@@ -84,6 +86,12 @@ namespace Main
             startButton.SetPosition(375, 100);
             exitButton = new Button(Content, "startexitbutton", 348, 103);
             exitButton.SetPosition(375, 250);
+
+            startOnEndScreen = new Button(Content, "playAgainButton", 190, 55);
+            startOnEndScreen.SetPosition(350, 330);
+            exitOnEndScreen = new Button(Content, "startexitbutton", 190, 55);
+            exitOnEndScreen.SetPosition(560, 330);
+
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
@@ -168,6 +176,19 @@ namespace Main
                     camera.Update(player.Position, map.Width, map.Height);
 
                     break;
+
+                case (GameState.End):
+                   if (startOnEndScreen.isClicked)
+                    {
+                        currentGameState = GameState.Playing; //need new logic
+                    }
+                    else if (exitOnEndScreen.isClicked)
+                    {
+                        this.Exit(); 
+                    }
+                    exitOnEndScreen.Update(mouse);
+                    startOnEndScreen.Update(mouse);
+                    break;
             }
             base.Update(gameTime);
         }
@@ -233,8 +254,10 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(560, 330, 190, 55), Color.White);
+                    //spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
+                    //spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(), Color.White);
+                    startOnEndScreen.Draw(spriteBatch);
+                    exitOnEndScreen.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
