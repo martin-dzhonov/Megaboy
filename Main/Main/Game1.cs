@@ -15,14 +15,11 @@ using Main.StartMenu;
 using Main;
 
 
+
 namespace Main
 {
   
-    //TODO: NPCs
-    //TODO: Storyline ?
     //TODO: Add enemies on map
-    //TODO: Boss fight / boss added still need to make fight animation
-    //TODO: Longer map /done - 200 units
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -49,8 +46,6 @@ namespace Main
         Boss witch;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        private Rectangle endingRect = new Rectangle(10000, 0, 200, 10000000);
 
         public Game1()
         {
@@ -79,19 +74,19 @@ namespace Main
 
         protected override void LoadContent()
         {
-            witch = new Boss(5000, 50, Content);
+            witch = new Boss(15000, 50, Content);
             gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
             instance = gameMusicLoop.CreateInstance();
             instance.IsLooped = true;
-            startButton = new Button(Content, "playbuttonNEW", 348, 103);
-            startButton.SetPosition(375, 130);
-            exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
-            exitButton.SetPosition(375, 300);
+            startButton = new Button(Content, "startbutton", 348, 103);
+            startButton.SetPosition(375, 100);
+            exitButton = new Button(Content, "startexitbutton", 348, 103);
+            exitButton.SetPosition(375, 250);
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
             map.Generate(ReadMapFromFIle(), tileSize);
-            background.Load(Content, 10);
+            background.Load(Content, 15);
             player.Load(Content);
 
             LoadEnemies();
@@ -105,11 +100,6 @@ namespace Main
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
-            
-            if (player.Rectangle.Intersects(endingRect))
-            {
-                currentGameState = GameState.End;
-            }
             
             if (Keyboard.GetState().IsKeyDown(Keys.Escape) || player.Health <= 0)
             {
@@ -240,7 +230,7 @@ namespace Main
                 case GameState.End :
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("Forest2"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(560, 330, 190, 55), Color.White);
@@ -258,7 +248,7 @@ namespace Main
             int[,] mapRead;
             using (mapFile)
             {
-                mapRead = new int[11, 200];
+                mapRead = new int[11, 317];
                 string line = string.Empty;
                 int row = 0;
                 while ((line = mapFile.ReadLine()) != null)
