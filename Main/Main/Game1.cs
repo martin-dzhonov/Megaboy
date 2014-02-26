@@ -39,6 +39,10 @@ namespace Main
         Button startButton;
         Button exitButton;
         Button playAgainButton;
+
+        Button startOnEndScreen;
+        Button exitOnEndScreen; 
+        
         SoundEffect gameMusicLoop;
         SoundEffectInstance instance;
         bool xPressed; //x - shoot
@@ -82,6 +86,11 @@ namespace Main
             startButton.SetPosition(375, 125);
             exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
             exitButton.SetPosition(375, 300);
+
+            startOnEndScreen = new Button(Content, "playAgainButton", 250, 70);
+            startOnEndScreen.SetPosition(200, 300);
+            exitOnEndScreen = new Button(Content, "startexitbutton", 250, 70);
+            exitOnEndScreen.SetPosition(648, 300);
 
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -172,6 +181,31 @@ namespace Main
                     camera.Update(player.Position, map.Width, map.Height);
 
                     break;
+
+                case (GameState.End):
+                    if (startOnEndScreen.isClicked)
+                    {
+                        currentGameState = GameState.Playing;
+                    }
+                    else if (exitOnEndScreen.isClicked)
+                    {
+                        this.Exit();
+                    }
+                    exitOnEndScreen.Update(mouse);
+                    startOnEndScreen.Update(mouse);
+                    break;
+                case (GameState.Dead):
+                    if (startOnEndScreen.isClicked)
+                    {
+                        currentGameState = GameState.Playing;
+                    }
+                    else if (exitOnEndScreen.isClicked)
+                    {
+                        this.Exit();
+                    }
+                    exitOnEndScreen.Update(mouse);
+                    startOnEndScreen.Update(mouse);
+                    break;
             }
             base.Update(gameTime);
         }
@@ -238,8 +272,8 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("playAgainButton"), new Rectangle(350, 330, 190, 55), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("startexitbutton"), new Rectangle(560, 330, 190, 55), Color.White);
+                    startOnEndScreen.Draw(spriteBatch);
+                    exitOnEndScreen.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
@@ -248,7 +282,8 @@ namespace Main
 
                     spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
-
+                    startOnEndScreen.Draw(spriteBatch);
+                    exitOnEndScreen.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
             }
