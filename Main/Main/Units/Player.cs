@@ -46,9 +46,9 @@ namespace Main
             }
             set
             {
-                if(value <= 0)
+                if(value <= -5)
                 {
-                    throw new InvalidHealthException("You have entered invalid enemy health.");
+                    throw new InvalidHealthException("Invalid enemy health.");
                 }
                 this.health = value;
             }
