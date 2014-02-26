@@ -83,10 +83,10 @@ namespace Main
             gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
             instance = gameMusicLoop.CreateInstance();
             instance.IsLooped = true;
-            startButton = new Button(Content, "startbutton", 348, 103);
-            startButton.SetPosition(375, 100);
-            exitButton = new Button(Content, "startexitbutton", 348, 103);
-            exitButton.SetPosition(375, 250);
+            startButton = new Button(Content, "playbuttonNEW", 348, 103);
+            startButton.SetPosition(375, 130);
+            exitButton = new Button(Content, "exitbuttonNEW", 348, 103);
+            exitButton.SetPosition(375, 300);
             playAgainButton = new Button(Content, "playAgainButton", 300, 89);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content; 
@@ -191,7 +191,7 @@ namespace Main
                 case GameState.StartMenu:
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("startBackground"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("megamanwalpaper"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
 
