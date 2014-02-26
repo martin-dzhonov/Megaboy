@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Main.Enum;
 using Main.StartMenu;
+using Main;
 
 
 namespace Main
@@ -90,7 +91,7 @@ namespace Main
             background.Load(Content, 10);
             player.Load(Content);
             LoadEnemies();
-            //LoadNpcs();
+            LoadNpcs();
         }
 
         protected override void UnloadContent()
