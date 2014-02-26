@@ -292,6 +292,11 @@ namespace Main
             femaleNpc2.Load(Content);
         }
 
+        public void DrawNpcStuff(SpriteBatch spriteBatch)
+        {
+            
+        }
+
 
         public void LoadEnemies()
         {
