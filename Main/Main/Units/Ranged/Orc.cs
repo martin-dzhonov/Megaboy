@@ -23,8 +23,8 @@ namespace Main
             this.rectangleSizeWidth = 90;
             this.rectangleSizeHeight = 70;
             this.Health = 3;
-            this.spriteName = "orcWalking";
-            this.texture = contentManager.Load<Texture2D>("ogreWalking");
+            this.spriteName = "EnemySprites\\orcWalking";
+            this.texture = contentManager.Load<Texture2D>("EnemySprites\\ogreWalking");
             this.conentManager = contentManager;
         }
 
@@ -96,11 +96,11 @@ namespace Main
             //animation
             if (velocity.X != 0)
             {
-                this.AnimateWalking(gameTime, "orcWalking", 6, 1);
+                this.AnimateWalking(gameTime, "EnemySprites\\orcWalking", 6, 1);
             }
             else
             {
-                this.AnimateShooting(gameTime, "orcAttack", 4, 1);
+                this.AnimateShooting(gameTime, "EnemySprites\\orcAttack", 4, 1);
             }
         }
 

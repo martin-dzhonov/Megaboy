@@ -25,9 +25,9 @@ namespace Main
             this.rectangleSizeWidth = 70;
             this.rectangleSizeHeight = 80;
             this.Health = 5;
-            this.spriteName = "knightWalking2";
+            this.spriteName = "EnemySprites\\knightWalking2";
             this.conentManager = contentManager;
-            this.detectionDistanceX = 250;
+            this.detectionDistanceX = 300;
             this.detectionDistanceY = 200;
         }
 
@@ -38,11 +38,11 @@ namespace Main
 
             if(atacking == false)
             {
-                this.AnimateWalking(gameTime, "knightWalking2", 6, 1);
+                this.AnimateWalking(gameTime, "EnemySprites\\knightWalking2", 6, 1);
             }
             else
             {
-                this.AnimateAttack(gameTime, "knightAttack2", 4, 1);
+                this.AnimateAttack(gameTime, "EnemySprites\\knightAttack2", 4, 1);
 
                 if(this.CurrentFrame >= 4)
                 {
@@ -62,12 +62,12 @@ namespace Main
             {
                 if (playerDistanceX < 0)
                 {
-                    velocity.X = -1f;
+                    velocity.X = -1.3f;
 
                 }
                 else if (playerDistanceX > 0)
                 {
-                    velocity.X = 1f;
+                    velocity.X = 1.3f;
 
                 }
                 float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;

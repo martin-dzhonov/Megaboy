@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Main.Game1" Collapsed="true">
+  <Class Name="Main.GameMegaBoy" Collapsed="true">
     <Position X="23.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAQIFEEEQwAAB4CIqAAAAAAkAEDAAAgBCAAAQIARIAQ=</HashCode>
-      <FileName>Game1.cs</FileName>
+      <HashCode>gAQJFkEEQwACB4DIqAAAAAAkAESAAAgBCAAAQIARoAQ=</HashCode>
+      <FileName>GameMegaBoy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Background" Collapsed="true">
@@ -50,40 +50,39 @@
       <FileName>Map and background\Tiles.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Program" Collapsed="true">
+  <Class Name="Main.GameMain" Collapsed="true">
     <Position X="21.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
+      <FileName>GameMain.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.BossProjectile" Collapsed="true">
     <Position X="4.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Projectiles\BossProjectile.cs</FileName>
-      <NewMemberFileName>Projectiles\Fireball.cs</NewMemberFileName>
+      <FileName>Units\Projectiles\BossProjectile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Explosion" Collapsed="true">
     <Position X="23.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAgAAAAQAACAECAEAQgAgAAQAQAAAAAA=</HashCode>
-      <FileName>Projectiles\Explosion.cs</FileName>
+      <FileName>Units\Projectiles\Explosion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Fireball" Collapsed="true">
     <Position X="2.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Projectiles\Fireball.cs</FileName>
+      <FileName>Units\Projectiles\Fireball.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Projectile" Collapsed="true">
     <Position X="2" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAiQgQAAAICAAAAAgAgAAAAQAAAAGAAA=</HashCode>
-      <FileName>Projectiles\Projectile.cs</FileName>
+      <FileName>Units\Projectiles\Projectile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.RectangleHelper" Collapsed="true">
@@ -160,7 +159,7 @@
   <Class Name="Main.Player" Collapsed="true">
     <Position X="17" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IASAiACIAIAACgCABgAIAACACAEBQAAgAARA0AAEAAg=</HashCode>
+      <HashCode>IASAiECIAIAACgCABgAIAACACAFBUAAgAARA0AAEAAg=</HashCode>
       <FileName>Units\Player.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -198,7 +197,7 @@
     <Position X="0.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Projectiles\Arrow.cs</FileName>
+      <FileName>Units\Projectiles\Arrow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.StartMenu.Button" Collapsed="true">
@@ -246,7 +245,7 @@
   <Enum Name="Main.Enum.GameState" Collapsed="true">
     <Position X="21.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAACAAAAAA=</HashCode>
       <FileName>Enum\GameState.cs</FileName>
     </TypeIdentifier>
   </Enum>

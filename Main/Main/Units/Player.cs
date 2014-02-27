@@ -69,13 +69,13 @@ namespace Main
             
             this.Health = 35;
 
-            this.healthBarTexture = contentManager.Load<Texture2D>("redSquare");
-            this.rocketsSprite = contentManager.Load<Texture2D>("greenSquare");
-            this.healthSign = contentManager.Load<Texture2D>("health");
-            this.ammoSign = contentManager.Load<Texture2D>("ammo");
-            this.runningTexture = contentManager.Load <Texture2D>("heroWalking2");
-            this.standingTexture = contentManager.Load<Texture2D>("standing2");
-            this.shootingTexture = contentManager.Load<Texture2D>("shooting1");
+            this.healthBarTexture = contentManager.Load<Texture2D>("HUD sprites\\redSquare");
+            this.rocketsSprite = contentManager.Load<Texture2D>("HUD sprites\\greenSquare");
+            this.healthSign = contentManager.Load<Texture2D>("HUD sprites\\health");
+            this.ammoSign = contentManager.Load<Texture2D>("HUD sprites\\ammo");
+            this.runningTexture = contentManager.Load<Texture2D>("PlayerSprites\\heroWalking2");
+            this.standingTexture = contentManager.Load<Texture2D>("PlayerSprites\\standing2");
+            this.shootingTexture = contentManager.Load<Texture2D>("PlayerSprites\\shooting1");
             this.texture = runningTexture;
             // calculate frame size
             frameWidth = this.texture.Width / FRAMES_PER_ROW;

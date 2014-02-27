@@ -34,8 +34,8 @@ namespace Main
         {
             return (r1.Left >= r2.Left &&
                 r1.Left <= r2.Right + 2 &&
-                r1.Top <= r2.Bottom - (r2.Width / 7) &&
-                r1.Bottom >= r2.Top + (r2.Width / 7));
+                r1.Top <= r2.Bottom - (r2.Width / 6) &&
+                r1.Bottom >= r2.Top + (r2.Width / 6));
         }
     }
 }

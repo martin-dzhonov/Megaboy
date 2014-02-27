@@ -20,7 +20,7 @@ namespace Main
         protected Vector2 patrolPositon;
         protected int patrolDistance;
         protected bool hasJumped = false;
-        protected string spriteName = "archerShooting1";
+        protected string spriteName = "EnemySprites\\archerWalking1";
         
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;

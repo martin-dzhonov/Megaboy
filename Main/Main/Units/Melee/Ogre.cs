@@ -23,9 +23,9 @@ namespace Main
             this.rectangleSizeWidth = 100;
             this.rectangleSizeHeight = 120;
             this.Health = 8;
-            this.texture = contentManager.Load<Texture2D>("ogreWalking");
+            this.texture = contentManager.Load<Texture2D>("EnemySprites\\ogreWalking");
             this.conentManager = contentManager;
-            this.detectionDistanceX = 250;
+            this.detectionDistanceX = 300;
             this.detectionDistanceY = 200;
         }
 
@@ -36,11 +36,11 @@ namespace Main
 
             if (atacking == false)
             {
-                this.AnimateWalking(gameTime, "ogreWalking", 6, 1);
+                this.AnimateWalking(gameTime, "EnemySprites\\ogreWalking", 6, 1);
             }
             else
             {
-                this.AnimateAttack(gameTime, "ogreAttack", 4, 1);
+                this.AnimateAttack(gameTime, "EnemySprites\\ogreAttack", 4, 1);
 
                 if (this.CurrentFrame >= 4)
                 {
@@ -60,12 +60,12 @@ namespace Main
             {
                 if (playerDistanceX < 0)
                 {
-                    velocity.X = -1f;
+                    velocity.X = -1.3f;
 
                 }
                 else if (playerDistanceX > 0)
                 {
-                    velocity.X = 1f;
+                    velocity.X = 1.3f;
 
                 }
                 float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;

@@ -77,7 +77,7 @@ namespace Main
             if (animationTimer < 0)
             {
                 this.CurrentFrame++;
-                this.animationTimer = 0.40f;
+                this.animationTimer = 0.45f;
             }
 
             if (this.CurrentFrame > 3)

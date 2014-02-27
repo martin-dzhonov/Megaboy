@@ -23,7 +23,7 @@ namespace Main
             this.rectangleSizeWidth = 90;
             this.rectangleSizeHeight = 70;
             this.Health = 2;
-            this.spriteName = "archerWalking1";
+            this.spriteName = "EnemySprites\\archerWalking1";
             this.conentManager = contentManager;
         }
 
@@ -95,11 +95,11 @@ namespace Main
             //animation
             if (velocity.X != 0)
             {
-                this.AnimateWalking(gameTime, "archerWalking1", 6 ,1);
+                this.AnimateWalking(gameTime, "EnemySprites\\archerWalking1", 6, 1);
             }
             else
             {
-                this.AnimateShooting(gameTime, "archerShooting1",4, 1);
+                this.AnimateShooting(gameTime, "EnemySprites\\archerShooting1", 4, 1);
             }
         }
         

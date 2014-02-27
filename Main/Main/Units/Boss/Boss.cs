@@ -23,8 +23,8 @@ namespace Main
             this.rectangleSizeWidth = 120;
             this.rectangleSizeHeight = 120;
             this.Health = 30;
-            this.spriteName = "bossWalking";
-            this.texture = contentManager.Load<Texture2D>("bossWalking");
+            this.spriteName = "EnemySprites\\/bossWalking";
+            this.texture = contentManager.Load<Texture2D>("EnemySprites\\/bossWalking");
             this.conentManager = contentManager;
             this.patrolDistance = 500;
         }
@@ -104,11 +104,11 @@ namespace Main
             //animation
             if (velocity.X != 0)
             {
-                this.AnimateWalking(gameTime, "bossWalking", 6, 1);
+                this.AnimateWalking(gameTime, "EnemySprites\\bossWalking", 6, 1);
             }
             else
             {
-                this.AnimateShooting(gameTime, "bossAttack", 4, 1);
+                this.AnimateShooting(gameTime, "EnemySprites\\bossAttack", 4, 1);
             }
         }
 
@@ -145,9 +145,9 @@ namespace Main
                     fireball2.ShootLeft();
                 }
 
-                fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 0) + fireball.Velocity * 3;
+                fireball.Position = new Vector2((int)this.Position.X, (int)this.Position.Y - 10) + fireball.Velocity * 3;
                 fireball1.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 20) + fireball.Velocity * 3;
-                fireball2.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 40) + fireball.Velocity * 3;
+                fireball2.Position = new Vector2((int)this.Position.X, (int)this.Position.Y + 50) + fireball.Velocity * 3;
                 projectiles.Add(fireball);
                 projectiles.Add(fireball1);
                 projectiles.Add(fireball2);
