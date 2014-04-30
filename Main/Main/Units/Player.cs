@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Main;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -12,84 +13,56 @@ using Main.Enum;
 using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
 using Main.Exceptions;
-namespace Main
+
+namespace Main.Units
 {
     class Player : Unit, IHealth
     {
-        //Design pattern Singleton
-        private static Player instance;
-        private static object lockThis = new object();
+        private Rectangle sourceRectangle;
 
         private Texture2D standingTexture;
         private Texture2D runningTexture;
         private Texture2D shootingTexture;
-        private Texture2D healthBarTexture;
-        private Texture2D rocketsSprite;
-        private Texture2D healthSign;
-        private Texture2D ammoSign;
-
-        private Rectangle sourceRectangle;
-        private bool hasJumped = false;
-        private int health;
-        const int FRAMES_PER_ROW = 15;
-        const int NUM_ROWS = 1;
-        const int NUM_FRAMES = 15;
-        private int projectiles;
-    
-        int frameHeight;
-        int frameWidth;
-        float interval = 30;
         
+        private int currentFrame;
+        private int framesPerRow = 15;
+        private int numRows = 1;
+        private int numFrames = 15;
+        private int frameHeight;
+        private int frameWidth;
+        private float animationInterval;
+        private bool hasJumped;
 
         public bool LookingRight { get; set; }
-        public int Health
+        public int Health { get; set; }
+        public float Timer { get; set; }
+        
+        public Player()
         {
-            get
-            {
-                return this.health;
-            }
-            set
-            {
-                if(value <= -1000)
-                {
-                    throw new InvalidHealthException("Invalid enemy health.");
-                }
-                this.health = value;
-            }
+            this.Health = 35;
+            this.animationInterval = 30;
+            this.hasJumped = false;
         }
 
-
-        public float Timer { get; set; }
-
-        public int CurrentFrame { get; set; }
-
-        
         public override void Load(ContentManager contentManager)
         {
             
-            this.Health = 35;
-
-            this.healthBarTexture = contentManager.Load<Texture2D>("HUD sprites\\redSquare");
-            this.rocketsSprite = contentManager.Load<Texture2D>("HUD sprites\\greenSquare");
-            this.healthSign = contentManager.Load<Texture2D>("HUD sprites\\health");
-            this.ammoSign = contentManager.Load<Texture2D>("HUD sprites\\ammo");
             this.runningTexture = contentManager.Load<Texture2D>("PlayerSprites\\heroWalking2");
             this.standingTexture = contentManager.Load<Texture2D>("PlayerSprites\\standing2");
             this.shootingTexture = contentManager.Load<Texture2D>("PlayerSprites\\shooting1");
+
             this.texture = runningTexture;
             // calculate frame size
-            frameWidth = this.texture.Width / FRAMES_PER_ROW;
-            frameHeight = this.texture.Height / NUM_ROWS;
+            frameWidth = this.texture.Width / framesPerRow;
+            frameHeight = this.texture.Height / numRows;
 
             // set initial source rectangle
             this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
 
         }
-        public override void Update(GameTime gameTime, int projectilesNum)
+        public override void Update(GameTime gameTime)
         {
-            this.projectiles = projectilesNum;
-
-            position += velocity;          
+            position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)PlayerSize.Width, (int)PlayerSize.Height);
 
             ReadInput(gameTime);
@@ -104,17 +77,17 @@ namespace Main
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                this.LookingRight = true;
-                this.texture = runningTexture;
-                AnimateRight(gameTime);
+                this.texture = runningTexture;     
+                this.LookingRight = true;                     
                 velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                AnimateRunning(gameTime);
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                this.texture = runningTexture;     
                 this.LookingRight = false;
-                this.texture = runningTexture;
-                AnimateLeft(gameTime);
+                velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                AnimateRunning(gameTime);
             }
             else
             {
@@ -128,7 +101,7 @@ namespace Main
                 }
                 this.sourceRectangle = new Rectangle(0, 0, standingTexture.Width, standingTexture.Height);
                 velocity.X = 0f;
-               
+
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
@@ -140,34 +113,22 @@ namespace Main
         }
 
 
-        public void AnimateRight(GameTime gameTime)
+        public void AnimateRunning(GameTime gameTime)
         {
-            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);
+              
+            this.sourceRectangle = new Rectangle(this.currentFrame * frameWidth, 0, frameWidth, frameHeight);
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (this.Timer > interval)
+            if (this.Timer > animationInterval)
             {
-                this.CurrentFrame++;
+                this.currentFrame++;
                 this.Timer = 0;
             }
-            if (this.CurrentFrame >= 15)
+            if (this.currentFrame >= framesPerRow)
             {
-                this.CurrentFrame = 0;
+                this.currentFrame = 0;
             }
         }
-        public void AnimateLeft(GameTime gameTime)
-        {
-            this.sourceRectangle = new Rectangle(this.CurrentFrame * frameWidth, 0, frameWidth, frameHeight);       
-            this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
-            if (this.Timer > interval)
-            {
-                this.CurrentFrame++;
-                this.Timer = 0;
-            }
-            if (this.CurrentFrame >= 15)
-            {
-                this.CurrentFrame = 0;
-            }
-        }
+
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
@@ -205,45 +166,19 @@ namespace Main
                 position.Y = yOffset - rectangle.Height;
             }
         }
-            
 
-        public override void Draw(SpriteBatch spriteBatch, Camera camera)
+
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            
             if (velocity.X > 0 || LookingRight == true)
             {
-                
-                spriteBatch.Draw(ammoSign, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 260, 150 , 20), Color.White);
-                spriteBatch.Draw(healthSign, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 260, 150, 20), Color.White);
-                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 235, (5 - projectiles) * 30, 12), Color.White);
-                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 235, this.Health * 5 , 12), Color.White);
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0f);
             }
             else
-            {
-                spriteBatch.Draw(ammoSign, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 260, 150, 20), Color.White);
-                spriteBatch.Draw(healthSign, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 260, 150, 20), Color.White);
-                spriteBatch.Draw(rocketsSprite, new Rectangle((int)camera.Centre.X - 300, (int)camera.Centre.Y - 235, (5 -projectiles) * 30, 12), Color.White);
-                spriteBatch.Draw(healthBarTexture, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 235, this.Health * 5 , 12), Color.White);
+            {                
                 spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0f);
             }
-            
-        }
-        //Design pattern Singleton
-        public static Player GetState()
-        {
-            lock(lockThis)
-            {
-                if(instance == null)
-                {
-                    instance = new Player();
-                }
-                return instance;
-            }
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
+
         }
     }
 }

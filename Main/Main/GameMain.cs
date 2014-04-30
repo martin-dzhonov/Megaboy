@@ -10,11 +10,12 @@ namespace Main
         /// </summary>
         static void Main(string[] args)
         {
-            using (GameMegaBoy game = new GameMegaBoy())
+            using (Megaboy game = new Megaboy())
             {
                 game.Run();
             }
         }
+
     }
 #endif
 }

@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-
+using Main.Units;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -15,12 +14,10 @@ using Main.StartMenu;
 using Main;
 
 namespace Main
-{
-    //TODO: Add enemies on map
-    public class GameMegaBoy : Microsoft.Xna.Framework.Game
+{ 
+    public class Megaboy : Microsoft.Xna.Framework.Game
     {
         #region variables
-
         GameState currentGameState;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -28,31 +25,30 @@ namespace Main
         Player player;
         Map map;
         Camera camera;
+        HUD hud = new HUD();
         ContinuingBackground background;
-
-        static List<Enemy> enemies = new List<Enemy>();      
-        public static List<Projectile> playerProjectiles = new List<Projectile>();
-        public static List<Projectile> enemyProjectiles = new List<Projectile>();
-        List<Explosion> explosions = new List<Explosion>();
 
         Boss witch;
         NPC maleNpc;
         NPC femaleNpc;
         NPC femaleNpc2;
+        static List<Enemy> enemies = new List<Enemy>();
+        public static List<Projectile> playerProjectiles = new List<Projectile>();
+        public static List<Projectile> enemyProjectiles = new List<Projectile>();
+        List<Explosion> explosions = new List<Explosion>();
 
         Button startButton;
         Button exitButton;
-        Button playAgainButton;
         Button restarEndButton;
-        Button exitEndButton; 
+        Button exitEndButton;
 
         SoundEffect gameMusicLoop;
         SoundEffectInstance musicLoop;
         bool xPressed; //x - shoot
         static readonly int tileSize = 50;
-       
         #endregion
-        public GameMegaBoy()
+
+        public Megaboy()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -65,34 +61,34 @@ namespace Main
 
         protected override void Initialize()
         {
-            currentGameState = GameState.StartMenu;               
+            currentGameState = GameState.StartMenu;
             IsMouseVisible = true;
             map = new Map();
+            player = new Player();
             background = new ContinuingBackground();
             camera = new Camera(GraphicsDevice.Viewport);
-            //Design pattern singleton
-            player = Player.GetState();
+            Tiles.Content = Content;
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            background.Load(Content, 15);
-            player.Load(Content);
-            witch = new Boss(15000, 50, Content);
-            gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
-            musicLoop = gameMusicLoop.CreateInstance();
-            musicLoop.IsLooped = true;
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Tiles.Content = Content;     
-            map.Generate(ReadMapFromFIle(), tileSize);
-            
 
+            background.Load(Content, 15);
+            map.Generate(ReadMapFromFIle(), tileSize);
+
+            player.Load(Content);
+            hud.Load(Content);
+            LoadBoss();
             LoadButtons();
             LoadEnemies();
             LoadNpcs();
+
+            gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
+            musicLoop = gameMusicLoop.CreateInstance();
+            musicLoop.IsLooped = true;
         }
 
         protected override void UnloadContent()
@@ -102,12 +98,12 @@ namespace Main
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
-            
+
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 this.Exit();
             }
-            switch(currentGameState)
+            switch (currentGameState)
             {
                 case (GameState.StartMenu):
                     if (startButton.isClicked)
@@ -121,76 +117,44 @@ namespace Main
                     exitButton.Update(mouse);
                     startButton.Update(mouse);
                     break;
-                case (GameState.Playing) :
-                   
+                case (GameState.Playing):
+
                     musicLoop.Play();
 
-                    if (witch.Health == 0) { currentGameState = GameState.End; }
-
-                    if (player.Health <= 0) { currentGameState = GameState.Dead; }
-
-                    if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
-                    {
-                        Shoot();
-                    }
-                    xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
-
-                    player.Update(gameTime, playerProjectiles.Count);
+                    player.Update(gameTime);
                     UpdateEnemies(gameTime);
                     UpdateProjectiles();
                     UpdateNPCs(gameTime);
-                    
-                    foreach (var tile in map.CollisionTiles)
+                    UppdateCollision();
+
+                    if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
                     {
-                        player.Collision(tile.Rectangle, map.Width, map.Height);                
-                        EnemiesCollision(tile);
-                        ProjectilesCollison(tile);
+                        PlayerShoot();
                     }
+                    xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
 
                     HitEnemies();
-                    HitPlayer();  
+                    HitPlayer();
                     camera.Update(player.Position, map.Width, map.Height);
-
+                    GameEndUpdate();
                     break;
 
                 case (GameState.End):
-                    if (restarEndButton.isClicked)
-                    {
-                        RestartGame();
-                        currentGameState = GameState.Playing;
-                    }
-                    else if (exitEndButton.isClicked)
-                    {
-                        this.Exit();
-                    }
-                    exitEndButton.Update(mouse);
-                    restarEndButton.Update(mouse);
+                    UpdateEndScreenButtons(mouse);
                     break;
 
                 case (GameState.Dead):
-                    if (restarEndButton.isClicked)
-                    {
-                        RestartGame(); 
-                        currentGameState = GameState.Playing;
-                    }
-                    else if (exitEndButton.isClicked)
-                    {
-                        this.Exit();
-                    }
-                    exitEndButton.Update(mouse);
-                    restarEndButton.Update(mouse);
+                    UpdateEndScreenButtons(mouse);
                     break;
             }
             base.Update(gameTime);
         }
-  
-
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
-            switch(currentGameState)
+
+            switch (currentGameState)
             {
                 case GameState.StartMenu:
                     spriteBatch.Begin();
@@ -202,71 +166,74 @@ namespace Main
                     spriteBatch.End();
                     break;
 
-                case GameState.Playing :
+                case GameState.Playing:
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
-                    
+
                     background.Draw(spriteBatch);
                     map.Draw(spriteBatch);
-                    player.Draw(spriteBatch, camera);
-                    maleNpc.Draw(spriteBatch);
-                    femaleNpc.Draw(spriteBatch);
-                    femaleNpc2.Draw(spriteBatch);
-                    maleNpc.toolTip.Draw(spriteBatch);
-                    femaleNpc.toolTip.Draw(spriteBatch);
-                    femaleNpc2.toolTip.Draw(spriteBatch);
-
-                    foreach (var enemy in enemies)
-                    {
-                        enemy.Draw(spriteBatch);
-                    }
-                    foreach (var projectile in playerProjectiles)
-                    {
-                        projectile.Draw(spriteBatch);
-                    }
-                    foreach (var projectile in enemyProjectiles)
-                    {
-                        projectile.Draw(spriteBatch);
-                    }
-
-                    for (int i = 0; i < explosions.Count; i++)
-                    {
-                        explosions[i].Draw(spriteBatch);
-                        if (explosions[i].Finished)
-                        {
-                            explosions.RemoveAt(i);
-                            i--;
-                        }
-                    }
+                    player.Draw(spriteBatch);
+                    hud.Draw(spriteBatch, camera, player.Health, playerProjectiles.Count);
+                    DrawNPCs(spriteBatch);
+                    DrawProjectiles(spriteBatch);
+                    DrawExplosions(spriteBatch);
+                    DrawEnemies(spriteBatch);
 
                     spriteBatch.End();
                     break;
 
-                case GameState.End :
+                case GameState.End:
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
+                    DrawEndBackground(spriteBatch);
                     restarEndButton.Draw(spriteBatch);
                     exitEndButton.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
 
-                case GameState.Dead :
+                case GameState.Dead:
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-                    spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
+                    DrawDeadBackground(spriteBatch);
                     restarEndButton.Draw(spriteBatch);
                     exitEndButton.Draw(spriteBatch);
 
                     spriteBatch.End();
                     break;
             }
-           
+
             base.Draw(gameTime);
         }
 
+        private void GameEndUpdate()
+        {
+            if (witch.Health == 0) { currentGameState = GameState.End; }
+
+            if (player.Health <= 0) { currentGameState = GameState.Dead; }
+        }
+        private void UppdateCollision()
+        {
+            foreach (var tile in map.CollisionTiles)
+            {
+                player.Collision(tile.Rectangle, map.Width, map.Height);
+                EnemiesCollision(tile);
+                ProjectilesCollison(tile);
+            }
+        }
+        private void UpdateEndScreenButtons(MouseState mouse)
+        {
+            if (restarEndButton.isClicked)
+            {
+                RestartGame();
+                currentGameState = GameState.Playing;
+            }
+            else if (exitEndButton.isClicked)
+            {
+                this.Exit();
+            }
+            exitEndButton.Update(mouse);
+            restarEndButton.Update(mouse);
+        }
         private void RestartGame()
         {
             restarEndButton.isClicked = false;
@@ -275,7 +242,6 @@ namespace Main
             enemies.Clear();
             LoadEnemies();
         }
-
         private void UpdateEnemies(GameTime gameTime)
         {
             foreach (var enemy in enemies)
@@ -311,7 +277,7 @@ namespace Main
             return mapRead;
         }
 
-        public void Shoot()
+        public void PlayerShoot()
         {
             Projectile fireball = new Fireball(Content);
             if (player.LookingRight)
@@ -456,6 +422,10 @@ namespace Main
                 }
             }
         }
+        private void LoadBoss()
+        {
+            witch = new Boss(15000, 50, Content);
+        }
         public void LoadEnemies()
         {
             Enemy archer1 = new Archer(1500, 50, Content);
@@ -565,7 +535,6 @@ namespace Main
 
         public void LoadButtons()
         {
-
             startButton = new Button(Content, "ButtonSprites\\playbuttonNEW", 348, 103);
             startButton.SetPosition(375, 125);
             exitButton = new Button(Content, "ButtonSprites\\exitbuttonNEW", 348, 103);
@@ -574,7 +543,7 @@ namespace Main
             restarEndButton.SetPosition(200, 300);
             exitEndButton = new Button(Content, "ButtonSprites\\startexitbutton", 250, 70);
             exitEndButton.SetPosition(648, 300);
-            playAgainButton = new Button(Content, "ButtonSprites\\playAgainButton", 300, 89);
+
         }
 
         public void UpdateNPCs(GameTime gameTime)
@@ -583,6 +552,59 @@ namespace Main
             femaleNpc2.Update(gameTime, player);
             femaleNpc.Update(gameTime, player);
         }
+        private void DrawEndBackground(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
+        }
 
+        private void DrawDeadBackground(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
+        }
+
+        private void DrawEnemies(SpriteBatch spriteBatch)
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
+        }
+
+        private void DrawExplosions(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < explosions.Count; i++)
+            {
+                explosions[i].Draw(spriteBatch);
+                if (explosions[i].Finished)
+                {
+                    explosions.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        private void DrawProjectiles(SpriteBatch spriteBatch)
+        {
+            foreach (var projectile in playerProjectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
+            foreach (var projectile in enemyProjectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
+        }
+
+        private void DrawNPCs(SpriteBatch spriteBatch)
+        {
+            maleNpc.Draw(spriteBatch);
+            femaleNpc.Draw(spriteBatch);
+            femaleNpc2.Draw(spriteBatch);
+            maleNpc.toolTip.Draw(spriteBatch);
+            femaleNpc.toolTip.Draw(spriteBatch);
+            femaleNpc2.toolTip.Draw(spriteBatch);
+        }
     }
 }
