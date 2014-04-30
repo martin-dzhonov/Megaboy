@@ -15,17 +15,16 @@ namespace Main
 {
     abstract class Enemy : Unit, IHealth
     {
+        protected int rectangleSizeWidth;
+        protected int rectangleSizeHeight;
+        protected string spriteName = "EnemySprites\\archerWalking1";
         protected float playerDistanceX;
         protected float playerDistanceY;
         protected Vector2 patrolPositon;
         protected int patrolDistance;
         protected bool hasJumped = false;
-        protected string spriteName = "EnemySprites\\archerWalking1";
-        
-        protected int rectangleSizeWidth;
-        protected int rectangleSizeHeight;
-        private int health;
-
+              
+        public int Health { get; set; }
         public Enemy(int positionX, int positionY)
         {
             this.position.X = positionX;
@@ -50,21 +49,7 @@ namespace Main
             this.rectangleSizeHeight = rectangleHeight;
         }
 
-        public int Health
-        {
-            get
-            {
-                return this.health;
-            }
-            set
-            {
-                if (value <= -1000)
-                {
-                    throw new InvalidHealthException("Invalid enemy health.");
-                }
-                this.health = value;
-            }
-        }
+       
 
         public abstract void Update(GameTime gameTime, int playerX, int playerY);
 

@@ -5,13 +5,10 @@ using System.IO;
 using Main.Units;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using Main.Enum;
 using Main.StartMenu;
-using Main;
 
 namespace Main
 { 
@@ -68,7 +65,6 @@ namespace Main
             background = new ContinuingBackground();
             camera = new Camera(GraphicsDevice.Viewport);
             Tiles.Content = Content;
-
             base.Initialize();
         }
 

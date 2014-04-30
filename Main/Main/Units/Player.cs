@@ -67,6 +67,7 @@ namespace Main.Units
 
             ReadInput(gameTime);
 
+            //gravity
             if (velocity.Y < 12)
             {
                 velocity.Y += 0.4f;
@@ -104,6 +105,7 @@ namespace Main.Units
 
             }
 
+            //jump
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
             {
                 position.Y -= 5f;
@@ -114,8 +116,7 @@ namespace Main.Units
 
 
         public void AnimateRunning(GameTime gameTime)
-        {
-              
+        {          
             this.sourceRectangle = new Rectangle(this.currentFrame * frameWidth, 0, frameWidth, frameHeight);
             this.Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2;
             if (this.Timer > animationInterval)
@@ -123,7 +124,7 @@ namespace Main.Units
                 this.currentFrame++;
                 this.Timer = 0;
             }
-            if (this.currentFrame >= framesPerRow)
+            if (this.currentFrame >= numFrames)
             {
                 this.currentFrame = 0;
             }
