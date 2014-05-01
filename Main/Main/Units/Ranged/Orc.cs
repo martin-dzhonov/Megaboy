@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+using Main;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Main.Projectiles;
 
-namespace Main
+namespace Main.Units.Ranged
 {
     class Orc : Ranged
     {
-
-
         public Orc(int positonX, int positionY, ContentManager contentManager)
             : base(positonX, positionY)
         {
@@ -28,8 +19,7 @@ namespace Main
             this.walkingSpriteName = "EnemySprites\\orc\\walking";
             this.attackingSpriteName = "EnemySprites\\orc\\attack";
 
-            this.Health = 3; 
+            this.Health = 4; 
         }
-
     }
 }

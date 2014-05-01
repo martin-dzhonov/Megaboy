@@ -164,21 +164,21 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Main.Archer" Collapsed="true">
+  <Class Name="Main.Units.Ranged.Archer" Collapsed="true">
     <Position X="8" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged\Archer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Orc" Collapsed="true">
+  <Class Name="Main.Units.Ranged.Orc" Collapsed="true">
     <Position X="10.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged\Orc.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Ranged" Collapsed="true">
+  <Class Name="Main.Units.Ranged.Ranged" Collapsed="true">
     <Position X="8" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AASAAAAAAAACBgAAAAAAQAAAADIIQAAoAAQAAAAAAAI=</HashCode>
