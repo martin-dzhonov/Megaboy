@@ -102,29 +102,29 @@
   <Class Name="Main.Enemy" Collapsed="true">
     <Position X="10.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQQiAEAAIBQAgAAAAAAAAAAAAIAQAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>IAQEiAEAAYBQAgAAAAAABAAAAAIAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Enemy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Main.Knight" Collapsed="true">
+  <Class Name="Main.Units.Melee.Knight" Collapsed="true">
     <Position X="12.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Melee\Knight.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Melee" Collapsed="true">
+  <Class Name="Main.Units.Melee.Melee" Collapsed="true">
     <Position X="13.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YACAAAAAAAACAgAAAAAAAAAAADAIQgBoAAQAAEAAAAI=</HashCode>
+      <HashCode>YASAAAAAAAACAgAAAAAAAAAAADAIQgBoAAQAAEAAAAI=</HashCode>
       <FileName>Units\Melee\Melee.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Ogre" Collapsed="true">
+  <Class Name="Main.Units.Melee.Ogre" Collapsed="true">
     <Position X="14.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Melee\Ogre.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -167,21 +167,21 @@
   <Class Name="Main.Archer" Collapsed="true">
     <Position X="8" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged\Archer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Orc" Collapsed="true">
     <Position X="10.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Units\Ranged\Orc.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Main.Ranged" Collapsed="true">
     <Position X="8" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAACBgAAAAAAQAAAADIIQAAoAAQAAAAAAAI=</HashCode>
+      <HashCode>AASAAAAAAAACBgAAAAAAQAAAADIIQAAoAAQAAAAAAAI=</HashCode>
       <FileName>Units\Ranged\Ranged.cs</FileName>
     </TypeIdentifier>
   </Class>

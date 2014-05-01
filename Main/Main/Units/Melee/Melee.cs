@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Main;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Main.Projectiles;
 
-namespace Main
+
+namespace Main.Units.Melee
 {
     abstract class Melee : Enemy
     {
@@ -19,24 +15,25 @@ namespace Main
         protected ContentManager conentManager;
         protected Rectangle sourceRectangle;
 
+        private float walkAnimationTimer = 0.30f;
+        private float attackAnimationTimer = 0.15f;
+        private float triggerAttackTimer = 1.5f;
+
+        private int framesPerRow;
+        private int numRows;
+        private int frameHeight;
+        private int frameWidth;
+
+        protected int detectionDistanceX;
+        protected int detectionDistanceY;
+
         protected bool lookingRight = true;
-
-        protected float walkAnimationTimer = 0.30f;
-        protected float attackAnimationTimer = 0.15f;
-        protected int framesPerRow;
-        protected int numRows;
-        protected int frameHeight;
-        protected int frameWidth;
-
-        protected int detectionDistanceX = 350;
-        protected int detectionDistanceY = 150;
         protected bool atacking = false;
-
+        
         public int CurrentFrame { get; set; }
         public Melee(int positonX, int positionY)
-            : base(positonX, positionY, 70, 50)
+            : base(positonX, positionY)
         {
-            this.Health = 4;
         }
         
         public bool Atacking
@@ -48,6 +45,85 @@ namespace Main
             set
             {
                 this.atacking = value;
+            }
+        }
+        public override void Update(GameTime gameTime, int playerX, int playerY)
+        {
+
+            position += velocity;
+
+            if (atacking == false)
+            {
+                this.currentSpriteName = walkingSpriteName;
+                this.AnimateWalking(gameTime, this.currentSpriteName, 6, 1);
+            }
+            else
+            {
+                this.currentSpriteName = attackingSpriteName;
+                this.AnimateAttack(gameTime, this.currentSpriteName, 4, 1);
+
+                if (this.CurrentFrame >= 4)
+                {
+                    atacking = false;
+                }
+            }
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, rectangleSizeWidth, rectangleSizeHeight);
+
+            playerDistanceX = playerX - position.X;
+            playerDistanceY = playerY - position.Y;
+
+            int detectionDistanceX = 250;
+            int detectionDistanceY = 200;
+
+            if (playerDistanceX >= -detectionDistanceX && playerDistanceX <= detectionDistanceX
+                && playerDistanceY >= -detectionDistanceY && playerDistanceY <= detectionDistanceY)
+            {
+                if (playerDistanceX < 0)
+                {
+                    velocity.X = -1.3f;
+
+                }
+                else if (playerDistanceX > 0)
+                {
+                    velocity.X = 1.3f;
+
+                }
+                float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                triggerAttackTimer -= elapsed;
+                if (triggerAttackTimer < 0)
+                {
+                    atacking = true;
+                    triggerAttackTimer = 1.5f;
+                }
+
+            }
+            else
+            {
+                if (position.X > patrolPositon.X)
+                {
+                    if ((int)(position.X - patrolPositon.X) > patrolDistance)
+                    {
+                        velocity.X = -1f;
+                    }
+                }
+                else if (position.X < patrolPositon.X)
+                {
+                    if (Math.Abs((int)(position.X - patrolPositon.X)) > patrolDistance)
+                    {
+                        velocity.X = 1f;
+                    }
+                }
+            }
+
+            if (hasJumped == true)
+            {
+                position.Y -= 4f;
+                velocity.Y = -8f;
+                hasJumped = false;
+            }
+            if (velocity.Y < 12)
+            {
+                velocity.Y += 0.4f;
             }
         }
 

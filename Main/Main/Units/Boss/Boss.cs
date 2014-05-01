@@ -23,8 +23,8 @@ namespace Main
             this.rectangleSizeWidth = 120;
             this.rectangleSizeHeight = 120;
             this.Health = 30;
-            this.spriteName = "EnemySprites\\/bossWalking";
-            this.texture = contentManager.Load<Texture2D>("EnemySprites\\/bossWalking");
+            this.currentSpriteName = "EnemySprites\\boss\\walking";
+            this.texture = contentManager.Load<Texture2D>("EnemySprites\\boss\\walking");
             this.conentManager = contentManager;
             this.patrolDistance = 500;
         }
@@ -104,7 +104,7 @@ namespace Main
             //animation
             if (velocity.X != 0)
             {
-                this.AnimateWalking(gameTime, "EnemySprites\\bossWalking", 6, 1);
+                this.AnimateWalking(gameTime, "EnemySprites\\boss\\walking", 6, 1);
             }
             else
             {

@@ -17,7 +17,9 @@ namespace Main
     {
         protected int rectangleSizeWidth;
         protected int rectangleSizeHeight;
-        protected string spriteName = "EnemySprites\\archerWalking1";
+        protected string currentSpriteName = "EnemySprites\\archer\\walking";
+        protected string walkingSpriteName = "";
+        protected string attackingSpriteName = "";
         protected float playerDistanceX;
         protected float playerDistanceY;
         protected Vector2 patrolPositon;
@@ -55,7 +57,7 @@ namespace Main
 
         public override void Load(ContentManager contentManager)
         {
-            this.texture = contentManager.Load<Texture2D>(spriteName);
+            this.texture = contentManager.Load<Texture2D>(currentSpriteName);
         }
 
         public virtual void Collision(Rectangle newRectangle, int xOffset, int yOffset)

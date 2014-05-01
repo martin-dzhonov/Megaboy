@@ -107,29 +107,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\archerShooting1.png">
-      <Name>archerShooting1</Name>
+    <Compile Include="EnemySprites\archer\attack.png">
+      <Name>attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\archerWalking1.png">
-      <Name>archerWalking1</Name>
+    <Compile Include="EnemySprites\archer\walking.png">
+      <Name>walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\knightAttack2.png">
-      <Name>knightAttack2</Name>
+    <Compile Include="EnemySprites\knight\attack.png">
+      <Name>attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\knightWalking2.png">
-      <Name>knightWalking2</Name>
+    <Compile Include="EnemySprites\knight\walking.png">
+      <Name>walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -156,25 +156,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\ogreAttack.png">
-      <Name>ogreAttack</Name>
+    <Compile Include="EnemySprites\ogre\attack.png">
+      <Name>attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="EnemySprites\ogreWalking.png">
-      <Name>ogreWalking</Name>
+    <Compile Include="EnemySprites\ogre\walking.png">
+      <Name>walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\orcAttack.png">
-      <Name>orcAttack</Name>
+    <Compile Include="EnemySprites\orc\attack.png">
+      <Name>attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="EnemySprites\orcWalking.png">
-      <Name>orcWalking</Name>
+    <Compile Include="EnemySprites\orc\walking.png">
+      <Name>walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -213,19 +213,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\bossAttack.png">
-      <Name>bossAttack</Name>
+    <Compile Include="EnemySprites\boss\attack.png">
+      <Name>attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="EnemySprites\bossWalking.png">
-      <Name>bossWalking</Name>
+    <Compile Include="EnemySprites\boss\walking.png">
+      <Name>walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnemySprites\bossProjectile.png">
+    <Compile Include="EnemySprites\boss\bossProjectile.png">
       <Name>bossProjectile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
