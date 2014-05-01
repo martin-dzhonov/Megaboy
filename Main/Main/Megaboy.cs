@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using Main.Units;
 using Main.Units.Melee;
+using Main.Units.Projectiles;
 using Main.Units.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -157,7 +158,7 @@ namespace Main
                 case GameState.StartMenu:
                     spriteBatch.Begin();
 
-                    spriteBatch.Draw(Content.Load<Texture2D>("megamanwalpaper"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("BackgroundSprites//megamanwalpaper"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
                     startButton.Draw(spriteBatch);
                     exitButton.Draw(spriteBatch);
 
@@ -521,13 +522,13 @@ namespace Main
 
         public void LoadNpcs()
         {
-            maleNpc = new MaleNpc("maleNpc", 530, 250, new ToolTip(Content, "intro", 400, 8, 533, 295));
+            maleNpc = new MaleNpc("NPC Sprites//maleNpc", 530, 250, new ToolTip(Content, "NPC Sprites//intro", 400, 8, 533, 295));
             maleNpc.Load(Content);
 
-            femaleNpc = new FemaleNpc("femaleNpc", 2750, 100, new ToolTip(Content, "quest1", 2800, 5, 215, 165));
+            femaleNpc = new FemaleNpc("NPC Sprites//femaleNpc", 2750, 100, new ToolTip(Content, "NPC Sprites//quest1", 2800, 5, 215, 165));
             femaleNpc.Load(Content);
 
-            femaleNpc2 = new FemaleNpc("femaleNpc2", 6000, 352, new ToolTip(Content, "quest2", 6030, 250, 215, 165));
+            femaleNpc2 = new FemaleNpc("NPC Sprites//femaleNpc2", 6000, 352, new ToolTip(Content, "NPC Sprites//quest2", 6030, 250, 215, 165));
             femaleNpc2.Load(Content);
         }
 
@@ -552,14 +553,14 @@ namespace Main
         }
         private void DrawEndBackground(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-            spriteBatch.Draw(Content.Load<Texture2D>("YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("BackgroundSprites//endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("BackgroundSprites//YouWon"), new Rectangle(225, 15, 672, 400), Color.White);
         }
 
         private void DrawDeadBackground(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Content.Load<Texture2D>("endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
-            spriteBatch.Draw(Content.Load<Texture2D>("gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("BackgroundSprites//endScreen"), new Rectangle(0, 0, (int)WindowSize.Width, (int)WindowSize.Height), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("BackgroundSprites//gameOver"), new Rectangle(225, 15, 672, 400), Color.White);
         }
 
         private void DrawEnemies(SpriteBatch spriteBatch)

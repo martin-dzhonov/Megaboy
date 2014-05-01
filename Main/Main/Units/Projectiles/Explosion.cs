@@ -29,7 +29,7 @@ namespace Main
 
         public Explosion(ContentManager contentManger,int xCoord, int yCoord)
         {
-            this.texture = contentManger.Load<Texture2D>("explosion");
+            this.texture = contentManger.Load<Texture2D>("ProjectileSprites//explosion");
             this.rectangle = new Rectangle(xCoord, yCoord, 50,50);
 
             frameWidth = this.texture.Width / FRAMES_PER_ROW;

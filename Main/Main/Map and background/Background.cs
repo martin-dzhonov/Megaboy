@@ -32,7 +32,7 @@ namespace Main
 
         public void Load(ContentManager contentManager, int numberOfScreens)
         {
-            this.texture = contentManager.Load<Texture2D>("Forest2");
+            this.texture = contentManager.Load<Texture2D>("BackgroundSprites//Forest2");
             this.numberOfScreens = numberOfScreens;
         }
     }

@@ -20,10 +20,10 @@ namespace Main
       public void Load(ContentManager contentManager)
 
         {
-            this.healthSign = contentManager.Load<Texture2D>("HUD sprites\\health");
-            this.healthBarTexture = contentManager.Load<Texture2D>("HUD sprites\\redSquare");
-            this.ammoSign = contentManager.Load<Texture2D>("HUD sprites\\ammo");
-            this.ammoBarTexture = contentManager.Load<Texture2D>("HUD sprites\\greenSquare");   
+            this.healthSign = contentManager.Load<Texture2D>("HUD Sprites\\health");
+            this.healthBarTexture = contentManager.Load<Texture2D>("HUD Sprites\\redSquare");
+            this.ammoSign = contentManager.Load<Texture2D>("HUD Sprites\\ammo");
+            this.ammoBarTexture = contentManager.Load<Texture2D>("HUD Sprites\\greenSquare");   
         }
 
         public void Draw(SpriteBatch spriteBatch, Camera camera, int playerHealth, int projectilesCount)

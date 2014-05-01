@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Main.Units.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -15,7 +16,7 @@ namespace Main.Projectiles
     {
         public Arrow(ContentManager contentManager)
         {
-            this.texture = contentManager.Load<Texture2D>("arrow");
+            this.texture = contentManager.Load<Texture2D>("ProjectileSprites//arrow");
             this.width = 40;
             this.height = 8;
         }

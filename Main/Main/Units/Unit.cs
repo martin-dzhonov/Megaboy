@@ -11,11 +11,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
-namespace Main
+
+namespace Main.Units
 {
-
-
-     abstract class Unit : ILoad, IUpdate, IDraw
+     abstract class Unit : ILoad, IDraw
     {
         protected Texture2D texture;
         protected Vector2 position;

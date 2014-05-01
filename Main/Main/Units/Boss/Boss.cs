@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Main.Units.Projectiles;
 using Main.Units.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -104,7 +105,7 @@ namespace Main
             }
             else
             {
-                this.AnimateShooting(gameTime, "EnemySprites\\bossAttack", 4, 1);
+                this.AnimateShooting(gameTime, "EnemySprites\\boss\\attack", 4, 1);
             }
         }
 

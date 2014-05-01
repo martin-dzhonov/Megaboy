@@ -49,7 +49,6 @@ namespace Main.Units.Melee
         }
         public override void Update(GameTime gameTime, int playerX, int playerY)
         {
-
             position += velocity;
 
             if (atacking == false)

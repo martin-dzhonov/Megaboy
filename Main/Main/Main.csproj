@@ -87,12 +87,10 @@
   <ItemGroup>
     <Compile Include="Enum\GameState.cs" />
     <Compile Include="Enum\PlayerSize.cs" />
-    <Compile Include="Enum\WindowSizes.cs" />
-    <Compile Include="Exceptions\InvalidHealthException.cs" />
+    <Compile Include="Enum\WindowSize.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="Interfaces\IDraw.cs" />
     <Compile Include="Interfaces\ILoad.cs" />
-    <Compile Include="Interfaces\IUpdate.cs" />
     <Compile Include="Units\Projectiles\Arrow.cs" />
     <Compile Include="Units\Projectiles\BossProjectile.cs" />
     <Compile Include="Units\Projectiles\Explosion.cs" />
@@ -162,7 +160,9 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="Main_TemporaryKey.pfx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

@@ -30,14 +30,14 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fireball.png">
+    <Compile Include="ProjectileSprites\Fireball.png">
       <Name>Fireball</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forest2.jpg">
+    <Compile Include="BackgroundSprites\Forest2.jpg">
       <Name>Forest2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -65,42 +65,42 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="explosion.png">
+    <Compile Include="ProjectileSprites\explosion.png">
       <Name>explosion</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="arrow.png">
+    <Compile Include="ProjectileSprites\arrow.png">
       <Name>arrow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YouWon.png">
+    <Compile Include="BackgroundSprites\YouWon.png">
       <Name>YouWon</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="maleNpc.png">
+    <Compile Include="NPC Sprites\maleNpc.png">
       <Name>maleNpc</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="femaleNpc.png">
+    <Compile Include="NPC Sprites\femaleNpc.png">
       <Name>femaleNpc</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="femaleNpc2.png">
+    <Compile Include="NPC Sprites\femaleNpc2.png">
       <Name>femaleNpc2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -135,21 +135,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD sprites\redSquare.png">
+    <Compile Include="HUD Sprites\redSquare.png">
       <Name>redSquare</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD sprites\greenSquare.jpg">
+    <Compile Include="HUD Sprites\greenSquare.jpg">
       <Name>greenSquare</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="megamanwalpaper.png">
+    <Compile Include="BackgroundSprites\megamanwalpaper.png">
       <Name>megamanwalpaper</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -194,12 +194,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD sprites\ammo.png">
+    <Compile Include="HUD Sprites\ammo.png">
       <Name>ammo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="HUD sprites\health.png">
+    <Compile Include="HUD Sprites\health.png">
       <Name>health</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -232,14 +232,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="intro.png">
+    <Compile Include="NPC Sprites\intro.png">
       <Name>intro</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gameOver.png">
+    <Compile Include="BackgroundSprites\gameOver.png">
       <Name>gameOver</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -258,19 +258,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="quest1.png">
+    <Compile Include="NPC Sprites\quest1.png">
       <Name>quest1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="quest2.png">
+    <Compile Include="NPC Sprites\quest2.png">
       <Name>quest2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="endScreen.jpg">
+    <Compile Include="BackgroundSprites\endScreen.jpg">
       <Name>endScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -289,12 +289,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bossProjectile.png">
+    <Compile Include="ProjectileSprites\bossProjectile.png">
       <Name>bossProjectile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

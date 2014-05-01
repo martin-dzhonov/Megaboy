@@ -78,7 +78,7 @@
       <FileName>Units\Projectiles\Fireball.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Projectile" Collapsed="true">
+  <Class Name="Main.Units.Projectiles.Projectile" Collapsed="true">
     <Position X="2" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAiQgQAAAICAAAAAgAgAAAAQAAAAGAAA=</HashCode>
@@ -99,7 +99,7 @@
       <FileName>Units\Boss\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Enemy" Collapsed="true">
+  <Class Name="Main.Units.Enemy" Collapsed="true">
     <Position X="10.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAQEiAEAAYBQAgAAAAAABAAAAAIAQAAAAAAAAAAAAAA=</HashCode>
@@ -185,7 +185,7 @@
       <FileName>Units\Ranged\Ranged.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Main.Unit" Collapsed="true">
+  <Class Name="Main.Units.Unit" Collapsed="true">
     <Position X="9" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAAgAgAAAAICAAAAAgAgAAAAQAAAAEAAA=</HashCode>
@@ -235,13 +235,6 @@
       <FileName>Interfaces\IMap.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Main.Interfaces.IUpdate" Collapsed="true">
-    <Position X="17.5" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IUpdate.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Enum Name="Main.Enum.GameState" Collapsed="true">
     <Position X="21.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
@@ -260,7 +253,7 @@
     <Position X="25.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Enum\WindowSizes.cs</FileName>
+      <FileName>Enum\WindowSize.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

@@ -4,15 +4,11 @@ using System.Linq;
 
 using Main;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Main.Enum;
-using Microsoft.Xna.Framework.Media;
 using Main.Interfaces;
-using Main.Exceptions;
 
 namespace Main.Units
 {
@@ -31,6 +27,7 @@ namespace Main.Units
         private int frameHeight;
         private int frameWidth;
         private float animationInterval;
+
         private bool hasJumped;
 
         public bool LookingRight { get; set; }
@@ -58,7 +55,6 @@ namespace Main.Units
 
             // set initial source rectangle
             this.sourceRectangle = new Rectangle(0, 0, frameWidth, frameHeight);
-
         }
         public override void Update(GameTime gameTime)
         {
