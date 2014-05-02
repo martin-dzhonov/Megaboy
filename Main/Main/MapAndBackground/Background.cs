@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+using Main.MapAndBackground;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Main.Enum;
 
-namespace Main
+namespace Main.MapAndBackground
 {
-    class Background
-    {
-        protected Texture2D texture;
-        protected Rectangle rectangle;
-
-    }
     class ContinuingBackground : Background
     {
         private int numberOfScreens;
@@ -35,5 +27,14 @@ namespace Main
             this.texture = contentManager.Load<Texture2D>("BackgroundSprites//Forest2");
             this.numberOfScreens = numberOfScreens;
         }
+    }
+}
+
+namespace Main.MapAndBackground
+{
+    class Background
+    {
+        protected Texture2D texture;
+        protected Rectangle rectangle;
     }
 }

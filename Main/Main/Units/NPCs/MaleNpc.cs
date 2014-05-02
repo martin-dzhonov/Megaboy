@@ -1,11 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
+using Main;
 
-
-namespace Main
+namespace Main.Units.NPCs
 {
     class MaleNpc : NPC
     {

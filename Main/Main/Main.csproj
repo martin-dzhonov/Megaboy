@@ -97,12 +97,12 @@
     <Compile Include="Units\Projectiles\Fireball.cs" />
     <Compile Include="Interfaces\IHealth.cs" />
     <Compile Include="Interfaces\IMap.cs" />
-    <Compile Include="Map and background\Background.cs" />
-    <Compile Include="Map and background\Camera.cs" />
+    <Compile Include="MapAndBackground\Background.cs" />
+    <Compile Include="MapAndBackground\Camera.cs" />
     <Compile Include="StartMenu\Button.cs" />
     <Compile Include="Units\Boss\Boss.cs" />
     <Compile Include="Units\Enemy.cs" />
-    <Compile Include="Map and background\Map.cs" />
+    <Compile Include="MapAndBackground\Map.cs" />
     <Compile Include="Units\Melee\Knight.cs" />
     <Compile Include="Units\Melee\Melee.cs" />
     <Compile Include="Units\Melee\Ogre.cs" />
@@ -119,7 +119,7 @@
     <Compile Include="Units\Ranged\Orc.cs" />
     <Compile Include="Units\Ranged\Ranged.cs" />
     <Compile Include="RectangleHelper.cs" />
-    <Compile Include="Map and background\Tiles.cs" />
+    <Compile Include="MapAndBackground\Tiles.cs" />
     <Compile Include="Units\Unit.cs" />
   </ItemGroup>
   <ItemGroup>

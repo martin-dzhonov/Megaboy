@@ -1,10 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
 
-namespace Main
+namespace Main.Units.NPCs
 {
     class FemaleNpc : NPC
     {

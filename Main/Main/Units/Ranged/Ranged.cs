@@ -7,7 +7,6 @@ using Main.Units.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Main.Projectiles;
 
 namespace Main.Units.Ranged
 {

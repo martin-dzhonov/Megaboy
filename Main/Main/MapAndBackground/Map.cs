@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using Main.Interfaces;
 
-
-namespace Main
-{    
+namespace Main.MapAndBackGround
+{ 
     class Map : IMap
     {
         private List<CollisionTile> collisionTiles = new List<CollisionTile>();

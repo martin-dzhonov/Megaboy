@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Main.MapAndBackGround;
+using Main.MapAndBackground;
 using Main.Units;
 using Main.Units.Melee;
+using Main.Units.NPCs;
 using Main.Units.Projectiles;
 using Main.Units.Ranged;
 using Microsoft.Xna.Framework;
@@ -14,7 +17,7 @@ using Main.Enum;
 using Main.StartMenu;
 
 namespace Main
-{ 
+{
     public class Megaboy : Microsoft.Xna.Framework.Game
     {
         #region variables
@@ -81,9 +84,9 @@ namespace Main
             player.Load(Content);
             hud.Load(Content);
             LoadBoss();
-            LoadButtons();
             LoadEnemies();
             LoadNpcs();
+            LoadButtons();
 
             gameMusicLoop = Content.Load<SoundEffect>("Sounds//loop");
             musicLoop = gameMusicLoop.CreateInstance();
@@ -105,37 +108,31 @@ namespace Main
             switch (currentGameState)
             {
                 case (GameState.StartMenu):
-                    if (startButton.isClicked)
-                    {
-                        currentGameState = GameState.Playing;
-                    }
-                    else if (exitButton.isClicked)
-                    {
-                        this.Exit();
-                    }
+
+                    if (startButton.isClicked) { currentGameState = GameState.Playing; }
+                    else if (exitButton.isClicked) { this.Exit(); }
                     exitButton.Update(mouse);
                     startButton.Update(mouse);
+
                     break;
+
                 case (GameState.Playing):
 
                     musicLoop.Play();
 
-                    player.Update(gameTime);
-                    UpdateEnemies(gameTime);
-                    UpdateProjectiles();
-                    UpdateNPCs(gameTime);
-                    UppdateCollision();
-
-                    if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true)
-                    {
-                        PlayerShoot();
-                    }
+                    if (Keyboard.GetState().IsKeyUp(Keys.X) && xPressed == true) { PlayerShoot(); }
                     xPressed = Keyboard.GetState().IsKeyDown(Keys.X);
 
-                    HitEnemies();
-                    HitPlayer();
+                    player.Update(gameTime);
+                    UpdateEnemies(gameTime);          
+                    UpdateNPCs(gameTime);
+                    UppdateCollision();
+                    UpdateProjectiles();
+                    UpdateEnemiesHit();
+                    UpdatePlayerHit();
                     camera.Update(player.Position, map.Width, map.Height);
                     GameEndUpdate();
+
                     break;
 
                 case (GameState.End):
@@ -291,7 +288,7 @@ namespace Main
             playerProjectiles.Add(fireball);
         }
 
-        public void HitEnemies()
+        public void UpdateEnemiesHit()
         {
             for (int i = 0; i < playerProjectiles.Count; i++)
             {
@@ -337,7 +334,7 @@ namespace Main
             }
         }
 
-        public void HitPlayer()
+        public void UpdatePlayerHit()
         {
             for (int i = 0; i < enemyProjectiles.Count; i++)
             {
@@ -427,36 +424,36 @@ namespace Main
         }
         public void LoadEnemies()
         {
-           Enemy archer1 = new Archer(1500, 50, Content);
-           archer1.Load(Content);
-           Enemy archer2 = new Archer(1700, 50, Content);
-           archer2.Load(Content);
-           Enemy archer3 = new Archer(2000, 50, Content);
-           archer3.Load(Content);
-           Enemy archer4 = new Archer(3650, 300, Content);
-           archer4.Load(Content);
-           Enemy archer5 = new Archer(4100, 50, Content);
-           archer5.Load(Content);
-           Enemy archer6 = new Archer(4500, 50, Content);
-           archer6.Load(Content);
-           Enemy knight1 = new Knight(5500, 50, Content);
-           knight1.Load(Content);
-           Enemy knight2 = new Knight(2500, 350, Content);
-           knight2.Load(Content);
-           Enemy knight3 = new Knight(3700, 50, Content);
-           knight3.Load(Content);
-           Enemy knight4 = new Knight(4000, 50, Content);
-           knight4.Load(Content);
-           Enemy knight5 = new Knight(10500, 50, Content);
-           knight5.Load(Content);
-           Enemy knight6 = new Knight(10900, 50, Content);
-           knight6.Load(Content);
-           Enemy knight7 = new Knight(9300, 50, Content);
-           knight7.Load(Content);
-           Enemy knight8 = new Knight(5000, 50, Content);
-           knight8.Load(Content);
-           Enemy knight9 = new Knight(5000, 50, Content);
-           knight9.Load(Content);
+            Enemy archer1 = new Archer(1500, 50, Content);
+            archer1.Load(Content);
+            Enemy archer2 = new Archer(1700, 50, Content);
+            archer2.Load(Content);
+            Enemy archer3 = new Archer(2000, 50, Content);
+            archer3.Load(Content);
+            Enemy archer4 = new Archer(3650, 300, Content);
+            archer4.Load(Content);
+            Enemy archer5 = new Archer(4100, 50, Content);
+            archer5.Load(Content);
+            Enemy archer6 = new Archer(4500, 50, Content);
+            archer6.Load(Content);
+            Enemy knight1 = new Knight(5500, 50, Content);
+            knight1.Load(Content);
+            Enemy knight2 = new Knight(2500, 350, Content);
+            knight2.Load(Content);
+            Enemy knight3 = new Knight(3700, 50, Content);
+            knight3.Load(Content);
+            Enemy knight4 = new Knight(4000, 50, Content);
+            knight4.Load(Content);
+            Enemy knight5 = new Knight(10500, 50, Content);
+            knight5.Load(Content);
+            Enemy knight6 = new Knight(10900, 50, Content);
+            knight6.Load(Content);
+            Enemy knight7 = new Knight(9300, 50, Content);
+            knight7.Load(Content);
+            Enemy knight8 = new Knight(5000, 50, Content);
+            knight8.Load(Content);
+            Enemy knight9 = new Knight(5000, 50, Content);
+            knight9.Load(Content);
             Enemy ogre1 = new Ogre(5100, 50, Content);
             ogre1.Load(Content);
             Enemy ogre2 = new Ogre(5800, 50, Content);
@@ -473,33 +470,33 @@ namespace Main
             ogre7.Load(Content);
             Enemy ogre8 = new Ogre(13200, 50, Content);
             ogre8.Load(Content);
-           Enemy orc1 = new Orc(6100, 350, Content);
-           orc1.Load(Content);
-           Enemy orc2 = new Orc(8100, 50, Content);
-           orc2.Load(Content);
-           Enemy orc3 = new Orc(9100, 300, Content);
-           orc3.Load(Content);
-           Enemy orc4 = new Orc(11000, 50, Content);
-           orc4.Load(Content);
-           Enemy orc5 = new Orc(11000, 50, Content);
-           orc5.Load(Content);
-           Enemy orc6 = new Orc(11500, 50, Content);
-           orc6.Load(Content);
-           Enemy orc7 = new Orc(11900, 50, Content);
-           orc7.Load(Content);
-           enemies.Add(archer1);
-           enemies.Add(archer2);
-           enemies.Add(archer3);
-           enemies.Add(archer4);
-           enemies.Add(archer5);
-           enemies.Add(archer6);
-           enemies.Add(knight1);
-           enemies.Add(knight2);
-           enemies.Add(knight3);
-           enemies.Add(knight4);
-           enemies.Add(knight5);
-           enemies.Add(knight6);
-           enemies.Add(knight7);
+            Enemy orc1 = new Orc(6100, 350, Content);
+            orc1.Load(Content);
+            Enemy orc2 = new Orc(8100, 50, Content);
+            orc2.Load(Content);
+            Enemy orc3 = new Orc(9100, 300, Content);
+            orc3.Load(Content);
+            Enemy orc4 = new Orc(11000, 50, Content);
+            orc4.Load(Content);
+            Enemy orc5 = new Orc(11000, 50, Content);
+            orc5.Load(Content);
+            Enemy orc6 = new Orc(11500, 50, Content);
+            orc6.Load(Content);
+            Enemy orc7 = new Orc(11900, 50, Content);
+            orc7.Load(Content);
+            enemies.Add(archer1);
+            enemies.Add(archer2);
+            enemies.Add(archer3);
+            enemies.Add(archer4);
+            enemies.Add(archer5);
+            enemies.Add(archer6);
+            enemies.Add(knight1);
+            enemies.Add(knight2);
+            enemies.Add(knight3);
+            enemies.Add(knight4);
+            enemies.Add(knight5);
+            enemies.Add(knight6);
+            enemies.Add(knight7);
             enemies.Add(ogre1);
             enemies.Add(ogre2);
             enemies.Add(ogre3);
