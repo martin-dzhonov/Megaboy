@@ -13,8 +13,8 @@ namespace Main
         private Texture2D ammoBarTexture;
         private Texture2D healthSign;
         private Texture2D ammoSign;
-        private int barWidth = 150;
-        private int barHeight = 20;
+        private int barWidth;
+        private int barHeight;
 
       public void Load(ContentManager contentManager)
 
@@ -23,8 +23,11 @@ namespace Main
             this.healthBarTexture = contentManager.Load<Texture2D>("HUD Sprites\\redSquare");
             this.ammoSign = contentManager.Load<Texture2D>("HUD Sprites\\ammo");
             this.ammoBarTexture = contentManager.Load<Texture2D>("HUD Sprites\\greenSquare");   
+			this.barWidth = 150;
+			this.barHeight = 20;
         }
-
+		
+		//TODO: Fix
         public void Draw(SpriteBatch spriteBatch, Camera camera, int playerHealth, int projectilesCount)
         {
             spriteBatch.Draw(healthSign, new Rectangle((int)camera.Centre.X - 500, (int)camera.Centre.Y - 260, barWidth, barHeight), Color.White);

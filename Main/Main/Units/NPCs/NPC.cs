@@ -9,6 +9,7 @@ namespace Main.Units.NPCs
     abstract class NPC : Unit
 
     {
+		//TODO new textures
         string spriteName;
         public ToolTip toolTip;
 

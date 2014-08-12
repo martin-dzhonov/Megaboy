@@ -13,6 +13,7 @@ namespace Main.Units
         protected Vector2 position;
         protected Rectangle rectangle;
         protected Vector2 velocity;
+		
         public Vector2 Position
         {
             get

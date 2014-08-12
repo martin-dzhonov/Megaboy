@@ -8,6 +8,7 @@ namespace Main.Units.NPCs
 {
     public class ToolTip
     {
+		//TODO count enemies
         public bool IsVisible { get; set; }
         protected Texture2D texture;
         protected string spriteName;
