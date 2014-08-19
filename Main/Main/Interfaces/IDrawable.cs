@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Main.Interfaces
 {
-    interface IDraw
+    interface IDrawable
     {
        void Draw(SpriteBatch spriteBatch);
     }

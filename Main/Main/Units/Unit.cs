@@ -7,7 +7,7 @@ using Main.Interfaces;
 
 namespace Main.Units
 {
-     abstract class Unit : ILoad, IDraw
+     abstract class Unit : ILoad, IDrawable
     {
         protected Texture2D texture;
         protected Vector2 position;

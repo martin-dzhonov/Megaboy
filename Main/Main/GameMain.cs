@@ -10,9 +10,9 @@ namespace Main
         /// </summary>
         static void Main(string[] args)
         {
-            using (Megaboy game = new Megaboy())
+            using (Engine engine = new Engine())
             {
-                game.Run();
+                engine.Run();
             }
         }
 

@@ -18,7 +18,7 @@ using Main.StartMenu;
 
 namespace Main
 {
-    public class Megaboy : Microsoft.Xna.Framework.Game
+    public class Engine : Microsoft.Xna.Framework.Game
     {
         #region variables
         GameState currentGameState;
@@ -51,7 +51,7 @@ namespace Main
         static readonly int tileSize = 50;
         #endregion
 
-        public Megaboy()
+        public Engine()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
